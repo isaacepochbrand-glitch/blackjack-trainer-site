@@ -1,16 +1,188 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>21 Pro: Blackjack Trainer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21 Pro: Blackjack Trainer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #1a1a1a;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            color: #bbb;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: white;
+            min-height: calc(100vh - 200px);
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        section h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+        }
+
+        section p {
+            font-size: 1em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .feature-item {
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-left: 4px solid #333;
+        }
+
+        .feature-item h3 {
+            margin-bottom: 8px;
+            color: #1a1a1a;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #1a1a1a;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .cta-button:hover {
+            background-color: #333;
+        }
+
+        footer {
+            background-color: #1a1a1a;
+            color: #bbb;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #bbb;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            main {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>21 Pro: Blackjack Trainer</h1>
+    <header>
+        <h1>21 Pro</h1>
+        <p>Blackjack Trainer</p>
+    </header>
 
-  <p>Train blackjack strategy and card counting with realistic simulations.</p>
+    <main>
+        <section>
+            <h2>Master Blackjack Strategy</h2>
+            <p>21 Pro is a comprehensive blackjack training application designed to help you learn optimal strategy, practice card counting, and improve your decision-making through realistic simulations.</p>
+        </section>
 
-  <ul>
-    <li><a href="privacy.html">Privacy Policy</a></li>
-    <li><a href="terms.html">Terms of Service</a></li>
-  </ul>
+        <section>
+            <h2>Features</h2>
+            <div class="features">
+                <div class="feature-item">
+                    <h3>Strategy Training</h3>
+                    <p>Learn and practice basic blackjack strategy with instant feedback on your decisions.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Card Counting</h3>
+                    <p>Develop card counting skills with customizable counting systems and realistic shoe simulations.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Realistic Simulations</h3>
+                    <p>Experience authentic blackjack gameplay with adjustable table rules and penetration.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Progress Tracking</h3>
+                    <p>Monitor your improvement with detailed statistics and performance analytics.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Getting Started</h2>
+            <p>Ready to improve your blackjack game? Download 21 Pro and start training today.</p>
+            <a href="#" class="cta-button">Download 21 Pro</a>
+        </section>
+
+        <section>
+            <h2>Legal</h2>
+            <p>Please review our policies before using the application:</p>
+            <ul style="margin-left: 20px; color: #555;">
+                <li><a href="privacy.html" style="color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #1a1a1a;">Privacy Policy</a> – How we handle your data</li>
+                <li><a href="terms.html" style="color: #1a1a1a; text-decoration: none; border-bottom: 1px solid #1a1a1a;">Terms of Service</a> – Our terms and conditions</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 21 Pro. All rights reserved.</p>
+        <div>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Service</a>
+        </div>
+    </footer>
 </body>
 </html>
