@@ -1,222 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms of Service - 21 Pro: Blackjack Trainer</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — 21 Pro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --felt-deep:#080f0a; --felt-dark:#0d1a10;
+    --surface-dark:#0c0c0b; --surface-card:#1a1a17;
+    --brass:#BF9E6A; --brass-light:#D4B07A; --brass-muted:#997845;
+    --brass-subtle:rgba(191,158,106,0.10); --brass-border:rgba(191,158,106,0.18);
+    --text-primary:#E6DFD1; --text-secondary:#9A9488; --text-tertiary:#61594F;
+    --border-subtle:rgba(255,255,255,0.04); --border-mid:rgba(255,255,255,0.07);
+    --font-display:'Playfair Display',Georgia,serif;
+    --font-body:'DM Sans',system-ui,sans-serif;
+    --max-w:760px;
+  }
+  body {
+    background: var(--felt-deep);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  nav {
+    position:sticky; top:0;
+    height:60px; display:flex; align-items:center;
+    padding:0 24px;
+    backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+    background:rgba(8,15,10,0.88);
+    border-bottom:1px solid var(--border-subtle);
+    z-index:100;
+  }
+  .nav-inner { max-width:var(--max-w); width:100%; margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
+  .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .nav-logo-mark {
+    width:32px; height:32px;
+    background:linear-gradient(135deg, var(--brass) 0%, var(--brass-muted) 100%);
+    border-radius:8px; display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-size:16px; font-weight:700; color:var(--felt-deep);
+  }
+  .nav-logo-text { font-family:var(--font-display); font-size:18px; font-weight:600; color:var(--text-primary); }
+  .nav-back { font-size:14px; color:var(--text-secondary); text-decoration:none; }
+  .nav-back:hover { color:var(--text-primary); }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
-        }
+  .page-hero { padding:80px 24px 48px; max-width:var(--max-w); margin:0 auto; border-bottom:1px solid var(--border-subtle); }
+  .page-eyebrow { font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--brass); margin-bottom:12px; display:block; }
+  .page-title { font-family:var(--font-display); font-size:clamp(32px,5vw,52px); font-weight:700; color:var(--text-primary); letter-spacing:-0.03em; line-height:1.1; margin-bottom:16px; }
+  .page-meta { font-size:14px; color:var(--text-tertiary); }
 
-        header {
-            background-color: #1a1a1a;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+  .prose { max-width:var(--max-w); margin:0 auto; padding:56px 24px 80px; }
+  .prose h2 { font-family:var(--font-display); font-size:22px; font-weight:600; color:var(--text-primary); letter-spacing:-0.02em; margin:48px 0 16px; }
+  .prose h2:first-child { margin-top:0; }
+  .prose p { font-size:15px; color:var(--text-secondary); font-weight:300; margin-bottom:16px; line-height:1.75; }
+  .prose ul { margin:0 0 16px 20px; }
+  .prose li { font-size:15px; color:var(--text-secondary); font-weight:300; margin-bottom:8px; line-height:1.7; }
+  .prose strong { color:var(--text-primary); font-weight:500; }
+  .prose a { color:var(--brass-light); }
+  .prose .note { background:var(--brass-subtle); border:1px solid var(--brass-border); border-radius:10px; padding:20px 22px; margin:24px 0; }
+  .prose .note p { margin:0; }
 
-        header h1 {
-            font-size: 1.8em;
-            margin-bottom: 5px;
-        }
-
-        header p {
-            font-size: 0.9em;
-            color: #bbb;
-        }
-
-        main {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            background-color: white;
-            min-height: calc(100vh - 200px);
-        }
-
-        h2 {
-            font-size: 1.5em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            color: #1a1a1a;
-        }
-
-        h3 {
-            font-size: 1.1em;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        p {
-            color: #555;
-            margin-bottom: 15px;
-        }
-
-        ul, ol {
-            margin-left: 20px;
-            margin-bottom: 15px;
-            color: #555;
-        }
-
-        li {
-            margin-bottom: 8px;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: 30px;
-            color: #1a1a1a;
-            text-decoration: none;
-            border-bottom: 1px solid #1a1a1a;
-        }
-
-        .back-link:hover {
-            color: #555;
-            border-bottom-color: #555;
-        }
-
-        footer {
-            background-color: #1a1a1a;
-            color: #bbb;
-            text-align: center;
-            padding: 30px 20px;
-            font-size: 0.9em;
-        }
-
-        footer a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 15px;
-            transition: color 0.3s;
-        }
-
-        footer a:hover {
-            color: #bbb;
-        }
-
-        .last-updated {
-            color: #999;
-            font-size: 0.9em;
-            font-style: italic;
-            margin-bottom: 30px;
-        }
-
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 1.4em;
-            }
-
-            main {
-                padding: 20px;
-            }
-        }
-    </style>
+  footer { border-top:1px solid var(--border-subtle); padding:32px 24px; }
+  .footer-inner { max-width:var(--max-w); margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  .footer-copy { font-size:12px; color:var(--text-tertiary); }
+  .footer-links { display:flex; gap:20px; list-style:none; }
+  .footer-links a { font-size:13px; color:var(--text-tertiary); text-decoration:none; }
+  .footer-links a:hover { color:var(--text-secondary); }
+</style>
 </head>
 <body>
-    <header>
-        <h1>21 Pro: Blackjack Trainer</h1>
-        <p>Terms of Service</p>
-    </header>
 
-    <main>
-        <a href="index.html" class="back-link">← Back to Home</a>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark">21</div>
+      <span class="nav-logo-text">21 Pro</span>
+    </a>
+    <a href="index.html" class="nav-back">← Back to Home</a>
+  </div>
+</nav>
 
-        <h2>Terms of Service</h2>
-        <p class="last-updated">Last Updated: April 7th, 2026</p>
+<div class="page-hero">
+  <span class="page-eyebrow">Legal</span>
+  <h1 class="page-title">Terms of Service</h1>
+  <p class="page-meta">Last updated: January 1, 2025</p>
+</div>
 
-        <!-- PASTE YOUR TERMS OF SERVICE CONTENT BELOW THIS LINE -->
-        <!-- Keep the HTML structure above, and insert your terms content between the comments below -->
+<div class="prose">
+  <div class="note">
+    <p><strong>Plain English summary:</strong> Use the app as intended, don't do anything illegal, and understand this is a training tool — not financial or gambling advice. Full terms below.</p>
+  </div>
 
-   <h3>1. Acceptance</h3>
-<p>By using <strong>21 Pro: Blackjack Trainer</strong>, you agree to these Terms.</p>
+  <h2>Acceptance of Terms</h2>
+  <p>By downloading or using 21 Pro ("the App"), you agree to be bound by these Terms of Service. If you do not agree, please do not use the App.</p>
 
-<h3>2. Description</h3>
-<p>This App provides blackjack training and simulation tools for educational purposes only. It does not involve real-money gambling.</p>
+  <h2>Description of Service</h2>
+  <p>21 Pro is a blackjack strategy and training application designed for educational and entertainment purposes. The App simulates blackjack gameplay to help users learn and practice basic strategy and card counting techniques.</p>
 
-<h3>3. Eligibility</h3>
-<p>You must be at least 13 years old to use the App.</p>
+  <h2>Important Disclaimer</h2>
+  <p><strong>21 Pro is a training tool, not gambling software.</strong> No real money is wagered within the App. Performance within the App does not guarantee results in real-world casino play. Card counting is a legal activity in most jurisdictions, but casinos reserve the right to refuse service to any player. Always comply with local laws and casino policies.</p>
 
-<h3>4. Subscriptions</h3>
+  <h2>User Eligibility</h2>
+  <p>You must be at least 17 years old to use 21 Pro, consistent with Apple's App Store age rating. By using the App, you represent that you meet this requirement.</p>
 
-<h4>Free Version</h4>
-<p>Includes ads and limited features.</p>
+  <h2>License</h2>
+  <p>We grant you a limited, non-exclusive, non-transferable license to use 21 Pro for personal, non-commercial purposes on Apple devices you own or control, subject to these Terms and the Apple App Store Terms of Service.</p>
 
-<h4>Paid Plans</h4>
-<ul>
-  <li>Monthly Subscription (no ads, full access)</li>
-  <li>Yearly Subscription</li>
-  <li>Lifetime Purchase (one-time payment)</li>
-</ul>
+  <h2>Prohibited Uses</h2>
+  <p>You agree not to:</p>
+  <ul>
+    <li>Reverse engineer, decompile, or disassemble the App</li>
+    <li>Use the App for any commercial purpose without prior written consent</li>
+    <li>Attempt to exploit, hack, or interfere with the App's functionality</li>
+    <li>Use the App in violation of any applicable laws or regulations</li>
+  </ul>
 
-<h4>Billing</h4>
-<ul>
-  <li>Payments processed by Apple</li>
-  <li>Subscriptions auto-renew unless canceled</li>
-  <li>Charged within 24 hours before renewal</li>
-</ul>
+  <h2>In-App Purchases</h2>
+  <p>21 Pro offers optional paid subscriptions and lifetime upgrades ("Edge") through Apple's in-app purchase system. All purchases are subject to Apple's Terms of Sale. Subscriptions auto-renew unless cancelled at least 24 hours before the end of the current period. To manage or cancel subscriptions, visit your Apple ID settings.</p>
 
-<h4>Management</h4>
-<p>Subscriptions can be managed via Apple ID settings.</p>
+  <h2>Intellectual Property</h2>
+  <p>All content, design, code, and trademarks within 21 Pro are the exclusive property of the developer and are protected by applicable intellectual property laws.</p>
 
-<h4>Refunds</h4>
-<p>All purchases are subject to Apple’s policies.</p>
+  <h2>Disclaimer of Warranties</h2>
+  <p>The App is provided "as is" without warranties of any kind, express or implied. We do not warrant that the App will be error-free, uninterrupted, or free of viruses or other harmful components.</p>
 
-<h3>5. Advertising</h3>
-<p>The free version includes ads from third-party providers such as Google AdMob.</p>
+  <h2>Limitation of Liability</h2>
+  <p>To the fullest extent permitted by law, we shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the App, including any decisions made in real casino environments based on App training.</p>
 
-<h3>6. Acceptable Use</h3>
-<ul>
-  <li>No reverse engineering</li>
-  <li>No illegal use</li>
-  <li>No interference with app functionality</li>
-</ul>
+  <h2>Changes to Terms</h2>
+  <p>We reserve the right to modify these terms at any time. Changes will be reflected by updating the "Last updated" date. Continued use of the App after changes constitutes acceptance of the revised terms.</p>
 
-<h3>7. Intellectual Property</h3>
-<p>All content is owned and protected by applicable laws.</p>
+  <h2>Governing Law</h2>
+  <p>These Terms are governed by the laws of the United States. Any disputes shall be resolved in the appropriate courts of the applicable jurisdiction.</p>
 
-<h3>8. Disclaimer</h3>
-<p>The App is provided "as is" without warranties.</p>
+  <h2>Contact</h2>
+  <p>For questions about these terms, contact us at <a href="mailto:support@21proapp.com">support@21proapp.com</a>.</p>
+</div>
 
-<h3>9. Limitation of Liability</h3>
-<p>We are not liable for financial losses or damages resulting from use of the App.</p>
+<footer>
+  <div class="footer-inner">
+    <span class="footer-copy">© 2025 21 Pro. All rights reserved.</span>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+    </ul>
+  </div>
+</footer>
 
-<h3>10. Gambling Disclaimer</h3>
-<p>This App does not provide real-money gambling or guarantee success.</p>
-
-<h3>11. Termination</h3>
-<p>We may terminate access at any time.</p>
-
-<h3>12. Governing Law</h3>
-<p>These Terms are governed by the laws of Florida, United States.</p>
-
-<h3>13. Changes</h3>
-<p>We may update these Terms at any time.</p>
-
-<h3>14. Contact</h3>
-<p>Email: epochbrandfeedback@gmail.com</p>
-
-
-        <!-- END OF CONTENT AREA -->
-
-    </main>
-
-    <footer>
-        <p>&copy; 2024 21 Pro. All rights reserved.</p>
-        <div>
-            <a href="index.html">Home</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Service</a>
-        </div>
-    </footer>
 </body>
 </html>
