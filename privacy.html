@@ -1,269 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - 21 Pro: Blackjack Trainer</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — 21 Pro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --felt-deep:#080f0a; --felt-dark:#0d1a10;
+    --surface-dark:#0c0c0b; --surface-card:#1a1a17;
+    --brass:#BF9E6A; --brass-light:#D4B07A; --brass-muted:#997845;
+    --brass-subtle:rgba(191,158,106,0.10); --brass-border:rgba(191,158,106,0.18);
+    --text-primary:#E6DFD1; --text-secondary:#9A9488; --text-tertiary:#61594F;
+    --border-subtle:rgba(255,255,255,0.04); --border-mid:rgba(255,255,255,0.07);
+    --font-display:'Playfair Display',Georgia,serif;
+    --font-body:'DM Sans',system-ui,sans-serif;
+    --max-w:760px;
+  }
+  body {
+    background: var(--felt-deep);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  nav {
+    position: sticky; top:0;
+    height:60px; display:flex; align-items:center;
+    padding:0 24px;
+    backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+    background:rgba(8,15,10,0.88);
+    border-bottom:1px solid var(--border-subtle);
+    z-index:100;
+  }
+  .nav-inner {
+    max-width:var(--max-w); width:100%; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .nav-logo {
+    display:flex; align-items:center; gap:10px; text-decoration:none;
+  }
+  .nav-logo-mark {
+    width:32px; height:32px;
+    background:linear-gradient(135deg, var(--brass) 0%, var(--brass-muted) 100%);
+    border-radius:8px; display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-size:16px; font-weight:700;
+    color:var(--felt-deep);
+  }
+  .nav-logo-text { font-family:var(--font-display); font-size:18px; font-weight:600; color:var(--text-primary); }
+  .nav-back { font-size:14px; color:var(--text-secondary); text-decoration:none; }
+  .nav-back:hover { color:var(--text-primary); }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
-        }
+  .page-hero {
+    padding: 80px 24px 48px;
+    max-width: var(--max-w);
+    margin: 0 auto;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .page-eyebrow {
+    font-size:11px; font-weight:500; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--brass);
+    margin-bottom:12px; display:block;
+  }
+  .page-title {
+    font-family:var(--font-display);
+    font-size:clamp(32px,5vw,52px);
+    font-weight:700; color:var(--text-primary);
+    letter-spacing:-0.03em; line-height:1.1;
+    margin-bottom:16px;
+  }
+  .page-meta { font-size:14px; color:var(--text-tertiary); }
 
-        header {
-            background-color: #1a1a1a;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+  .prose {
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:56px 24px 80px;
+  }
+  .prose h2 {
+    font-family:var(--font-display);
+    font-size:22px; font-weight:600;
+    color:var(--text-primary);
+    letter-spacing:-0.02em;
+    margin:48px 0 16px;
+  }
+  .prose h2:first-child { margin-top:0; }
+  .prose p {
+    font-size:15px; color:var(--text-secondary);
+    font-weight:300; margin-bottom:16px;
+    line-height:1.75;
+  }
+  .prose ul {
+    margin:0 0 16px 20px;
+  }
+  .prose li {
+    font-size:15px; color:var(--text-secondary);
+    font-weight:300; margin-bottom:8px;
+    line-height:1.7;
+  }
+  .prose strong { color:var(--text-primary); font-weight:500; }
+  .prose a { color:var(--brass-light); }
+  .prose .note {
+    background:var(--brass-subtle);
+    border:1px solid var(--brass-border);
+    border-radius:10px;
+    padding:20px 22px;
+    margin:24px 0;
+  }
+  .prose .note p { margin:0; }
 
-        header h1 {
-            font-size: 1.8em;
-            margin-bottom: 5px;
-        }
-
-        header p {
-            font-size: 0.9em;
-            color: #bbb;
-        }
-
-        main {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            background-color: white;
-            min-height: calc(100vh - 200px);
-        }
-
-        h2 {
-            font-size: 1.5em;
-            margin-top: 30px;
-            margin-bottom: 15px;
-            color: #1a1a1a;
-        }
-
-        h3 {
-            font-size: 1.1em;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        p {
-            color: #555;
-            margin-bottom: 15px;
-        }
-
-        ul, ol {
-            margin-left: 20px;
-            margin-bottom: 15px;
-            color: #555;
-        }
-
-        li {
-            margin-bottom: 8px;
-        }
-
-        .back-link {
-            display: inline-block;
-            margin-bottom: 30px;
-            color: #1a1a1a;
-            text-decoration: none;
-            border-bottom: 1px solid #1a1a1a;
-        }
-
-        .back-link:hover {
-            color: #555;
-            border-bottom-color: #555;
-        }
-
-        footer {
-            background-color: #1a1a1a;
-            color: #bbb;
-            text-align: center;
-            padding: 30px 20px;
-            font-size: 0.9em;
-        }
-
-        footer a {
-            color: #fff;
-            text-decoration: none;
-            margin: 0 15px;
-            transition: color 0.3s;
-        }
-
-        footer a:hover {
-            color: #bbb;
-        }
-
-        .last-updated {
-            color: #999;
-            font-size: 0.9em;
-            font-style: italic;
-            margin-bottom: 30px;
-        }
-
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 1.4em;
-            }
-
-            main {
-                padding: 20px;
-            }
-        }
-    </style>
+  footer {
+    border-top:1px solid var(--border-subtle);
+    padding:32px 24px;
+  }
+  .footer-inner {
+    max-width:var(--max-w); margin:0 auto;
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:12px;
+  }
+  .footer-copy { font-size:12px; color:var(--text-tertiary); }
+  .footer-links { display:flex; gap:20px; list-style:none; }
+  .footer-links a { font-size:13px; color:var(--text-tertiary); text-decoration:none; }
+  .footer-links a:hover { color:var(--text-secondary); }
+</style>
 </head>
 <body>
-    <header>
-        <h1>21 Pro: Blackjack Trainer</h1>
-        <p>Privacy Policy</p>
-    </header>
 
-    <main>
-        <a href="index.html" class="back-link">← Back to Home</a>
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-mark">21</div>
+      <span class="nav-logo-text">21 Pro</span>
+    </a>
+    <a href="index.html" class="nav-back">← Back to Home</a>
+  </div>
+</nav>
 
-        <h2>Privacy Policy</h2>
-        <p class="last-updated">Last Updated: April 7th, 2026</p>
+<div class="page-hero">
+  <span class="page-eyebrow">Legal</span>
+  <h1 class="page-title">Privacy Policy</h1>
+  <p class="page-meta">Last updated: January 1, 2025</p>
+</div>
 
-        <!-- PASTE  PRIVACY POLICY CONTENT BELOW THIS LINE -->
-        <!-- Keep the HTML structure above, and insert  policy text between the comments below -->
-<p><strong>Effective Date:</strong> April 7th, 2026</p>
+<div class="prose">
+  <div class="note">
+    <p><strong>Short version:</strong> 21 Pro doesn't collect personal data, doesn't sell your information to anyone, and doesn't require an account. Everything stays on your device.</p>
+  </div>
 
-<h3>1. Introduction</h3>
-<p>Welcome to <strong>21 Pro: Blackjack Trainer</strong> (“App,” “we,” “our,” or “us”). This Privacy Policy explains how we collect, use, disclose, and safeguard  information when you use our mobile application.</p>
-<p>This policy complies with applicable laws including the GDPR, CCPA/CPRA, and CalOPPA.</p>
+  <h2>Overview</h2>
+  <p>21 Pro ("we," "us," "our") is committed to protecting your privacy. This policy explains what data is collected, how it's used, and your rights regarding that information when you use the 21 Pro iOS application.</p>
 
-<h3>2. Information We Collect</h3>
+  <h2>Data We Collect</h2>
+  <p>21 Pro is designed to work entirely on your device. We do not collect, store, or transmit personally identifiable information.</p>
+  <p><strong>Data stored locally on your device includes:</strong></p>
+  <ul>
+    <li>Game progress, session history, and statistics</li>
+    <li>App preferences and settings</li>
+    <li>Purchase entitlements (managed by Apple)</li>
+  </ul>
+  <p>This data lives exclusively on your iPhone or iPad and is never sent to our servers.</p>
 
-<h4>a. Personal Information</h4>
-<p>We do not collect personally identifiable information unless you voluntarily provide it (e.g., support requests).</p>
+  <h2>Purchases & Payments</h2>
+  <p>All in-app purchases are processed by Apple through the App Store. We do not handle, store, or have access to any payment or billing information. Apple's privacy policy governs all transaction data.</p>
 
-<h4>b. Automatically Collected Data</h4>
-<ul>
-  <li>Device type and operating system</li>
-  <li>IP address (may be anonymized)</li>
-  <li>App usage data</li>
-  <li>Crash logs and diagnostics</li>
-  <li>Advertising identifiers (e.g., IDFA, if permitted)</li>
-</ul>
+  <h2>Analytics</h2>
+  <p>We may collect anonymous, aggregated usage data (such as feature interaction counts and session frequency) through Apple's App Store analytics framework. This data cannot be used to identify individual users and is used solely to improve the app experience.</p>
 
-<h4>c. Advertising Data</h4>
-<p>We use third-party services such as Google AdMob to display ads. These services may collect data to provide personalized or non-personalized ads.</p>
-<p>Learn more: <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+  <h2>Advertising</h2>
+  <p>The free tier of 21 Pro may display ads served through Apple's advertising platform. We do not build user profiles for advertising purposes, and Edge subscribers see no ads whatsoever. We do not sell, share, or rent any user data to advertisers.</p>
 
-<h4>d. Analytics Data</h4>
-<p>We may use analytics tools (e.g., Firebase) to understand app usage and improve performance.</p>
-<p>We use <strong>PostHog</strong> to understand how users interact with our app and to improve performance, features, and overall user experience.</p>
+  <h2>Children's Privacy</h2>
+  <p>21 Pro is not directed at children under 13. We do not knowingly collect any information from children. If you believe a child has provided information to us, please contact us so we can remove it.</p>
 
-<p>PostHog may collect limited information such as:</p>
-<ul>
-  <li>Device and app information (e.g., device type, operating system, app version)</li>
-  <li>Usage data (e.g., screens viewed, features used, interactions)</li>
-  <li>Diagnostic data (e.g., crashes and performance issues)</li>
-</ul>
+  <h2>Data Retention & Deletion</h2>
+  <p>Since all data is stored locally on your device, you can delete it at any time by deleting the app from your iPhone or iPad. Deleting the app removes all locally stored game data.</p>
 
-<p>This information is used solely to:</p>
-<ul>
-  <li>Maintain and improve app functionality</li>
-  <li>Fix bugs and performance issues</li>
-  <li>Analyze feature usage and engagement</li>
-  <li>Conduct limited product testing (e.g., A/B testing)</li>
-</ul>
+  <h2>Your Rights</h2>
+  <p>Depending on your jurisdiction, you may have rights regarding your data including access, correction, and deletion. Since we do not collect personal data, there is typically nothing for us to provide or delete — but if you have concerns, please reach out.</p>
 
-<p>We do not use this data to directly identify you. Where possible, data is associated with a pseudonymous identifier.</p>
+  <h2>Changes to This Policy</h2>
+  <p>We may update this policy from time to time. Changes will be reflected in the "Last updated" date above. Continued use of the app after changes constitutes acceptance of the revised policy.</p>
 
-<p>We do not knowingly collect sensitive personal information through analytics tools.</p>
+  <h2>Contact</h2>
+  <p>Questions about this privacy policy? Reach out at <a href="mailto:support@21proapp.com">support@21proapp.com</a>. We're a one-person operation — real responses from a real human.</p>
+</div>
 
-<p>If required by applicable law, we will request your consent before collecting or processing analytics data.</p>
+<footer>
+  <div class="footer-inner">
+    <span class="footer-copy">© 2025 21 Pro. All rights reserved.</span>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="terms.html">Terms of Service</a></li>
+    </ul>
+  </div>
+</footer>
 
-<h4>e. Purchase Information</h4>
-<p>All purchases are processed by Apple. We do not store payment information but may receive subscription status and transaction confirmations.</p>
-
-<h3>3. How We Use Information</h3>
-<ul>
-  <li>Operate and maintain the App</li>
-  <li>Improve user experience</li>
-  <li>Display ads (free version)</li>
-  <li>Manage subscriptions</li>
-  <li>Ensure security and prevent fraud</li>
-</ul>
-
-<h3>4. Legal Bases (GDPR)</h3>
-<ul>
-  <li>Consent</li>
-  <li>Legitimate interests</li>
-  <li>Contractual necessity</li>
-  <li>Legal obligations</li>
-</ul>
-
-<h3>5.  Rights</h3>
-
-<h4>GDPR Rights</h4>
-<ul>
-  <li>Access  data</li>
-  <li>Request correction or deletion</li>
-  <li>Restrict or object to processing</li>
-  <li>Data portability</li>
-  <li>Withdraw consent</li>
-</ul>
-
-<h4>CCPA / CPRA Rights</h4>
-<ul>
-  <li>Know what data is collected</li>
-  <li>Request deletion</li>
-  <li>Opt out of data sharing</li>
-  <li>Non-discrimination</li>
-</ul>
-<p>We do not sell personal data for monetary purposes. To exercise rights, contact us below.</p>
-
-<h4>CalOPPA</h4>
-<ul>
-  <li>Users can visit anonymously</li>
-  <li>This policy is publicly accessible</li>
-  <li>Changes will be posted here</li>
-</ul>
-
-<h3>6. Data Sharing</h3>
-<p>We may share data with service providers (ads, analytics) or legal authorities if required.</p>
-
-<h3>7. Data Retention</h3>
-<p>We retain data only as long as necessary for service operation and legal compliance.</p>
-
-<h3>8. Security</h3>
-<p>We use reasonable safeguards but cannot guarantee absolute security.</p>
-
-<h3>9. Children's Privacy</h3>
-<p>The App is not intended for children under 13.</p>
-
-<h3>10. Gambling Disclaimer</h3>
-<p>This App is for educational purposes only and does not involve real-money gambling.</p>
-
-<h3>11. Changes</h3>
-<p>We may update this policy. Changes will be reflected by the effective date.</p>
-
-<h3>12. Contact</h3>
-<p>Email: EpochbrandFeedback@gmail.com</p>
-
-        <!-- END OF CONTENT AREA -->
-
-    </main>
-
-    <footer>
-        <p>&copy; 2026 21 Pro. All rights reserved.</p>
-        <div>
-            <a href="index.html">Home</a>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="terms.html">Terms of Service</a>
-        </div>
-    </footer>
 </body>
 </html>
