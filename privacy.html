@@ -3,127 +3,82 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy Policy — 21 Pro</title>
+<title>Privacy Policy — 21 Pro: Blackjack Trainer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --felt-deep:#080f0a; --felt-dark:#0d1a10;
-    --surface-dark:#0c0c0b; --surface-card:#1a1a17;
+    --felt-deep:#080f0a;
+    --surface-card:#1a1a17;
     --brass:#BF9E6A; --brass-light:#D4B07A; --brass-muted:#997845;
     --brass-subtle:rgba(191,158,106,0.10); --brass-border:rgba(191,158,106,0.18);
     --text-primary:#E6DFD1; --text-secondary:#9A9488; --text-tertiary:#61594F;
     --border-subtle:rgba(255,255,255,0.04); --border-mid:rgba(255,255,255,0.07);
+    --win:#47B869;
     --font-display:'Playfair Display',Georgia,serif;
     --font-body:'DM Sans',system-ui,sans-serif;
     --max-w:760px;
   }
-  body {
-    background: var(--felt-deep);
-    color: var(--text-primary);
-    font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
-  nav {
-    position: sticky; top:0;
-    height:60px; display:flex; align-items:center;
-    padding:0 24px;
-    backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
-    background:rgba(8,15,10,0.88);
-    border-bottom:1px solid var(--border-subtle);
-    z-index:100;
-  }
-  .nav-inner {
-    max-width:var(--max-w); width:100%; margin:0 auto;
-    display:flex; align-items:center; justify-content:space-between;
-  }
-  .nav-logo {
-    display:flex; align-items:center; gap:10px; text-decoration:none;
-  }
-  .nav-logo-mark {
-    width:32px; height:32px;
-    background:linear-gradient(135deg, var(--brass) 0%, var(--brass-muted) 100%);
-    border-radius:8px; display:flex; align-items:center; justify-content:center;
-    font-family:var(--font-display); font-size:16px; font-weight:700;
-    color:var(--felt-deep);
-  }
+  body { background:var(--felt-deep); color:var(--text-primary); font-family:var(--font-body); font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; }
+  nav { position:sticky; top:0; height:60px; display:flex; align-items:center; padding:0 24px; backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); background:rgba(8,15,10,0.88); border-bottom:1px solid var(--border-subtle); z-index:100; }
+  .nav-inner { max-width:var(--max-w); width:100%; margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
+  .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .nav-logo-mark { width:32px; height:32px; background:linear-gradient(135deg,var(--brass) 0%,var(--brass-muted) 100%); border-radius:8px; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-size:16px; font-weight:700; color:#080f0a; }
   .nav-logo-text { font-family:var(--font-display); font-size:18px; font-weight:600; color:var(--text-primary); }
-  .nav-back { font-size:14px; color:var(--text-secondary); text-decoration:none; }
+  .nav-back { font-size:14px; color:var(--text-secondary); text-decoration:none; transition:color 0.2s; }
   .nav-back:hover { color:var(--text-primary); }
 
-  .page-hero {
-    padding: 80px 24px 48px;
-    max-width: var(--max-w);
-    margin: 0 auto;
-    border-bottom: 1px solid var(--border-subtle);
-  }
-  .page-eyebrow {
-    font-size:11px; font-weight:500; letter-spacing:0.1em;
-    text-transform:uppercase; color:var(--brass);
-    margin-bottom:12px; display:block;
-  }
-  .page-title {
-    font-family:var(--font-display);
-    font-size:clamp(32px,5vw,52px);
-    font-weight:700; color:var(--text-primary);
-    letter-spacing:-0.03em; line-height:1.1;
-    margin-bottom:16px;
-  }
-  .page-meta { font-size:14px; color:var(--text-tertiary); }
+  .page-hero { padding:72px 24px 44px; max-width:var(--max-w); margin:0 auto; border-bottom:1px solid var(--border-subtle); }
+  .page-eyebrow { font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--brass); margin-bottom:12px; display:block; }
+  .page-title { font-family:var(--font-display); font-size:clamp(30px,5vw,48px); font-weight:700; color:var(--text-primary); letter-spacing:-0.03em; line-height:1.1; margin-bottom:12px; }
+  .page-meta { font-size:13px; color:var(--text-tertiary); }
 
-  .prose {
-    max-width:var(--max-w);
-    margin:0 auto;
-    padding:56px 24px 80px;
-  }
-  .prose h2 {
-    font-family:var(--font-display);
-    font-size:22px; font-weight:600;
-    color:var(--text-primary);
-    letter-spacing:-0.02em;
-    margin:48px 0 16px;
-  }
-  .prose h2:first-child { margin-top:0; }
-  .prose p {
-    font-size:15px; color:var(--text-secondary);
-    font-weight:300; margin-bottom:16px;
-    line-height:1.75;
-  }
-  .prose ul {
-    margin:0 0 16px 20px;
-  }
-  .prose li {
-    font-size:15px; color:var(--text-secondary);
-    font-weight:300; margin-bottom:8px;
-    line-height:1.7;
-  }
+  .toc { max-width:var(--max-w); margin:0 auto; padding:28px 24px; border-bottom:1px solid var(--border-subtle); }
+  .toc-label { font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-tertiary); margin-bottom:10px; }
+  .toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px 20px; }
+  .toc-list a { font-size:13px; color:var(--brass-light); text-decoration:none; opacity:0.85; transition:opacity 0.2s; }
+  .toc-list a:hover { opacity:1; }
+
+  .prose { max-width:var(--max-w); margin:0 auto; padding:52px 24px 96px; }
+  .prose h2 { font-family:var(--font-display); font-size:21px; font-weight:600; color:var(--text-primary); letter-spacing:-0.02em; margin:56px 0 14px; padding-top:8px; border-top:1px solid var(--border-subtle); }
+  .prose h2:first-child { margin-top:0; border-top:none; }
+  .prose h3 { font-size:15px; font-weight:500; color:var(--text-primary); letter-spacing:-0.01em; margin:28px 0 8px; }
+  .prose p { font-size:15px; color:var(--text-secondary); font-weight:300; margin-bottom:14px; line-height:1.75; }
+  .prose ul, .prose ol { margin:0 0 16px 20px; }
+  .prose li { font-size:15px; color:var(--text-secondary); font-weight:300; margin-bottom:6px; line-height:1.7; }
   .prose strong { color:var(--text-primary); font-weight:500; }
-  .prose a { color:var(--brass-light); }
-  .prose .note {
-    background:var(--brass-subtle);
-    border:1px solid var(--brass-border);
-    border-radius:10px;
-    padding:20px 22px;
-    margin:24px 0;
-  }
-  .prose .note p { margin:0; }
+  .prose a { color:var(--brass-light); text-decoration:none; border-bottom:1px solid rgba(212,176,122,0.25); transition:border-color 0.2s; }
+  .prose a:hover { border-color:var(--brass-light); }
 
-  footer {
-    border-top:1px solid var(--border-subtle);
-    padding:32px 24px;
-  }
-  .footer-inner {
-    max-width:var(--max-w); margin:0 auto;
-    display:flex; justify-content:space-between; align-items:center;
-    flex-wrap:wrap; gap:12px;
-  }
+  .callout { border-radius:10px; padding:18px 20px; margin:20px 0; }
+  .callout p { margin:0; font-size:14px; }
+  .callout-gold { background:var(--brass-subtle); border:1px solid var(--brass-border); }
+  .callout-neutral { background:rgba(255,255,255,0.03); border:1px solid var(--border-mid); }
+
+  .sdk-grid { display:flex; flex-direction:column; gap:12px; margin:16px 0 24px; }
+  .sdk-card { background:var(--surface-card); border:1px solid var(--border-mid); border-radius:10px; padding:18px 20px; }
+  .sdk-header { display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:6px; }
+  .sdk-name { font-size:15px; font-weight:500; color:var(--text-primary); }
+  .sdk-link { font-size:12px; color:var(--brass-light); text-decoration:none; border-bottom:1px solid rgba(212,176,122,0.25); flex-shrink:0; }
+  .sdk-link:hover { border-color:var(--brass-light); }
+  .sdk-purpose { font-size:13px; color:var(--text-tertiary); margin-bottom:8px; }
+  .sdk-data { font-size:13px; color:var(--text-secondary); line-height:1.65; font-weight:300; }
+
+  .data-table { width:100%; border-collapse:collapse; margin:16px 0 24px; font-size:13px; overflow-x:auto; display:block; }
+  .data-table thead, .data-table tbody, .data-table tr { display:table; width:100%; table-layout:fixed; }
+  .data-table th { text-align:left; padding:10px 14px; font-size:11px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-tertiary); border-bottom:1px solid var(--border-mid); }
+  .data-table td { padding:11px 14px; color:var(--text-secondary); border-bottom:1px solid var(--border-subtle); font-weight:300; vertical-align:top; line-height:1.5; }
+  .data-table tr:last-child td { border-bottom:none; }
+  .yes { color:var(--win); font-weight:500; }
+  .no { color:var(--text-tertiary); }
+
+  footer { border-top:1px solid var(--border-subtle); padding:32px 24px; }
+  .footer-inner { max-width:var(--max-w); margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
   .footer-copy { font-size:12px; color:var(--text-tertiary); }
   .footer-links { display:flex; gap:20px; list-style:none; }
-  .footer-links a { font-size:13px; color:var(--text-tertiary); text-decoration:none; }
+  .footer-links a { font-size:13px; color:var(--text-tertiary); text-decoration:none; transition:color 0.2s; }
   .footer-links a:hover { color:var(--text-secondary); }
 </style>
 </head>
@@ -142,50 +97,256 @@
 <div class="page-hero">
   <span class="page-eyebrow">Legal</span>
   <h1 class="page-title">Privacy Policy</h1>
-  <p class="page-meta">Last updated: January 1, 2025</p>
+  <p class="page-meta">Effective date: January 1, 2025 &nbsp;·&nbsp; Last updated: January 1, 2025</p>
+</div>
+
+<div class="toc">
+  <div class="toc-label">On this page</div>
+  <ul class="toc-list">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#data-collected">Data We Collect</a></li>
+    <li><a href="#data-not-collected">Data We Don't Collect</a></li>
+    <li><a href="#third-parties">Third-Party Services</a></li>
+    <li><a href="#advertising">Advertising &amp; Tracking</a></li>
+    <li><a href="#purchases">Purchases</a></li>
+    <li><a href="#gdpr">GDPR (Europe)</a></li>
+    <li><a href="#ccpa">CCPA (California)</a></li>
+    <li><a href="#children">Children</a></li>
+    <li><a href="#retention">Data Retention</a></li>
+    <li><a href="#encryption">Encryption</a></li>
+    <li><a href="#changes">Changes</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </div>
 
 <div class="prose">
-  <div class="note">
-    <p><strong>Short version:</strong> 21 Pro doesn't collect personal data, doesn't sell your information to anyone, and doesn't require an account. Everything stays on your device.</p>
+
+  <div class="callout callout-gold">
+    <p><strong>Plain summary:</strong> 21 Pro does not collect your name, email, location, or any personal information. We use anonymous IDs for analytics and subscription management, and we show ads to free users with your permission. Full details below.</p>
   </div>
 
-  <h2>Overview</h2>
-  <p>21 Pro ("we," "us," "our") is committed to protecting your privacy. This policy explains what data is collected, how it's used, and your rights regarding that information when you use the 21 Pro iOS application.</p>
+  <h2 id="overview">1. Overview</h2>
+  <p>This Privacy Policy describes how <strong>21 Pro: Blackjack Trainer</strong> ("the App," "we," "us") handles data when you use the App on iPhone or iPad.</p>
+  <p>We built 21 Pro as a training tool, not a data platform. We collect the minimum data needed to run the app, fix bugs, serve ads to free users, and manage subscriptions. Nothing more.</p>
 
-  <h2>Data We Collect</h2>
-  <p>21 Pro is designed to work entirely on your device. We do not collect, store, or transmit personally identifiable information.</p>
-  <p><strong>Data stored locally on your device includes:</strong></p>
+  <h2 id="data-collected">2. Data We Collect</h2>
+  <p>The table below covers all data types collected or generated when you use the App. None are sold.</p>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th style="width:36%">Data Type</th>
+        <th style="width:44%">Purpose</th>
+        <th style="width:20%">Tracking?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Anonymous User ID</strong></td>
+        <td>Analytics (PostHog), subscription management (RevenueCat)</td>
+        <td class="no">No</td>
+      </tr>
+      <tr>
+        <td><strong>Device Advertising ID (IDFA)</strong></td>
+        <td>Targeted advertising (AdMob) — with ATT consent only</td>
+        <td class="yes">Yes*</td>
+      </tr>
+      <tr>
+        <td><strong>Purchase History</strong></td>
+        <td>Subscription management (RevenueCat, Apple StoreKit)</td>
+        <td class="no">No</td>
+      </tr>
+      <tr>
+        <td><strong>Product Interaction / Usage Events</strong></td>
+        <td>App improvement and analytics (PostHog)</td>
+        <td class="no">No</td>
+      </tr>
+      <tr>
+        <td><strong>Session Recordings</strong></td>
+        <td>UX analysis (PostHog)</td>
+        <td class="no">No</td>
+      </tr>
+      <tr>
+        <td><strong>Ad Interaction Data</strong></td>
+        <td>Ad performance measurement (AdMob)</td>
+        <td class="yes">Yes*</td>
+      </tr>
+      <tr>
+        <td><strong>Crash Logs, Device Model, OS Version, Stack Traces</strong></td>
+        <td>Bug fixing and stability (Firebase Crashlytics)</td>
+        <td class="no">No</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p style="font-size:13px; color:var(--text-tertiary);">* IDFA and ad interaction data are used for tracking only with your explicit App Tracking Transparency (ATT) consent.</p>
+
+  <p>Game progress, session history, settings, and personal bests are stored <strong>locally on your device only</strong> and are never sent to our servers.</p>
+
+  <h2 id="data-not-collected">3. Data We Do Not Collect</h2>
+  <p>We have no access to:</p>
   <ul>
-    <li>Game progress, session history, and statistics</li>
-    <li>App preferences and settings</li>
-    <li>Purchase entitlements (managed by Apple)</li>
+    <li>Name, email address, phone number, or physical address</li>
+    <li>Location data (precise or approximate)</li>
+    <li>Health, financial, or sensitive personal data</li>
+    <li>Contacts, photos, camera, or microphone</li>
+    <li>Browsing history or search history</li>
+    <li>User-generated content</li>
+    <li>Biometric data</li>
   </ul>
-  <p>This data lives exclusively on your iPhone or iPad and is never sent to our servers.</p>
 
-  <h2>Purchases & Payments</h2>
-  <p>All in-app purchases are processed by Apple through the App Store. We do not handle, store, or have access to any payment or billing information. Apple's privacy policy governs all transaction data.</p>
+  <h2 id="third-parties">4. Third-Party Services</h2>
+  <p>The App integrates the following SDKs. Each operates under its own privacy policy.</p>
 
-  <h2>Analytics</h2>
-  <p>We may collect anonymous, aggregated usage data (such as feature interaction counts and session frequency) through Apple's App Store analytics framework. This data cannot be used to identify individual users and is used solely to improve the app experience.</p>
+  <div class="sdk-grid">
 
-  <h2>Advertising</h2>
-  <p>The free tier of 21 Pro may display ads served through Apple's advertising platform. We do not build user profiles for advertising purposes, and Edge subscribers see no ads whatsoever. We do not sell, share, or rent any user data to advertisers.</p>
+    <div class="sdk-card">
+      <div class="sdk-header">
+        <span class="sdk-name">RevenueCat</span>
+        <a class="sdk-link" href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy ↗</a>
+      </div>
+      <div class="sdk-purpose">Purpose: In-app subscription and purchase management.</div>
+      <div class="sdk-data"><strong>Data collected:</strong> Anonymous user ID, purchase history, subscription status. No personal information. RevenueCat processes this data solely to verify and manage your Edge subscription.</div>
+    </div>
 
-  <h2>Children's Privacy</h2>
-  <p>21 Pro is not directed at children under 13. We do not knowingly collect any information from children. If you believe a child has provided information to us, please contact us so we can remove it.</p>
+    <div class="sdk-card">
+      <div class="sdk-header">
+        <span class="sdk-name">PostHog</span>
+        <a class="sdk-link" href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy ↗</a>
+      </div>
+      <div class="sdk-purpose">Purpose: Product analytics and session replay to improve the App.</div>
+      <div class="sdk-data"><strong>Data collected:</strong> Anonymous user ID, in-app events (taps, screen views, feature usage), session recordings. Processed on PostHog US servers (us.i.posthog.com). No personal information is attached to these events. Session recordings capture UI interactions only — no keyboard input or personal data is recorded.</div>
+    </div>
 
-  <h2>Data Retention & Deletion</h2>
-  <p>Since all data is stored locally on your device, you can delete it at any time by deleting the app from your iPhone or iPad. Deleting the app removes all locally stored game data.</p>
+    <div class="sdk-card">
+      <div class="sdk-header">
+        <span class="sdk-name">Google AdMob</span>
+        <a class="sdk-link" href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy ↗</a>
+      </div>
+      <div class="sdk-purpose">Purpose: Rewarded video ads shown to free-tier users at natural break points (between runs, optional run saves).</div>
+      <div class="sdk-data"><strong>Data collected:</strong> Device Advertising Identifier (IDFA), ad interaction data (views, completions, clicks). <strong>We show Apple's ATT prompt before any advertising tracking occurs.</strong> If you decline, AdMob shows non-personalized ads and does not use your IDFA. Upgrading to Edge removes all ads.</div>
+    </div>
 
-  <h2>Your Rights</h2>
-  <p>Depending on your jurisdiction, you may have rights regarding your data including access, correction, and deletion. Since we do not collect personal data, there is typically nothing for us to provide or delete — but if you have concerns, please reach out.</p>
+    <div class="sdk-card">
+      <div class="sdk-header">
+        <span class="sdk-name">Firebase Crashlytics (Google)</span>
+        <a class="sdk-link" href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy ↗</a>
+      </div>
+      <div class="sdk-purpose">Purpose: Crash reporting and stability diagnostics.</div>
+      <div class="sdk-data"><strong>Data collected:</strong> Crash logs, stack traces, device model, iOS version, app version. No personal information is included in crash reports. Data is used only to identify and fix bugs.</div>
+    </div>
 
-  <h2>Changes to This Policy</h2>
-  <p>We may update this policy from time to time. Changes will be reflected in the "Last updated" date above. Continued use of the app after changes constitutes acceptance of the revised policy.</p>
+    <div class="sdk-card">
+      <div class="sdk-header">
+        <span class="sdk-name">Apple StoreKit</span>
+        <a class="sdk-link" href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Apple Privacy Policy ↗</a>
+      </div>
+      <div class="sdk-purpose">Purpose: In-app purchase transaction processing via Apple's infrastructure.</div>
+      <div class="sdk-data"><strong>Data collected:</strong> Apple manages all billing data. We receive only transaction verification tokens — no payment card details, Apple ID, or personal information passes through our systems.</div>
+    </div>
 
-  <h2>Contact</h2>
-  <p>Questions about this privacy policy? Reach out at <a href="mailto:support@21proapp.com">support@21proapp.com</a>. We're a one-person operation — real responses from a real human.</p>
+  </div>
+
+  <h2 id="advertising">5. Advertising &amp; Tracking (ATT)</h2>
+  <p>Free-tier users see rewarded video ads served by Google AdMob. Ads appear at natural break points and are never shown mid-hand.</p>
+
+  <h3>App Tracking Transparency (ATT)</h3>
+  <p>Before any advertising tracking begins, we show Apple's standard ATT permission prompt, as required by iOS 14.5 and later.</p>
+  <ul>
+    <li><strong>Allow Tracking:</strong> AdMob may use your IDFA to serve personalized ads and measure performance across apps and websites.</li>
+    <li><strong>Ask App Not to Track:</strong> AdMob shows non-personalized ads. Your IDFA is not used or shared with ad networks for tracking.</li>
+  </ul>
+
+  <h3>What is and isn't used for tracking</h3>
+  <p>With ATT consent, the following are used for tracking: Device Advertising ID (IDFA), ad interaction data.</p>
+  <p>The following are <strong>never</strong> used for tracking: purchase history, product interaction and usage data, anonymous user IDs.</p>
+
+  <h3>Opting out</h3>
+  <p>Change your preference at any time in <strong>Settings → Privacy &amp; Security → Tracking → 21 Pro</strong>. Upgrading to Edge removes all ads entirely.</p>
+
+  <h2 id="purchases">6. Purchases &amp; Subscriptions</h2>
+  <p>All payment processing is handled by Apple. We do not store or access your payment card details, Apple ID, or billing address. RevenueCat receives an anonymous confirmation token from Apple to manage your entitlement — no payment details are included.</p>
+  <p>Edge subscription options:</p>
+  <ul>
+    <li>Monthly — $6.99/month</li>
+    <li>Annual — $49.99/year</li>
+    <li>Lifetime — $149.99 (one-time, non-recurring)</li>
+  </ul>
+  <p>Monthly and annual plans auto-renew unless cancelled at least 24 hours before the end of the current period. Manage or cancel at <strong>Settings → [Your Name] → Subscriptions</strong>.</p>
+
+  <h2 id="gdpr">7. GDPR — European Users</h2>
+  <p>If you are in the European Economic Area (EEA), United Kingdom, or Switzerland, GDPR applies.</p>
+
+  <h3>Legal bases for processing</h3>
+  <ul>
+    <li><strong>Legitimate interests</strong> — crash reporting and anonymous analytics to maintain and improve the App.</li>
+    <li><strong>Contract performance</strong> — subscription management to deliver the service you purchased.</li>
+    <li><strong>Consent</strong> — advertising tracking via AdMob/IDFA, which requires your explicit ATT consent.</li>
+  </ul>
+
+  <h3>Your rights</h3>
+  <p>You have the right to access, correct, delete, restrict, or port your data, and to withdraw consent at any time. To exercise these rights, email <a href="mailto:support@21proapp.com">support@21proapp.com</a>. We respond within 30 days. You may also lodge a complaint with your local data protection authority.</p>
+
+  <div class="callout callout-neutral">
+    <p>Because most data in 21 Pro is anonymous and stored locally, many GDPR requests can be fulfilled simply by deleting the App. We will confirm this where applicable.</p>
+  </div>
+
+  <h2 id="ccpa">8. CCPA — California Residents</h2>
+  <p>Under the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA), California residents have specific rights.</p>
+
+  <h3>Categories of personal information we collect</h3>
+  <ul>
+    <li>Identifiers — anonymous user ID; device advertising ID (with ATT consent)</li>
+    <li>Commercial information — purchase history, subscription status</li>
+    <li>Internet or network activity — app usage events, session recordings</li>
+    <li>Inferences — none. We do not build user profiles.</li>
+  </ul>
+
+  <h3>Do we sell personal information?</h3>
+  <p><strong>No.</strong> We do not sell personal information. We share limited data with service providers listed in Section 4 for operational purposes only.</p>
+
+  <h3>Do we share for cross-context behavioral advertising?</h3>
+  <p>We share Device Advertising ID (IDFA) with Google AdMob for advertising, but only with your ATT consent. Opt out at any time via <strong>Settings → Privacy &amp; Security → Tracking</strong>.</p>
+
+  <h3>Your California rights</h3>
+  <ul>
+    <li>Right to know what personal information we collect and how we use it</li>
+    <li>Right to delete personal information</li>
+    <li>Right to opt out of the sale or sharing of personal information</li>
+    <li>Right to correct inaccurate personal information</li>
+    <li>Right to limit use of sensitive personal information (we collect none)</li>
+    <li>Right to non-discrimination for exercising your rights</li>
+  </ul>
+  <p>Submit a CCPA request to <a href="mailto:support@21proapp.com">support@21proapp.com</a>. We respond within 45 days.</p>
+
+  <h2 id="children">9. Children's Privacy</h2>
+  <p>21 Pro is rated 17+ on the App Store and is not directed at children under 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided information through the App, contact us and we will delete it promptly.</p>
+
+  <h2 id="retention">10. Data Retention &amp; Deletion</h2>
+  <p>Game data (progress, stats, settings) is stored locally on your device. Deleting the App removes it entirely.</p>
+  <p>For data held by third-party services:</p>
+  <ul>
+    <li><strong>PostHog</strong> — anonymous event data retained for up to 12 months</li>
+    <li><strong>RevenueCat</strong> — purchase records retained as required for subscription management and tax compliance</li>
+    <li><strong>Firebase Crashlytics</strong> — crash reports retained for 90 days</li>
+    <li><strong>AdMob</strong> — ad interaction data retained per Google's data retention policies</li>
+  </ul>
+  <p>To request deletion of data associated with your anonymous ID, email <a href="mailto:support@21proapp.com">support@21proapp.com</a>.</p>
+
+  <h2 id="encryption">11. Encryption</h2>
+  <p>21 Pro uses SHA-256 via Apple's CryptoKit for internal deck verification. This is exempt encryption under US Export Administration Regulations (EAR). We have made the applicable declaration for availability in France per App Store requirements. All data transmitted to third-party services is encrypted in transit using TLS.</p>
+
+  <h2 id="changes">12. Changes to This Policy</h2>
+  <p>We update this policy when third-party services change, new features are added, or legal requirements change. The "Last updated" date at the top will reflect any revision. If changes are material, we will note this in the App. Continued use after an update constitutes acceptance of the revised policy.</p>
+
+  <h2 id="contact">13. Contact</h2>
+  <p>For privacy questions, data requests, or concerns:</p>
+  <ul>
+    <li>Email: <a href="mailto:support@21proapp.com">support@21proapp.com</a></li>
+    <li>Use subject line "Privacy Request" for GDPR or CCPA matters</li>
+  </ul>
+  <p>We aim to respond to all requests within 30 days (45 days for CCPA).</p>
+
 </div>
 
 <footer>
