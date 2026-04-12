@@ -1264,12 +1264,17 @@
   }
 
   .reveal {
-    opacity: 0;
-    transform: translateY(24px);
+    opacity: 1;
+    transform: none;
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
 
-  .reveal.visible {
+  .js-loaded .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  .js-loaded .reveal.visible {
     opacity: 1;
     transform: none;
   }
@@ -1803,20 +1808,22 @@
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Mark JS available — enables animated hide/show via CSS
+  document.documentElement.classList.add('js-loaded');
+
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
         e.target.classList.add('visible');
-        // stagger children
         const kids = e.target.querySelectorAll('.feature-card, .mode-card, .quote-card, .training-point, .pricing-card');
         kids.forEach((k, i) => {
           k.style.transitionDelay = (i * 80) + 'ms';
         });
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
   reveals.forEach(r => io.observe(r));
 
