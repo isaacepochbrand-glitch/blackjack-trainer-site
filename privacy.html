@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy Policy — 21 Pro: Blackjack Trainer</title>
+<title>Terms of Service — 21 Pro: Blackjack Trainer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
@@ -16,7 +16,6 @@
     --brass-subtle:rgba(191,158,106,0.10); --brass-border:rgba(191,158,106,0.18);
     --text-primary:#E6DFD1; --text-secondary:#9A9488; --text-tertiary:#61594F;
     --border-subtle:rgba(255,255,255,0.04); --border-mid:rgba(255,255,255,0.07);
-    --win:#47B869;
     --font-display:'Playfair Display',Georgia,serif;
     --font-body:'DM Sans',system-ui,sans-serif;
     --max-w:760px;
@@ -56,23 +55,21 @@
   .callout p { margin:0; font-size:14px; }
   .callout-gold { background:var(--brass-subtle); border:1px solid var(--brass-border); }
   .callout-neutral { background:rgba(255,255,255,0.03); border:1px solid var(--border-mid); }
+  .callout-warning { background:rgba(192,56,56,0.08); border:1px solid rgba(192,56,56,0.2); }
 
-  .sdk-grid { display:flex; flex-direction:column; gap:12px; margin:16px 0 24px; }
-  .sdk-card { background:var(--surface-card); border:1px solid var(--border-mid); border-radius:10px; padding:18px 20px; }
-  .sdk-header { display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-bottom:6px; }
-  .sdk-name { font-size:15px; font-weight:500; color:var(--text-primary); }
-  .sdk-link { font-size:12px; color:var(--brass-light); text-decoration:none; border-bottom:1px solid rgba(212,176,122,0.25); flex-shrink:0; }
-  .sdk-link:hover { border-color:var(--brass-light); }
-  .sdk-purpose { font-size:13px; color:var(--text-tertiary); margin-bottom:8px; }
-  .sdk-data { font-size:13px; color:var(--text-secondary); line-height:1.65; font-weight:300; }
-
-  .data-table { width:100%; border-collapse:collapse; margin:16px 0 24px; font-size:13px; overflow-x:auto; display:block; }
-  .data-table thead, .data-table tbody, .data-table tr { display:table; width:100%; table-layout:fixed; }
-  .data-table th { text-align:left; padding:10px 14px; font-size:11px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; color:var(--text-tertiary); border-bottom:1px solid var(--border-mid); }
-  .data-table td { padding:11px 14px; color:var(--text-secondary); border-bottom:1px solid var(--border-subtle); font-weight:300; vertical-align:top; line-height:1.5; }
-  .data-table tr:last-child td { border-bottom:none; }
-  .yes { color:var(--win); font-weight:500; }
-  .no { color:var(--text-tertiary); }
+  /* Subscription box — Apple-required disclosure */
+  .sub-box {
+    background:var(--surface-card);
+    border:1px solid var(--brass-border);
+    border-radius:12px;
+    padding:24px;
+    margin:20px 0 28px;
+  }
+  .sub-box-title { font-size:13px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; color:var(--brass); margin-bottom:16px; }
+  .sub-row { display:flex; justify-content:space-between; align-items:baseline; gap:12px; padding:9px 0; border-bottom:1px solid var(--border-subtle); }
+  .sub-row:last-child { border-bottom:none; padding-bottom:0; }
+  .sub-row-label { font-size:14px; color:var(--text-secondary); font-weight:300; }
+  .sub-row-value { font-size:14px; color:var(--text-primary); font-weight:500; white-space:nowrap; }
 
   footer { border-top:1px solid var(--border-subtle); padding:32px 24px; }
   .footer-inner { max-width:var(--max-w); margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
@@ -96,24 +93,26 @@
 
 <div class="page-hero">
   <span class="page-eyebrow">Legal</span>
-  <h1 class="page-title">Privacy Policy</h1>
+  <h1 class="page-title">Terms of Service</h1>
   <p class="page-meta">Effective date: January 1, 2025 &nbsp;·&nbsp; Last updated: January 1, 2025</p>
 </div>
 
 <div class="toc">
   <div class="toc-label">On this page</div>
   <ul class="toc-list">
-    <li><a href="#overview">Overview</a></li>
-    <li><a href="#data-collected">Data We Collect</a></li>
-    <li><a href="#data-not-collected">Data We Don't Collect</a></li>
+    <li><a href="#acceptance">Acceptance</a></li>
+    <li><a href="#description">Description</a></li>
+    <li><a href="#disclaimer">Important Disclaimer</a></li>
+    <li><a href="#eligibility">Eligibility</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#subscriptions">Subscriptions &amp; Billing</a></li>
+    <li><a href="#free-tier">Free Tier &amp; Ads</a></li>
     <li><a href="#third-parties">Third-Party Services</a></li>
-    <li><a href="#advertising">Advertising &amp; Tracking</a></li>
-    <li><a href="#purchases">Purchases</a></li>
-    <li><a href="#gdpr">GDPR (Europe)</a></li>
-    <li><a href="#ccpa">CCPA (California)</a></li>
-    <li><a href="#children">Children</a></li>
-    <li><a href="#retention">Data Retention</a></li>
-    <li><a href="#encryption">Encryption</a></li>
+    <li><a href="#prohibited">Prohibited Use</a></li>
+    <li><a href="#ip">Intellectual Property</a></li>
+    <li><a href="#warranties">Disclaimer of Warranties</a></li>
+    <li><a href="#liability">Limitation of Liability</a></li>
+    <li><a href="#gdpr-ccpa">GDPR &amp; CCPA</a></li>
     <li><a href="#changes">Changes</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -122,242 +121,141 @@
 <div class="prose">
 
   <div class="callout callout-gold">
-    <p><strong>Plain summary:</strong> 21 Pro does not collect your name, email, location, or any personal information. We use anonymous IDs for analytics and subscription management, and we show ads to free users with your permission. Full details below.</p>
+    <p><strong>Plain summary:</strong> Use the app as it's intended, don't do anything illegal, and understand it's a training tool — not gambling software, and not financial advice. Full terms below.</p>
   </div>
 
-  <h2 id="overview">1. Overview</h2>
-  <p>This Privacy Policy describes how <strong>21 Pro: Blackjack Trainer</strong> ("the App," "we," "us") handles data when you use the App on iPhone or iPad.</p>
-  <p>We built 21 Pro as a training tool, not a data platform. We collect the minimum data needed to run the app, fix bugs, serve ads to free users, and manage subscriptions. Nothing more.</p>
+  <h2 id="acceptance">1. Acceptance of Terms</h2>
+  <p>By downloading, installing, or using <strong>21 Pro: Blackjack Trainer</strong> ("the App"), you agree to these Terms of Service. If you do not agree, do not use the App.</p>
+  <p>These Terms form a legal agreement between you and the developer. They are separate from and in addition to Apple's standard App Store Terms of Service, which also apply to your use of the App.</p>
 
-  <h2 id="data-collected">2. Data We Collect</h2>
-  <p>The table below covers all data types collected or generated when you use the App. None are sold.</p>
+  <h2 id="description">2. Description of the App</h2>
+  <p>21 Pro is a blackjack strategy and training application for iPhone and iPad. It simulates blackjack gameplay to help users learn and practice basic strategy and card counting. It is designed for educational and entertainment purposes.</p>
+  <p>The App is available in the US App Store and most international regions.</p>
 
-  <table class="data-table">
-    <thead>
-      <tr>
-        <th style="width:36%">Data Type</th>
-        <th style="width:44%">Purpose</th>
-        <th style="width:20%">Tracking?</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><strong>Anonymous User ID</strong></td>
-        <td>Analytics (PostHog), subscription management (RevenueCat)</td>
-        <td class="no">No</td>
-      </tr>
-      <tr>
-        <td><strong>Device Advertising ID (IDFA)</strong></td>
-        <td>Targeted advertising (AdMob) — with ATT consent only</td>
-        <td class="yes">Yes*</td>
-      </tr>
-      <tr>
-        <td><strong>Purchase History</strong></td>
-        <td>Subscription management (RevenueCat, Apple StoreKit)</td>
-        <td class="no">No</td>
-      </tr>
-      <tr>
-        <td><strong>Product Interaction / Usage Events</strong></td>
-        <td>App improvement and analytics (PostHog)</td>
-        <td class="no">No</td>
-      </tr>
-      <tr>
-        <td><strong>Session Recordings</strong></td>
-        <td>UX analysis (PostHog)</td>
-        <td class="no">No</td>
-      </tr>
-      <tr>
-        <td><strong>Ad Interaction Data</strong></td>
-        <td>Ad performance measurement (AdMob)</td>
-        <td class="yes">Yes*</td>
-      </tr>
-      <tr>
-        <td><strong>Crash Logs, Device Model, OS Version, Stack Traces</strong></td>
-        <td>Bug fixing and stability (Firebase Crashlytics)</td>
-        <td class="no">No</td>
-      </tr>
-    </tbody>
-  </table>
+  <h2 id="disclaimer">3. Important Disclaimer</h2>
+  <div class="callout callout-warning">
+    <p><strong>21 Pro is a training tool. No real money is wagered within the App.</strong> Performance in the App does not guarantee results at a casino. Card counting is legal in most jurisdictions, but casinos reserve the right to refuse service to any player. Always comply with local laws and casino rules before applying any technique practiced in this App.</p>
+  </div>
+  <p>Nothing in the App constitutes gambling advice, financial advice, or a guarantee of any outcome.</p>
 
-  <p style="font-size:13px; color:var(--text-tertiary);">* IDFA and ad interaction data are used for tracking only with your explicit App Tracking Transparency (ATT) consent.</p>
+  <h2 id="eligibility">4. Eligibility</h2>
+  <p>You must be at least <strong>17 years old</strong> to use 21 Pro, consistent with its App Store rating. By using the App, you represent that you meet this requirement.</p>
+  <p>If you use the App on behalf of an organization, you represent that you are authorized to bind that organization to these Terms.</p>
 
-  <p>Game progress, session history, settings, and personal bests are stored <strong>locally on your device only</strong> and are never sent to our servers.</p>
+  <h2 id="license">5. License</h2>
+  <p>We grant you a limited, non-exclusive, non-transferable, revocable license to use 21 Pro for personal, non-commercial purposes on Apple devices you own or control, subject to these Terms and Apple's App Store Terms of Service.</p>
+  <p>This license does not include the right to sublicense, sell, resell, transfer, distribute, or otherwise exploit the App or its content.</p>
 
-  <h2 id="data-not-collected">3. Data We Do Not Collect</h2>
-  <p>We have no access to:</p>
-  <ul>
-    <li>Name, email address, phone number, or physical address</li>
-    <li>Location data (precise or approximate)</li>
-    <li>Health, financial, or sensitive personal data</li>
-    <li>Contacts, photos, camera, or microphone</li>
-    <li>Browsing history or search history</li>
-    <li>User-generated content</li>
-    <li>Biometric data</li>
-  </ul>
+  <h2 id="subscriptions">6. Subscriptions &amp; Billing</h2>
+  <p>21 Pro offers an optional paid upgrade called <strong>Edge</strong>, which unlocks the full feature set. Edge is available in three tiers:</p>
 
-  <h2 id="third-parties">4. Third-Party Services</h2>
-  <p>The App integrates the following SDKs. Each operates under its own privacy policy.</p>
-
-  <div class="sdk-grid">
-
-    <div class="sdk-card">
-      <div class="sdk-header">
-        <span class="sdk-name">RevenueCat</span>
-        <a class="sdk-link" href="https://www.revenuecat.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy ↗</a>
-      </div>
-      <div class="sdk-purpose">Purpose: In-app subscription and purchase management.</div>
-      <div class="sdk-data"><strong>Data collected:</strong> Anonymous user ID, purchase history, subscription status. No personal information. RevenueCat processes this data solely to verify and manage your Edge subscription.</div>
+  <div class="sub-box">
+    <div class="sub-box-title">Edge Subscription Options</div>
+    <div class="sub-row">
+      <span class="sub-row-label">Monthly</span>
+      <span class="sub-row-value">$6.99 / month</span>
     </div>
-
-    <div class="sdk-card">
-      <div class="sdk-header">
-        <span class="sdk-name">PostHog</span>
-        <a class="sdk-link" href="https://posthog.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy ↗</a>
-      </div>
-      <div class="sdk-purpose">Purpose: Product analytics and session replay to improve the App.</div>
-      <div class="sdk-data"><strong>Data collected:</strong> Anonymous user ID, in-app events (taps, screen views, feature usage), session recordings. Processed on PostHog US servers (us.i.posthog.com). No personal information is attached to these events. Session recordings capture UI interactions only — no keyboard input or personal data is recorded.</div>
+    <div class="sub-row">
+      <span class="sub-row-label">Annual</span>
+      <span class="sub-row-value">$49.99 / year</span>
     </div>
-
-    <div class="sdk-card">
-      <div class="sdk-header">
-        <span class="sdk-name">Google AdMob</span>
-        <a class="sdk-link" href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy ↗</a>
-      </div>
-      <div class="sdk-purpose">Purpose: Rewarded video ads shown to free-tier users at natural break points (between runs, optional run saves).</div>
-      <div class="sdk-data"><strong>Data collected:</strong> Device Advertising Identifier (IDFA), ad interaction data (views, completions, clicks). <strong>We show Apple's ATT prompt before any advertising tracking occurs.</strong> If you decline, AdMob shows non-personalized ads and does not use your IDFA. Upgrading to Edge removes all ads.</div>
+    <div class="sub-row">
+      <span class="sub-row-label">Lifetime (one-time)</span>
+      <span class="sub-row-value">$149.99</span>
     </div>
-
-    <div class="sdk-card">
-      <div class="sdk-header">
-        <span class="sdk-name">Firebase Crashlytics (Google)</span>
-        <a class="sdk-link" href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener noreferrer">Privacy Policy ↗</a>
-      </div>
-      <div class="sdk-purpose">Purpose: Crash reporting and stability diagnostics.</div>
-      <div class="sdk-data"><strong>Data collected:</strong> Crash logs, stack traces, device model, iOS version, app version. No personal information is included in crash reports. Data is used only to identify and fix bugs.</div>
-    </div>
-
-    <div class="sdk-card">
-      <div class="sdk-header">
-        <span class="sdk-name">Apple StoreKit</span>
-        <a class="sdk-link" href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Apple Privacy Policy ↗</a>
-      </div>
-      <div class="sdk-purpose">Purpose: In-app purchase transaction processing via Apple's infrastructure.</div>
-      <div class="sdk-data"><strong>Data collected:</strong> Apple manages all billing data. We receive only transaction verification tokens — no payment card details, Apple ID, or personal information passes through our systems.</div>
-    </div>
-
   </div>
 
-  <h2 id="advertising">5. Advertising &amp; Tracking (ATT)</h2>
-  <p>Free-tier users see rewarded video ads served by Google AdMob. Ads appear at natural break points and are never shown mid-hand.</p>
+  <h3>Auto-renewal (Apple requirement)</h3>
+  <p>Monthly and annual Edge subscriptions <strong>automatically renew</strong> at the end of each billing period unless cancelled. Payment is charged to your Apple ID account at confirmation of purchase and at the start of each renewal period.</p>
+  <p>Prices are in USD and may vary by region as displayed in the App Store at the time of purchase.</p>
 
-  <h3>App Tracking Transparency (ATT)</h3>
-  <p>Before any advertising tracking begins, we show Apple's standard ATT permission prompt, as required by iOS 14.5 and later.</p>
+  <h3>Cancellation</h3>
+  <p>To cancel a subscription and stop future charges, cancel at least <strong>24 hours before the end of the current billing period</strong>. To cancel:</p>
+  <ol>
+    <li>Open <strong>Settings</strong> on your iPhone or iPad</li>
+    <li>Tap your name → <strong>Subscriptions</strong></li>
+    <li>Select <strong>21 Pro</strong> and tap <strong>Cancel Subscription</strong></li>
+  </ol>
+  <p>Cancelling stops future charges. You retain Edge access until the end of the paid period. Deleting the App does not cancel a subscription.</p>
+
+  <h3>Free trial</h3>
+  <p>If a free trial is offered, it will be displayed in the App at the time of subscription. Unused trial time is forfeited when a purchase is made. The subscription begins at the end of the trial period unless cancelled before it ends.</p>
+
+  <h3>Refunds</h3>
+  <p>All purchases are final and processed by Apple. Refunds are subject to Apple's refund policy. To request a refund, visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener noreferrer">reportaproblem.apple.com</a>. We do not process refunds directly.</p>
+
+  <h3>Subscription management via RevenueCat</h3>
+  <p>We use RevenueCat to manage subscription entitlements. RevenueCat receives anonymous purchase confirmation data from Apple to verify your access. No payment details are shared with RevenueCat.</p>
+
+  <h3>Restoring purchases</h3>
+  <p>If you reinstall the App or switch devices, use the "Restore Purchases" option in the App to recover your Edge entitlement. Lifetime purchases restore without a subscription requirement.</p>
+
+  <h2 id="free-tier">7. Free Tier &amp; Advertising</h2>
+  <p>The free tier of 21 Pro is fully playable. It includes Classic mode, the Basic Strategy Drill, and Rapid Fire mode (after completing onboarding). A rotating mini-game is available daily at no cost.</p>
+  <p>Free-tier users see <strong>rewarded video ads</strong> served by Google AdMob. These appear at natural break points — between runs or as optional run saves — and are never shown mid-hand. Watching a rewarded ad is always optional.</p>
+  <p>We request App Tracking Transparency (ATT) permission before any advertising tracking occurs. You can decline tracking and still use all free features. Upgrading to Edge removes all ads.</p>
+
+  <h2 id="third-parties">8. Third-Party Services</h2>
+  <p>The App integrates the following third-party services. By using the App, you acknowledge that these services operate under their own terms and privacy policies.</p>
   <ul>
-    <li><strong>Allow Tracking:</strong> AdMob may use your IDFA to serve personalized ads and measure performance across apps and websites.</li>
-    <li><strong>Ask App Not to Track:</strong> AdMob shows non-personalized ads. Your IDFA is not used or shared with ad networks for tracking.</li>
+    <li><strong>RevenueCat</strong> — subscription management. <a href="https://www.revenuecat.com/terms" target="_blank" rel="noopener noreferrer">Terms ↗</a></li>
+    <li><strong>PostHog</strong> — product analytics and session replay. <a href="https://posthog.com/terms" target="_blank" rel="noopener noreferrer">Terms ↗</a></li>
+    <li><strong>Google AdMob</strong> — advertising. <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Terms ↗</a></li>
+    <li><strong>Firebase Crashlytics (Google)</strong> — crash reporting. <a href="https://firebase.google.com/terms" target="_blank" rel="noopener noreferrer">Terms ↗</a></li>
+    <li><strong>Apple StoreKit</strong> — in-app purchase processing. <a href="https://www.apple.com/legal/internet-services/itunes/us/terms.html" target="_blank" rel="noopener noreferrer">App Store Terms ↗</a></li>
+  </ul>
+  <p>We are not responsible for the availability, accuracy, or practices of third-party services.</p>
+
+  <h2 id="prohibited">9. Prohibited Use</h2>
+  <p>You agree not to:</p>
+  <ul>
+    <li>Reverse engineer, decompile, disassemble, or attempt to extract source code from the App</li>
+    <li>Use the App for any commercial purpose without prior written consent</li>
+    <li>Attempt to exploit, hack, or interfere with the App's functionality or servers</li>
+    <li>Bypass or circumvent in-app purchase verification or entitlement checks</li>
+    <li>Use the App in violation of any applicable law or regulation</li>
+    <li>Resell, sublicense, or distribute any portion of the App or its content</li>
   </ul>
 
-  <h3>What is and isn't used for tracking</h3>
-  <p>With ATT consent, the following are used for tracking: Device Advertising ID (IDFA), ad interaction data.</p>
-  <p>The following are <strong>never</strong> used for tracking: purchase history, product interaction and usage data, anonymous user IDs.</p>
+  <h2 id="ip">10. Intellectual Property</h2>
+  <p>All content, design, code, trademarks, and assets within 21 Pro are the exclusive property of the developer and are protected by applicable intellectual property laws. Nothing in these Terms transfers ownership of any intellectual property to you.</p>
+  <p>The blackjack strategy tables and mathematical models used in the App are derived from established, publicly documented basic strategy research.</p>
 
-  <h3>Opting out</h3>
-  <p>Change your preference at any time in <strong>Settings → Privacy &amp; Security → Tracking → 21 Pro</strong>. Upgrading to Edge removes all ads entirely.</p>
+  <h2 id="warranties">11. Disclaimer of Warranties</h2>
+  <p>The App is provided <strong>"as is"</strong> and <strong>"as available"</strong> without warranties of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
+  <p>We do not warrant that the App will be error-free, uninterrupted, secure, or free of bugs. We do not warrant that the App will be compatible with all devices or operating system versions.</p>
 
-  <h2 id="purchases">6. Purchases &amp; Subscriptions</h2>
-  <p>All payment processing is handled by Apple. We do not store or access your payment card details, Apple ID, or billing address. RevenueCat receives an anonymous confirmation token from Apple to manage your entitlement — no payment details are included.</p>
-  <p>Edge subscription options:</p>
+  <h2 id="liability">12. Limitation of Liability</h2>
+  <p>To the fullest extent permitted by applicable law, we shall not be liable for any indirect, incidental, special, punitive, or consequential damages arising from or related to your use of the App. This includes, without limitation:</p>
   <ul>
-    <li>Monthly — $6.99/month</li>
-    <li>Annual — $49.99/year</li>
-    <li>Lifetime — $149.99 (one-time, non-recurring)</li>
+    <li>Financial losses at casinos or other gambling venues resulting from techniques practiced in the App</li>
+    <li>Loss of data, progress, or game content</li>
+    <li>Interruption of service or App unavailability</li>
+    <li>Actions taken by third-party services integrated into the App</li>
   </ul>
-  <p>Monthly and annual plans auto-renew unless cancelled at least 24 hours before the end of the current period. Manage or cancel at <strong>Settings → [Your Name] → Subscriptions</strong>.</p>
+  <p>Our total liability to you for any claim arising from use of the App shall not exceed the amount you paid us in the 12 months preceding the claim.</p>
+  <p>Some jurisdictions do not allow limitation of liability for certain types of damages. In such cases, our liability is limited to the maximum extent permitted by law.</p>
 
-  <h2 id="gdpr">7. GDPR — European Users</h2>
-  <p>If you are in the European Economic Area (EEA), United Kingdom, or Switzerland, GDPR applies.</p>
+  <h2 id="gdpr-ccpa">13. GDPR &amp; CCPA</h2>
+  <p>Our data practices comply with the General Data Protection Regulation (GDPR) for users in the EEA, United Kingdom, and Switzerland, and with the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA) for California residents.</p>
+  <p>Full details of your rights and our data practices are in our <a href="privacy.html">Privacy Policy</a>.</p>
 
-  <h3>Legal bases for processing</h3>
-  <ul>
-    <li><strong>Legitimate interests</strong> — crash reporting and anonymous analytics to maintain and improve the App.</li>
-    <li><strong>Contract performance</strong> — subscription management to deliver the service you purchased.</li>
-    <li><strong>Consent</strong> — advertising tracking via AdMob/IDFA, which requires your explicit ATT consent.</li>
-  </ul>
+  <h2 id="changes">14. Changes to These Terms</h2>
+  <p>We may update these Terms to reflect changes to the App, third-party services, or legal requirements. The "Last updated" date at the top will reflect any revision. Material changes will be noted in the App where possible.</p>
+  <p>Continued use of the App after updated Terms are posted constitutes acceptance of the new Terms. If you do not agree to updated Terms, stop using the App.</p>
 
-  <h3>Your rights</h3>
-  <p>You have the right to access, correct, delete, restrict, or port your data, and to withdraw consent at any time. To exercise these rights, email <a href="mailto:EpochBrandFeedback@gmail.com">EpochBrandFeedback@gmail.com</a>. We respond within 30 days. You may also lodge a complaint with your local data protection authority.</p>
-
-  <div class="callout callout-neutral">
-    <p>Because most data in 21 Pro is anonymous and stored locally, many GDPR requests can be fulfilled simply by deleting the App. We will confirm this where applicable.</p>
-  </div>
-
-  <h2 id="ccpa">8. CCPA — California Residents</h2>
-  <p>Under the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA), California residents have specific rights.</p>
-
-  <h3>Categories of personal information we collect</h3>
-  <ul>
-    <li>Identifiers — anonymous user ID; device advertising ID (with ATT consent)</li>
-    <li>Commercial information — purchase history, subscription status</li>
-    <li>Internet or network activity — app usage events, session recordings</li>
-    <li>Inferences — none. We do not build user profiles.</li>
-  </ul>
-
-  <h3>Do we sell personal information?</h3>
-  <p><strong>No.</strong> We do not sell personal information. We share limited data with service providers listed in Section 4 for operational purposes only.</p>
-
-  <h3>Do we share for cross-context behavioral advertising?</h3>
-  <p>We share Device Advertising ID (IDFA) with Google AdMob for advertising, but only with your ATT consent. Opt out at any time via <strong>Settings → Privacy &amp; Security → Tracking</strong>.</p>
-
-  <h3>Your California rights</h3>
-  <ul>
-    <li>Right to know what personal information we collect and how we use it</li>
-    <li>Right to delete personal information</li>
-    <li>Right to opt out of the sale or sharing of personal information</li>
-    <li>Right to correct inaccurate personal information</li>
-    <li>Right to limit use of sensitive personal information (we collect none)</li>
-    <li>Right to non-discrimination for exercising your rights</li>
-  </ul>
-  <p>Submit a CCPA request to <a href="mailto:EpochBrandFeedback@gmail.com">EpochBrandFeedback@gmail.com</a>. We respond within 45 days.</p>
-
-  <h2 id="children">9. Children's Privacy</h2>
-  <p>21 Pro is rated 17+ on the App Store and is not directed at children under 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided information through the App, contact us and we will delete it promptly.</p>
-
-  <h2 id="retention">10. Data Retention &amp; Deletion</h2>
-  <p>Game data (progress, stats, settings) is stored locally on your device. Deleting the App removes it entirely.</p>
-  <p>For data held by third-party services:</p>
-  <ul>
-    <li><strong>PostHog</strong> — anonymous event data retained for up to 12 months</li>
-    <li><strong>RevenueCat</strong> — purchase records retained as required for subscription management and tax compliance</li>
-    <li><strong>Firebase Crashlytics</strong> — crash reports retained for 90 days</li>
-    <li><strong>AdMob</strong> — ad interaction data retained per Google's data retention policies</li>
-  </ul>
-  <p>To request deletion of data associated with your anonymous ID, email <a href="mailto:EpochBrandFeedback@gmail.com">EpochBrandFeedback@gmail.com</a>.</p>
-
-  <h2 id="encryption">11. Encryption</h2>
-  <p>21 Pro uses SHA-256 via Apple's CryptoKit for internal deck verification. This is exempt encryption under US Export Administration Regulations (EAR). We have made the applicable declaration for availability in France per App Store requirements. All data transmitted to third-party services is encrypted in transit using TLS.</p>
-
-  <h2 id="changes">12. Changes to This Policy</h2>
-  <p>We update this policy when third-party services change, new features are added, or legal requirements change. The "Last updated" date at the top will reflect any revision. If changes are material, we will note this in the App. Continued use after an update constitutes acceptance of the revised policy.</p>
-
-  <h2 id="contact">13. Contact</h2>
-  <p>For privacy questions, data requests, or concerns:</p>
+  <h2 id="contact">15. Governing Law &amp; Contact</h2>
+  <p>These Terms are governed by the laws of the United States. Any disputes arising from use of the App shall be resolved in the appropriate courts of the applicable jurisdiction. Nothing in these Terms limits your rights under mandatory local consumer protection law.</p>
+  <p>For questions about these Terms:</p>
   <ul>
     <li>Email: <a href="mailto:EpochBrandFeedback@gmail.com">EpochBrandFeedback@gmail.com</a></li>
-    <li>Use subject line "Privacy Request" for GDPR or CCPA matters</li>
+    <li>Subject line: "Terms Question"</li>
   </ul>
-  <p>We aim to respond to all requests within 30 days (45 days for CCPA).</p>
 
 </div>
 
 <footer>
   <div class="footer-inner">
-    <span class="footer-copy">&copy; 2025 21 Pro. All rights reserved.</span>
+    <span class="footer-copy">© 2025 21 Pro. All rights reserved.</span>
     <ul class="footer-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="terms.html">Terms of Service</a></li>
-    </ul>
-  </div>
-</footer>
-
-</body>
-</html>
+      <li><
