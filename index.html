@@ -3,2033 +3,1068 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="21 Pro — The blackjack trainer that actually teaches you to win. Master basic strategy, sharpen card counting, and play like a pro.">
+<meta name="description" content="21 Pro — The blackjack trainer that actually teaches you to win. Master basic strategy, card counting, and play every hand perfectly.">
 <title>21 Pro — Blackjack Trainer</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --felt-deep:    #080f0a;
-    --felt-dark:    #0d1a10;
-    --felt-mid:     #12311e;
-    --felt-light:   #1a4229;
-
-    --surface-dark: #0c0c0b;
-    --surface-mid:  #141412;
-    --surface-card: #1a1a17;
-    --surface-hover:#202020;
-
-    --brass:        #BF9E6A;
-    --brass-light:  #D4B07A;
-    --brass-muted:  #997845;
-    --brass-subtle: rgba(191,158,106,0.10);
-    --brass-border: rgba(191,158,106,0.18);
-
-    --text-primary: #E6DFD1;
-    --text-secondary:#9A9488;
-    --text-tertiary: #61594F;
-
-    --win:          #47B869;
-    --loss:         #C03838;
-    --blue:         #3874BF;
-    --cyan:         #2AAFC0;
-    --purple:       #7A52A6;
-    --pink:         #D45080;
-    --orange:       #C87A2A;
-
-    --border-subtle: rgba(255,255,255,0.04);
-    --border-mid:    rgba(255,255,255,0.07);
-    --border-gold:   rgba(191,158,106,0.18);
-
-    --radius-sm: 8px;
-    --radius-md: 14px;
-    --radius-lg: 20px;
-    --radius-xl: 28px;
-
-    --font-display: 'Playfair Display', Georgia, serif;
-    --font-body:    'DM Sans', system-ui, sans-serif;
-
-    --max-w: 1100px;
-    --section-gap: 120px;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--felt-deep);
-    color: var(--text-primary);
-    font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-  }
-
-  /* ─── NOISE OVERLAY ─── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
-    background-size: 200px 200px;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.6;
-  }
-
-  /* ─── LAYOUT ─── */
-  .container {
-    max-width: var(--max-w);
-    margin: 0 auto;
-    padding: 0 24px;
-    position: relative;
-    z-index: 1;
-  }
-
-  /* ─── NAV ─── */
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    padding: 0 24px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    backdrop-filter: blur(24px) saturate(180%);
-    -webkit-backdrop-filter: blur(24px) saturate(180%);
-    background: rgba(8,15,10,0.75);
-    border-bottom: 1px solid var(--border-subtle);
-    transition: background 0.3s;
-  }
-
-  .nav-inner {
-    max-width: var(--max-w);
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .nav-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-  }
-
-  .nav-logo-mark {
-    width: 32px;
-    height: 32px;
-    background: linear-gradient(135deg, var(--brass) 0%, var(--brass-muted) 100%);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-display);
-    font-size: 16px;
-    font-weight: 700;
-    color: var(--felt-deep);
-    letter-spacing: -0.5px;
-  }
-
-  .nav-logo-text {
-    font-family: var(--font-display);
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--text-primary);
-    letter-spacing: -0.3px;
-  }
-
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 32px;
-    list-style: none;
-  }
-
-  .nav-links a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: 0.01em;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--text-primary); }
-
-  .nav-cta {
-    background: var(--brass);
-    color: var(--felt-deep) !important;
-    padding: 7px 16px;
-    border-radius: 8px;
-    font-weight: 500 !important;
-    font-size: 14px !important;
-    transition: background 0.2s, transform 0.15s !important;
-  }
-
-  .nav-cta:hover {
-    background: var(--brass-light) !important;
-    transform: translateY(-1px);
-    color: var(--felt-deep) !important;
-  }
-
-  .nav-hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 4px;
-  }
-
-  .nav-hamburger span {
-    display: block;
-    width: 22px;
-    height: 1.5px;
-    background: var(--text-secondary);
-    border-radius: 2px;
-    transition: 0.3s;
-  }
-
-  /* ─── HERO ─── */
-  .hero {
-    min-height: 100svh;
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    padding-top: 60px;
-  }
-
-  /* Radial glow behind hero */
-  .hero::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 50%; transform: translateX(-50%);
-    width: 900px;
-    height: 600px;
-    background: radial-gradient(ellipse at center top, rgba(191,158,106,0.07) 0%, transparent 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* Subtle felt texture stripe */
-  .hero-felt-strip {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg,
-      var(--felt-dark) 0%,
-      var(--felt-deep) 40%,
-      var(--felt-deep) 100%);
-    z-index: 0;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 680px;
-    padding: 80px 0 100px;
-  }
-
-  .hero-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--brass-subtle);
-    border: 1px solid var(--brass-border);
-    border-radius: 100px;
-    padding: 5px 14px 5px 8px;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--brass-light);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: 28px;
-    animation: fadeUp 0.6s ease both;
-  }
-
-  .hero-eyebrow-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--brass);
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50%       { opacity: 0.5; transform: scale(0.85); }
-  }
-
-  .hero-title {
-    font-family: var(--font-display);
-    font-size: clamp(42px, 7vw, 80px);
-    font-weight: 700;
-    line-height: 1.07;
-    letter-spacing: -0.03em;
-    color: var(--text-primary);
-    margin-bottom: 24px;
-    animation: fadeUp 0.6s 0.1s ease both;
-  }
-
-  .hero-title em {
-    font-style: italic;
-    color: var(--brass-light);
-  }
-
-  .hero-subtitle {
-    font-size: clamp(16px, 2vw, 19px);
-    color: var(--text-secondary);
-    line-height: 1.65;
-    max-width: 520px;
-    margin-bottom: 40px;
-    font-weight: 300;
-    animation: fadeUp 0.6s 0.2s ease both;
-  }
-
-  .hero-actions {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-    animation: fadeUp 0.6s 0.3s ease both;
-  }
-
-  .btn-primary {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: var(--brass);
-    color: var(--felt-deep);
-    font-family: var(--font-body);
-    font-size: 15px;
-    font-weight: 500;
-    padding: 13px 26px;
-    border-radius: 10px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-    box-shadow: 0 4px 20px rgba(191,158,106,0.25);
-    letter-spacing: 0.01em;
-    white-space: nowrap;
-  }
-
-  .btn-primary:hover {
-    background: var(--brass-light);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(191,158,106,0.35);
-  }
-
-  .btn-primary:active { transform: translateY(0); }
-
-  .btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--text-secondary);
-    font-size: 15px;
-    font-weight: 400;
-    text-decoration: none;
-    transition: color 0.2s;
-    letter-spacing: 0.01em;
-    white-space: nowrap;
-  }
-
-  .btn-secondary:hover { color: var(--text-primary); }
-
-  .hero-stats {
-    display: flex;
-    gap: 32px;
-    margin-top: 56px;
-    padding-top: 40px;
-    border-top: 1px solid var(--border-subtle);
-    animation: fadeUp 0.6s 0.4s ease both;
-    flex-wrap: wrap;
-  }
-
-  .hero-stat { display: flex; flex-direction: column; gap: 2px; }
-
-  .hero-stat-value {
-    font-family: var(--font-display);
-    font-size: 28px;
-    font-weight: 600;
-    color: var(--text-primary);
-    letter-spacing: -0.03em;
-    line-height: 1;
-  }
-
-  .hero-stat-label {
-    font-size: 12px;
-    color: var(--text-tertiary);
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-  }
-
-  /* floating card art */
-  .hero-art {
-    position: absolute;
-    right: -20px; top: 50%;
-    transform: translateY(-50%);
-    width: 380px;
-    pointer-events: none;
-    z-index: 1;
-    animation: floatCards 0.8s 0.3s ease both;
-  }
-
-  @keyframes floatCards {
-    from { opacity: 0; transform: translateY(-46%) translateX(30px); }
-    to   { opacity: 1; transform: translateY(-50%) translateX(0); }
-  }
-
-  .card-stack {
-    position: relative;
-    width: 280px;
-    height: 340px;
-    margin: 0 auto;
-  }
-
-  .play-card {
-    position: absolute;
-    width: 160px;
-    height: 220px;
-    border-radius: 14px;
-    background: #f5f0e8;
-    border: 1px solid rgba(255,255,255,0.15);
-    box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 8px 20px rgba(0,0,0,0.4);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-display);
-  }
-
-  .play-card-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
-    padding: 14px;
-  }
-
-  .play-card-rank {
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 1;
-    letter-spacing: -0.02em;
-  }
-
-  .play-card-suit { font-size: 22px; }
-
-  .play-card-center {
-    width: 100%;
-    text-align: center;
-    font-size: 48px;
-  }
-
-  .play-card-bottom {
-    transform: rotate(180deg);
-    display: flex;
-    flex-direction: column;
-  }
-
-  .card-red { color: #B51C1C; }
-  .card-black { color: #1a1a1a; }
-
-  .play-card-1 {
-    top: 10px; left: 0;
-    transform: rotate(-8deg);
-    z-index: 1;
-  }
-
-  .play-card-2 {
-    top: 30px; left: 60px;
-    transform: rotate(3deg);
-    z-index: 2;
-  }
-
-  .play-card-3 {
-    top: 0; left: 115px;
-    transform: rotate(10deg);
-    z-index: 3;
-  }
-
-  /* glow beneath cards */
-  .card-glow {
-    position: absolute;
-    bottom: -40px; left: 50%;
-    transform: translateX(-50%);
-    width: 200px; height: 80px;
-    background: radial-gradient(ellipse, rgba(191,158,106,0.18) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none;
-  }
-
-  /* ─── SECTION HEADER ─── */
-  .section-header {
-    text-align: center;
-    margin-bottom: 64px;
-  }
-
-  .section-eyebrow {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--brass);
-    margin-bottom: 14px;
-  }
-
-  .section-title {
-    font-family: var(--font-display);
-    font-size: clamp(28px, 4vw, 46px);
-    font-weight: 700;
-    color: var(--text-primary);
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin-bottom: 16px;
-  }
-
-  .section-title em { font-style: italic; color: var(--brass-light); }
-
-  .section-desc {
-    font-size: 16px;
-    color: var(--text-secondary);
-    max-width: 480px;
-    margin: 0 auto;
-    font-weight: 300;
-    line-height: 1.7;
-  }
-
-  /* ─── SCREENSHOTS ─── */
-  .screenshots {
-    padding: var(--section-gap) 0 0;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-  }
-
-  .screenshots-scroll-wrapper {
-    margin-top: 56px;
-    overflow-x: auto;
-    overflow-y: visible;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding-bottom: 48px;
-  }
-
-  .screenshots-scroll-wrapper::-webkit-scrollbar { display: none; }
-
-  .screenshots-track {
-    display: flex;
-    gap: 24px;
-    padding: 20px max(24px, calc((100vw - var(--max-w)) / 2 + 24px));
-    width: max-content;
-  }
-
-  .screenshot-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    flex-shrink: 0;
-    width: 220px;
-  }
-
-  .screenshot-frame {
-    width: 220px;
-    height: 476px;
-    border-radius: 36px;
-    overflow: hidden;
-    background: var(--surface-card);
-    border: 1px solid var(--border-mid);
-    box-shadow:
-      0 0 0 6px rgba(255,255,255,0.04),
-      0 32px 64px rgba(0,0,0,0.6),
-      0 8px 20px rgba(0,0,0,0.4);
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    flex-shrink: 0;
-  }
-
-  .screenshot-frame:hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow:
-      0 0 0 6px rgba(255,255,255,0.06),
-      0 48px 80px rgba(0,0,0,0.65),
-      0 12px 28px rgba(0,0,0,0.45);
-  }
-
-  /* Notch detail */
-  .screenshot-frame::before {
-    content: '';
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 72px;
-    height: 20px;
-    background: #000;
-    border-radius: 0 0 14px 14px;
-    z-index: 10;
-  }
-
-  .screenshot-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
-    display: block;
-  }
-
-  .screenshot-caption {
-    text-align: center;
-  }
-
-  .screenshot-label {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-primary);
-    letter-spacing: -0.01em;
-    margin-bottom: 4px;
-  }
-
-  .screenshot-desc {
-    font-size: 12px;
-    color: var(--text-tertiary);
-    line-height: 1.5;
-    font-weight: 300;
-    max-width: 200px;
-    margin: 0 auto;
-  }
-
-  /* ─── FEATURES ─── */
-  .features {
-    padding: var(--section-gap) 0;
-    position: relative;
-    z-index: 1;
-  }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1px;
-    background: var(--border-subtle);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-  }
-
-  .feature-card {
-    background: var(--surface-dark);
-    padding: 36px 32px;
-    transition: background 0.25s;
-    position: relative;
-  }
-
-  .feature-card:hover { background: var(--surface-card); }
-
-  .feature-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 32px; right: 32px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--brass-border), transparent);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .feature-card:hover::before { opacity: 1; }
-
-  .feature-icon {
-    width: 44px; height: 44px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    margin-bottom: 20px;
-    flex-shrink: 0;
-  }
-
-  .feature-icon-gold   { background: rgba(191,158,106,0.12); }
-  .feature-icon-blue   { background: rgba(56,116,191,0.12); }
-  .feature-icon-win    { background: rgba(71,184,105,0.12); }
-  .feature-icon-purple { background: rgba(122,82,166,0.12); }
-  .feature-icon-pink   { background: rgba(212,80,128,0.12); }
-  .feature-icon-cyan   { background: rgba(42,175,192,0.12); }
-
-  .feature-title {
-    font-size: 17px;
-    font-weight: 500;
-    color: var(--text-primary);
-    margin-bottom: 8px;
-    letter-spacing: -0.01em;
-  }
-
-  .feature-desc {
-    font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.65;
-    font-weight: 300;
-  }
-
-  /* ─── MODES ─── */
-  .modes {
-    padding: var(--section-gap) 0;
-    position: relative;
-    z-index: 1;
-  }
-
-  .modes::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, transparent 0%, var(--felt-dark) 20%, var(--felt-dark) 80%, transparent 100%);
-    z-index: 0;
-  }
-
-  .modes .container { position: relative; z-index: 1; }
-
-  .modes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 16px;
-    margin-top: 0;
-  }
-
-  .mode-card {
-    background: var(--surface-dark);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-lg);
-    padding: 28px 24px;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.25s, transform 0.2s;
-  }
-
-  .mode-card:hover {
-    border-color: var(--border-mid);
-    transform: translateY(-3px);
-  }
-
-  .mode-card::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at top left, var(--mode-color, transparent) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity 0.3s;
-    pointer-events: none;
-  }
-
-  .mode-card:hover::after { opacity: 1; }
-
-  .mode-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 100px;
-    margin-bottom: 16px;
-    background: var(--badge-bg, rgba(255,255,255,0.06));
-    color: var(--badge-color, var(--text-secondary));
-  }
-
-  .mode-badge.free {
-    --badge-bg: rgba(71,184,105,0.12);
-    --badge-color: #47B869;
-  }
-
-  .mode-badge.edge {
-    --badge-bg: rgba(191,158,106,0.12);
-    --badge-color: var(--brass-light);
-  }
-
-  .mode-icon { font-size: 28px; margin-bottom: 12px; display: block; }
-
-  .mode-title {
-    font-family: var(--font-display);
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--text-primary);
-    letter-spacing: -0.02em;
-    margin-bottom: 6px;
-  }
-
-  .mode-tagline {
-    font-size: 13px;
-    color: var(--text-secondary);
-    font-weight: 300;
-    font-style: italic;
-    margin-bottom: 14px;
-    min-height: 36px;
-  }
-
-  .mode-desc {
-    font-size: 13px;
-    color: var(--text-tertiary);
-    line-height: 1.6;
-    font-weight: 300;
-  }
-
-  /* ─── TRAINING ─── */
-  .training {
-    padding: var(--section-gap) 0;
-    position: relative;
-    z-index: 1;
-  }
-
-  .training-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: center;
-  }
-
-  .training-visual {
-    position: relative;
-  }
-
-  .chart-mock {
-    background: var(--surface-card);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-lg);
-    padding: 28px;
-    overflow: hidden;
-  }
-
-  .chart-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 24px;
-  }
-
-  .chart-title {
-    font-size: 13px;
-    color: var(--text-tertiary);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-size: 11px;
-  }
-
-  .chart-value {
-    font-family: var(--font-display);
-    font-size: 28px;
-    font-weight: 600;
-    color: var(--win);
-    letter-spacing: -0.03em;
-  }
-
-  .chart-delta {
-    font-size: 12px;
-    color: var(--win);
-    background: rgba(71,184,105,0.1);
-    padding: 2px 8px;
-    border-radius: 100px;
-    font-weight: 500;
-  }
-
-  .chart-bars {
-    display: flex;
-    align-items: flex-end;
-    gap: 8px;
-    height: 100px;
-  }
-
-  .chart-bar {
-    flex: 1;
-    border-radius: 4px 4px 0 0;
-    background: rgba(191,158,106,0.15);
-    position: relative;
-    transition: background 0.2s;
-    min-height: 8px;
-  }
-
-  .chart-bar.active { background: var(--brass); }
-
-  .chart-bar:hover { background: rgba(191,158,106,0.3); }
-
-  .accuracy-ring {
-    position: absolute;
-    top: -20px;
-    right: -20px;
-    width: 120px;
-    height: 120px;
-    background: var(--surface-mid);
-    border: 1px solid var(--border-subtle);
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-  }
-
-  .accuracy-value {
-    font-family: var(--font-display);
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--brass-light);
-    letter-spacing: -0.03em;
-    line-height: 1;
-  }
-
-  .accuracy-label {
-    font-size: 10px;
-    color: var(--text-tertiary);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-top: 2px;
-  }
-
-  .training-points {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  .training-point {
-    display: flex;
-    gap: 16px;
-    align-items: flex-start;
-  }
-
-  .training-point-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    background: var(--brass-subtle);
-    border: 1px solid var(--brass-border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .training-point-title {
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--text-primary);
-    margin-bottom: 4px;
-    letter-spacing: -0.01em;
-  }
-
-  .training-point-desc {
-    font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    font-weight: 300;
-  }
-
-  /* ─── PRICING ─── */
-  .pricing {
-    padding: var(--section-gap) 0;
-    position: relative;
-    z-index: 1;
-  }
-
-  .pricing::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse at center, rgba(191,158,106,0.04) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .pricing-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .pricing-card {
-    background: var(--surface-dark);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-xl);
-    padding: 36px 32px;
-    position: relative;
-    transition: border-color 0.25s;
-  }
-
-  .pricing-card:hover { border-color: var(--border-mid); }
-
-  .pricing-card.featured {
-    border-color: var(--brass-border);
-    background: var(--surface-card);
-  }
-
-  .pricing-card.featured:hover { border-color: var(--brass); }
-
-  .pricing-badge {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--brass);
-    color: var(--felt-deep);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 4px 14px;
-    border-radius: 100px;
-    white-space: nowrap;
-  }
-
-  .pricing-tier {
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-tertiary);
-    margin-bottom: 16px;
-  }
-
-  .pricing-card.featured .pricing-tier { color: var(--brass); }
-
-  .pricing-amount {
-    font-family: var(--font-display);
-    font-size: 44px;
-    font-weight: 700;
-    color: var(--text-primary);
-    letter-spacing: -0.04em;
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-
-  .pricing-amount span {
-    font-size: 20px;
-    font-weight: 400;
-    color: var(--text-secondary);
-    letter-spacing: -0.01em;
-  }
-
-  .pricing-period {
-    font-size: 13px;
-    color: var(--text-tertiary);
-    margin-bottom: 28px;
-  }
-
-  .pricing-features {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    margin-bottom: 32px;
-  }
-
-  .pricing-feature {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-    color: var(--text-secondary);
-    font-weight: 300;
-  }
-
-  .pricing-feature-check {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    flex-shrink: 0;
-  }
-
-  .check-free {
-    background: rgba(97,89,79,0.25);
-    color: var(--text-tertiary);
-  }
-
-  .check-edge {
-    background: rgba(71,184,105,0.15);
-    color: var(--win);
-  }
-
-  .pricing-cta {
-    display: block;
-    text-align: center;
-    padding: 12px;
-    border-radius: 10px;
-    font-size: 15px;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.2s;
-    cursor: pointer;
-    border: none;
-    font-family: var(--font-body);
-    width: 100%;
-  }
-
-  .cta-free {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid var(--border-mid);
-    color: var(--text-secondary);
-  }
-
-  .cta-free:hover {
-    background: rgba(255,255,255,0.08);
-    color: var(--text-primary);
-  }
-
-  .cta-edge {
-    background: var(--brass);
-    color: var(--felt-deep);
-    box-shadow: 0 4px 20px rgba(191,158,106,0.25);
-  }
-
-  .cta-edge:hover {
-    background: var(--brass-light);
-    box-shadow: 0 8px 28px rgba(191,158,106,0.35);
-    transform: translateY(-1px);
-  }
-
-  .pricing-note {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 13px;
-    color: var(--text-tertiary);
-  }
-
-  /* ─── SOCIAL PROOF / QUOTE ─── */
-  .trust {
-    padding: var(--section-gap) 0;
-    position: relative;
-    z-index: 1;
-  }
-
-  .quote-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-
-  .quote-card {
-    background: var(--surface-dark);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-lg);
-    padding: 28px;
-    transition: border-color 0.25s;
-  }
-
-  .quote-card:hover { border-color: var(--border-mid); }
-
-  .quote-stars {
-    color: var(--brass);
-    font-size: 13px;
-    letter-spacing: 2px;
-    margin-bottom: 14px;
-  }
-
-  .quote-text {
-    font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.7;
-    font-weight: 300;
-    margin-bottom: 18px;
-    font-style: italic;
-  }
-
-  .quote-author {
-    font-size: 13px;
-    color: var(--text-tertiary);
-    font-weight: 400;
-  }
-
-  .trust-badges {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 56px;
-    padding-top: 40px;
-    border-top: 1px solid var(--border-subtle);
-    flex-wrap: wrap;
-  }
-
-  .trust-badge {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .trust-badge-icon { font-size: 24px; opacity: 0.6; }
-
-  .trust-badge-label {
-    font-size: 12px;
-    color: var(--text-tertiary);
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    text-align: center;
-  }
-
-  /* ─── INDIE NOTE ─── */
-  .indie-note {
-    padding: 60px 0;
-    position: relative;
-    z-index: 1;
-  }
-
-  .indie-card {
-    background: var(--surface-card);
-    border: 1px solid var(--border-subtle);
-    border-radius: var(--radius-xl);
-    padding: 48px;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 32px;
-    align-items: start;
-  }
-
-  .indie-avatar {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--brass-muted), var(--felt-mid));
-    border: 2px solid var(--brass-border);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    flex-shrink: 0;
-  }
-
-  .indie-label {
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-tertiary);
-    margin-bottom: 10px;
-  }
-
-  .indie-text {
-    font-size: 16px;
-    color: var(--text-secondary);
-    line-height: 1.75;
-    font-weight: 300;
-  }
-
-  .indie-text strong { color: var(--text-primary); font-weight: 500; }
-
-  .indie-sig {
-    margin-top: 16px;
-    font-family: var(--font-display);
-    font-size: 18px;
-    color: var(--brass);
-    font-style: italic;
-  }
-
-  /* ─── CTA BAND ─── */
-  .cta-band {
-    padding: var(--section-gap) 0;
-    position: relative;
-    z-index: 1;
-  }
-
-  .cta-card {
-    background: var(--felt-dark);
-    border: 1px solid var(--brass-border);
-    border-radius: var(--radius-xl);
-    padding: 72px 48px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cta-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 50%; transform: translateX(-50%);
-    width: 600px; height: 200px;
-    background: radial-gradient(ellipse, rgba(191,158,106,0.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .cta-card-eyebrow {
-    font-size: 12px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--brass);
-    margin-bottom: 20px;
-    display: block;
-  }
-
-  .cta-card-title {
-    font-family: var(--font-display);
-    font-size: clamp(28px, 4vw, 46px);
-    font-weight: 700;
-    color: var(--text-primary);
-    letter-spacing: -0.03em;
-    margin-bottom: 16px;
-    position: relative;
-  }
-
-  .cta-card-title em { font-style: italic; color: var(--brass-light); }
-
-  .cta-card-sub {
-    font-size: 16px;
-    color: var(--text-secondary);
-    margin-bottom: 36px;
-    font-weight: 300;
-    max-width: 440px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .cta-actions {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  /* ─── FOOTER ─── */
-  footer {
-    border-top: 1px solid var(--border-subtle);
-    padding: 40px 0 32px;
-    position: relative;
-    z-index: 1;
-  }
-
-  .footer-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-
-  .footer-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-  }
-
-  .footer-logo-text {
-    font-family: var(--font-display);
-    font-size: 16px;
-    font-weight: 600;
-    color: var(--text-secondary);
-    letter-spacing: -0.3px;
-  }
-
-  .footer-links {
-    display: flex;
-    gap: 24px;
-    list-style: none;
-    flex-wrap: wrap;
-  }
-
-  .footer-links a {
-    font-size: 13px;
-    color: var(--text-tertiary);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-
-  .footer-links a:hover { color: var(--text-secondary); }
-
-  .footer-copy {
-    font-size: 12px;
-    color: var(--text-tertiary);
-  }
-
-  /* ─── ANIMATIONS ─── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-
-  .js-loaded .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-
-  .js-loaded .reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
-
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 900px) {
-    .hero-art { display: none; }
-    .training-layout { grid-template-columns: 1fr; gap: 48px; }
-    .quote-grid { grid-template-columns: 1fr; }
-    .pricing-grid { grid-template-columns: 1fr; max-width: 420px; }
-    .indie-card { grid-template-columns: 1fr; }
-    .indie-avatar { width: 48px; height: 48px; font-size: 20px; }
-  }
-
-  @media (max-width: 680px) {
-    :root { --section-gap: 80px; }
-    .nav-links { display: none; }
-    .nav-hamburger { display: flex; }
-    .hero-content { padding: 60px 0 80px; }
-    .hero-stats { gap: 24px; margin-top: 40px; padding-top: 32px; }
-    .features-grid { border-radius: var(--radius-lg); }
-    .feature-card { padding: 28px 24px; }
-    .modes-grid { grid-template-columns: 1fr 1fr; }
-    .cta-card { padding: 48px 28px; }
-    .trust-badges { gap: 24px; }
-    .footer-inner { flex-direction: column; align-items: flex-start; gap: 16px; }
-  }
-
-  @media (max-width: 460px) {
-    .modes-grid { grid-template-columns: 1fr; }
-    .hero-actions { flex-direction: column; align-items: flex-start; }
-    .cta-actions { flex-direction: column; align-items: center; }
-  }
-
-  /* ─── SCROLLBAR ─── */
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--felt-deep); }
-  ::-webkit-scrollbar-thumb { background: var(--border-mid); border-radius: 3px; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#010101;
+  --bg2:#0a0a0a;
+  --bg3:#111;
+  --border:rgba(255,255,255,0.07);
+  --border2:rgba(255,255,255,0.13);
+  --text:#ffffff;
+  --text2:#888888;
+  --text3:#444444;
+  --brass:#BF9E6A;
+  --brass-l:#D4B07A;
+  --brass-m:#997845;
+  --win:#47B869;
+  --blue:#3874BF;
+  --purple:#7A52A6;
+  --red:#C03838;
+  --pink:#D45080;
+  --font:'Inter',-apple-system,sans-serif;
+  --max-w:1100px;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+.container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:64px;display:flex;align-items:center;padding:0 32px;
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  background:rgba(1,1,1,0.7);
+  border-bottom:1px solid var(--border);
+  transition:background 0.3s;
+}
+.nav-inner{max-width:var(--max-w);width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-mark{
+  width:34px;height:34px;border-radius:9px;
+  background:linear-gradient(135deg,var(--brass),var(--brass-m));
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:800;color:#010101;letter-spacing:-1px;
+}
+.nav-name{font-size:17px;font-weight:700;color:var(--text);letter-spacing:-0.3px}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+.nav-links a{font-size:14px;font-weight:400;color:var(--text2);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{
+  background:var(--brass);color:#010101 !important;font-weight:600 !important;
+  padding:8px 18px;border-radius:8px;transition:background 0.2s,transform 0.15s !important;
+}
+.nav-cta:hover{background:var(--brass-l) !important;transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--text2);border-radius:2px;transition:0.3s}
+
+/* ── BTN ── */
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font);font-size:15px;font-weight:600;
+  padding:14px 28px;border-radius:12px;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:background 0.2s,transform 0.15s,box-shadow 0.2s;
+  white-space:nowrap;letter-spacing:0.01em;
+}
+.btn-gold{
+  background:var(--brass);color:#010101;
+  box-shadow:0 4px 24px rgba(191,158,106,0.3);
+}
+.btn-gold:hover{background:var(--brass-l);transform:translateY(-2px);box-shadow:0 8px 36px rgba(191,158,106,0.4)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:6px;
+  color:var(--text2);font-size:15px;font-weight:400;
+  text-decoration:none;transition:color 0.2s;
+  font-family:var(--font);
+}
+.btn-ghost:hover{color:var(--text)}
+
+/* ── HERO ── */
+.hero{
+  min-height:100svh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding-top:64px;
+  position:relative;overflow:hidden;
+}
+.hero-text{position:relative;z-index:2;padding:80px 24px 56px;max-width:760px}
+.pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(191,158,106,0.1);border:1px solid rgba(191,158,106,0.25);
+  border-radius:100px;padding:5px 16px 5px 10px;
+  font-size:12px;font-weight:500;color:var(--brass-l);
+  letter-spacing:0.04em;margin-bottom:32px;
+}
+.pill-dot{width:6px;height:6px;background:var(--brass);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.75)}}
+.hero-h1{
+  font-size:clamp(52px,8.5vw,100px);font-weight:800;
+  line-height:1.0;letter-spacing:-0.04em;color:var(--text);margin-bottom:24px;
+}
+.hero-h1 em{font-style:normal;color:var(--brass-l)}
+.hero-sub{
+  font-size:clamp(16px,2vw,20px);font-weight:300;color:var(--text2);
+  line-height:1.65;max-width:520px;margin:0 auto 40px;
+}
+.hero-actions{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+
+/* ── IPHONE SHELL ── */
+/* Physical iPhone chassis — titanium frame with machined edges */
+.iphone-shell{
+  position:relative;
+  display:inline-flex;
+  flex-shrink:0;
+  border-radius:50px;
+  /* Black Titanium: multiple subtle light catches across brushed surface */
+  background:linear-gradient(
+    155deg,
+    #72727a 0%,
+    #404044 10%,
+    #606066 22%,
+    #38383c 36%,
+    #52525a 50%,
+    #2e2e32 64%,
+    #4a4a52 78%,
+    #363638 90%,
+    #505058 100%
+  );
+  padding:10px;
+  box-shadow:
+    /* Polished inner bevel — machined step where frame meets glass */
+    inset 0 0 0 1px rgba(255,255,255,0.18),
+    inset 0 2px 0 rgba(255,255,255,0.14),
+    inset 0 -2px 0 rgba(0,0,0,0.45),
+    inset 2px 0 0 rgba(255,255,255,0.07),
+    inset -2px 0 0 rgba(0,0,0,0.28),
+    /* Outer edge — dark gap between frame and air */
+    0 0 0 1px rgba(0,0,0,0.85),
+    0 0 0 1.5px rgba(255,255,255,0.04),
+    /* Depth shadows */
+    0 60px 120px rgba(0,0,0,0.85),
+    0 20px 48px rgba(0,0,0,0.5);
+}
+/* Left side: Action button + Volume Up + Volume Down (gradient strip) */
+.iphone-shell::before{
+  content:'';
+  position:absolute;
+  left:-5px;top:23%;
+  width:5px;height:88px;
+  border-radius:3px 0 0 3px;
+  /* Each button is a lighter-to-darker band; dark recesses separate them */
+  background:linear-gradient(
+    to bottom,
+    #505056 0px,  #3e3e42 16px,  /* Action button */
+    #1a1a1c 16px, #1a1a1c 23px,  /* recess gap */
+    #505056 23px, #3e3e42 51px,  /* Volume Up */
+    #1a1a1c 51px, #1a1a1c 58px,  /* recess gap */
+    #505056 58px, #3e3e42 88px   /* Volume Down */
+  );
+  box-shadow:
+    -0.5px 0 0 rgba(0,0,0,0.6),
+    inset 1px 0 0 rgba(255,255,255,0.07);
+}
+/* Right side: Power button — taller, single piece */
+.iphone-shell::after{
+  content:'';
+  position:absolute;
+  right:-5px;top:34%;
+  width:5px;height:66px;
+  border-radius:0 3px 3px 0;
+  background:linear-gradient(to bottom,#505056 0px,#3e3e42 66px);
+  box-shadow:
+    0.5px 0 0 rgba(0,0,0,0.6),
+    inset -1px 0 0 rgba(255,255,255,0.07);
+}
+
+/* ── PHONE SCREEN (inside shell) ── */
+.phone{
+  border-radius:40px;overflow:hidden;
+  background:#050505;
+  /* Inner screen inset shadow for depth */
+  box-shadow:inset 0 2px 12px rgba(0,0,0,0.7),inset 0 0 0 0.5px rgba(0,0,0,0.9);
+  position:relative;flex-shrink:0;
+}
+/* Dynamic Island — accurate pill proportions */
+.phone::before{
+  content:'';position:absolute;top:13px;left:50%;transform:translateX(-50%);
+  width:82px;height:25px;background:#000;border-radius:14px;z-index:10;
+}
+/* Home indicator bar */
+.phone::after{
+  content:'';position:absolute;bottom:9px;left:50%;transform:translateX(-50%);
+  width:110px;height:4px;background:rgba(255,255,255,0.22);border-radius:3px;z-index:10;
+}
+.phone img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.phone-c{width:260px;height:556px}
+.phone-l{width:210px;height:450px}
+.phone-r{width:210px;height:450px}
+
+/* Shell positioning for hero phones */
+.shell-hero-c{z-index:3}
+.shell-hero-l{
+  z-index:2;opacity:0.78;
+  transform:rotate(-9deg) translateX(18px);
+  transform-origin:bottom center;
+}
+.shell-hero-r{
+  z-index:2;opacity:0.78;
+  transform:rotate(9deg) translateX(-18px);
+  transform-origin:bottom center;
+}
+
+/* ── HERO PHONES CONTAINER ── */
+.hero-phones{
+  position:relative;z-index:2;
+  width:100%;display:flex;align-items:flex-end;
+  justify-content:center;height:580px;
+}
+.hero-glow{
+  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:900px;height:420px;
+  background:radial-gradient(ellipse at center bottom,rgba(191,158,106,0.2) 0%,rgba(71,184,105,0.06) 40%,transparent 70%);
+  filter:blur(40px);pointer-events:none;z-index:0;
+}
+
+/* ── SHOWCASE STRIP ── */
+.showcase{padding:80px 0;position:relative;z-index:1}
+.showcase-box{
+  border:1.5px solid transparent;
+  background-image:
+    linear-gradient(var(--bg2),var(--bg2)),
+    linear-gradient(90deg,var(--red) 0%,var(--brass) 25%,var(--win) 50%,var(--blue) 75%,var(--purple) 100%);
+  background-origin:border-box;background-clip:padding-box,border-box;
+  border-radius:24px;padding:48px 40px;overflow:hidden;
+}
+.showcase-lbl{
+  font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--text3);text-align:center;margin-bottom:36px;
+}
+.showcase-row{
+  display:flex;gap:20px;justify-content:center;align-items:flex-end;
+  overflow-x:auto;scrollbar-width:none;padding-bottom:4px;
+}
+.showcase-row::-webkit-scrollbar{display:none}
+.sc-item{display:flex;flex-direction:column;align-items:center;gap:14px;flex-shrink:0}
+.sc-phone{
+  width:170px;height:366px;border-radius:28px;overflow:hidden;
+  background:#050505;
+  position:relative;transition:transform 0.3s ease;
+  /* Layered box-shadow simulates physical frame */
+  box-shadow:
+    0 0 0 7px #3d3d3f,
+    0 0 0 8px rgba(0,0,0,0.6),
+    0 0 0 8.5px rgba(255,255,255,0.07),
+    0 24px 60px rgba(0,0,0,0.7);
+}
+.sc-phone::before{
+  content:'';position:absolute;top:9px;left:50%;transform:translateX(-50%);
+  width:60px;height:18px;background:#000;border-radius:10px;z-index:10;
+}
+.sc-phone::after{
+  content:'';position:absolute;bottom:8px;left:50%;transform:translateX(-50%);
+  width:72px;height:3px;background:rgba(255,255,255,0.2);border-radius:2px;z-index:10;
+}
+.sc-phone:hover{transform:translateY(-8px)}
+.sc-phone img{width:100%;height:100%;object-fit:cover;object-position:top}
+.sc-name{font-size:12px;font-weight:500;color:var(--text2);text-align:center}
+
+/* ── FEATURE SECTIONS ── */
+.feature{padding:130px 0;position:relative;z-index:1;overflow:hidden}
+.feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.feature-grid.flip .feature-vis{order:2}
+.feature-grid.flip .feature-txt{order:1}
+.eyebrow{
+  font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--brass);display:block;margin-bottom:16px;
+}
+.feature-h2{
+  font-size:clamp(34px,4.5vw,58px);font-weight:800;
+  letter-spacing:-0.03em;line-height:1.05;color:var(--text);margin-bottom:20px;
+}
+.feature-h2 em{font-style:normal;color:var(--brass-l)}
+.feature-body{
+  font-size:17px;font-weight:300;color:var(--text2);
+  line-height:1.7;margin-bottom:32px;max-width:440px;
+}
+.feature-pts{list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:40px}
+.feature-pt{display:flex;align-items:flex-start;gap:12px;font-size:15px;color:var(--text2);font-weight:300;line-height:1.5}
+.pt-check{
+  width:20px;height:20px;border-radius:50%;
+  background:rgba(71,184,105,0.15);color:var(--win);
+  font-size:11px;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:2px;
+}
+.feature-vis{position:relative;display:flex;align-items:center;justify-content:center}
+.glow{
+  position:absolute;border-radius:50%;filter:blur(80px);
+  pointer-events:none;z-index:0;width:380px;height:380px;
+}
+.glow-gold{background:radial-gradient(ellipse,rgba(191,158,106,0.28) 0%,transparent 70%)}
+.glow-red{background:radial-gradient(ellipse,rgba(192,56,56,0.24) 0%,transparent 70%)}
+.glow-blue{background:radial-gradient(ellipse,rgba(56,116,191,0.24) 0%,transparent 70%)}
+.glow-purple{background:radial-gradient(ellipse,rgba(122,82,166,0.24) 0%,transparent 70%)}
+.glow-green{background:radial-gradient(ellipse,rgba(71,184,105,0.22) 0%,transparent 70%)}
+.glow-teal{background:radial-gradient(ellipse,rgba(42,175,192,0.22) 0%,transparent 70%)}
+
+/* Feature phone — inside iphone-shell */
+.fp{
+  width:280px;height:600px;border-radius:44px;overflow:hidden;
+  background:#050505;
+  box-shadow:inset 0 2px 12px rgba(0,0,0,0.7),inset 0 0 0 0.5px rgba(0,0,0,0.9);
+  position:relative;flex-shrink:0;
+}
+.fp::before{
+  content:'';position:absolute;top:14px;left:50%;transform:translateX(-50%);
+  width:88px;height:27px;background:#000;border-radius:15px;z-index:10;
+}
+.fp::after{
+  content:'';position:absolute;bottom:11px;left:50%;transform:translateX(-50%);
+  width:120px;height:4px;background:rgba(255,255,255,0.22);border-radius:3px;z-index:10;
+}
+.fp img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+
+/* Feature shell — fp has 44px inner radius + 10px padding = 54px */
+.feature-vis .iphone-shell{border-radius:55px}
+
+/* ── MODES ── */
+.modes{padding:130px 0;position:relative;z-index:1}
+.sec-hd{text-align:center;margin-bottom:64px}
+.sec-h2{
+  font-size:clamp(32px,4.5vw,54px);font-weight:800;
+  letter-spacing:-0.03em;color:var(--text);line-height:1.1;margin-bottom:16px;
+}
+.sec-h2 em{font-style:normal;color:var(--brass-l)}
+.sec-desc{font-size:17px;font-weight:300;color:var(--text2);max-width:480px;margin:0 auto;line-height:1.6}
+.modes-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.mode-card{
+  background:var(--bg2);border:1px solid var(--border);border-radius:20px;
+  padding:28px 24px;transition:border-color 0.25s,transform 0.2s;
+  position:relative;overflow:hidden;
+}
+.mode-card:hover{border-color:var(--border2);transform:translateY(-4px)}
+.mode-card::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at top,var(--mc,transparent) 0%,transparent 60%);
+  opacity:0;transition:opacity 0.3s;pointer-events:none;
+}
+.mode-card:hover::after{opacity:1}
+.mbadge{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:10px;font-weight:600;letter-spacing:0.07em;text-transform:uppercase;
+  padding:3px 10px;border-radius:100px;margin-bottom:20px;
+}
+.mb-free{background:rgba(71,184,105,0.1);color:var(--win)}
+.mb-edge{background:rgba(191,158,106,0.1);color:var(--brass-l)}
+.mode-icon{font-size:28px;display:block;margin-bottom:14px}
+.mode-title{font-size:20px;font-weight:700;letter-spacing:-0.02em;color:var(--text);margin-bottom:8px}
+.mode-tag{font-size:12px;color:var(--text3);font-style:italic;font-weight:300;margin-bottom:12px;line-height:1.5}
+.mode-desc{font-size:13px;color:var(--text3);line-height:1.6;font-weight:300}
+
+/* ── TRAINING MODES ── */
+.training{padding:130px 0;position:relative;z-index:1}
+/* Training phone — slightly smaller than feature phones */
+.tfp{
+  width:240px;height:514px;border-radius:40px;overflow:hidden;
+  background:#050505;
+  box-shadow:inset 0 2px 12px rgba(0,0,0,0.7),inset 0 0 0 0.5px rgba(0,0,0,0.9);
+  position:relative;flex-shrink:0;
+}
+.tfp::before{
+  content:'';position:absolute;top:13px;left:50%;transform:translateX(-50%);
+  width:76px;height:23px;background:#000;border-radius:13px;z-index:10;
+}
+.tfp::after{
+  content:'';position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
+  width:100px;height:4px;background:rgba(255,255,255,0.22);border-radius:3px;z-index:10;
+}
+.tfp img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+/* Horizontal rows — same pattern as feature sections */
+.train-row{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding:72px 0}
+.train-row.flip .train-vis{order:2}
+.train-row.flip .train-txt{order:1}
+.train-vis{position:relative;display:flex;align-items:center;justify-content:center}
+.train-h3{
+  font-size:clamp(28px,3.8vw,48px);font-weight:800;
+  letter-spacing:-0.03em;line-height:1.06;color:var(--text);margin-bottom:18px;
+}
+.train-h3 em{font-style:normal;color:var(--brass-l)}
+.train-desc{font-size:17px;font-weight:300;color:var(--text2);line-height:1.7;margin-bottom:28px;max-width:440px}
+.train-pts{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.train-pt{display:flex;align-items:flex-start;gap:12px;font-size:15px;color:var(--text2);font-weight:300;line-height:1.5}
+
+/* ── PROOF ── */
+.proof{padding:100px 0;position:relative;z-index:1;text-align:center}
+.proof-wrap{max-width:580px;margin:0 auto}
+.proof-stars{font-size:30px;color:var(--brass);letter-spacing:5px;margin-bottom:28px}
+.proof-head{font-size:clamp(36px,5vw,64px);font-weight:800;letter-spacing:-0.03em;color:var(--text);line-height:1.05;margin-bottom:20px}
+.proof-head em{font-style:normal;color:var(--brass-l)}
+.proof-sub{font-size:18px;font-weight:300;color:var(--text2);line-height:1.7;max-width:460px;margin:0 auto}
+
+/* ── PRICING ── */
+.pricing{padding:130px 0;position:relative;z-index:1}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:800px;margin:0 auto}
+.pcard{
+  background:var(--bg2);border:1px solid var(--border);border-radius:24px;
+  padding:40px 36px;position:relative;transition:border-color 0.25s;
+}
+.pcard.featured{border-color:rgba(191,158,106,0.3);background:#0e0c09}
+.pbadge{
+  position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+  background:var(--brass);color:#010101;font-size:11px;font-weight:700;
+  letter-spacing:0.07em;text-transform:uppercase;padding:4px 16px;border-radius:100px;white-space:nowrap;
+}
+.ptier{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:16px}
+.pcard.featured .ptier{color:var(--brass)}
+.pamt{font-size:52px;font-weight:800;letter-spacing:-0.04em;color:var(--text);line-height:1;margin-bottom:6px}
+.pamt span{font-size:20px;font-weight:400;color:var(--text3)}
+.pper{font-size:13px;color:var(--text3);margin-bottom:32px}
+.pfeats{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:36px}
+.pfeat{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:300;color:var(--text2)}
+.ck{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0}
+.ck-y{background:rgba(71,184,105,0.15);color:var(--win)}
+.ck-n{background:rgba(255,255,255,0.04);color:var(--text3)}
+.pcta{
+  display:block;width:100%;text-align:center;padding:14px;border-radius:12px;
+  font-size:15px;font-weight:600;text-decoration:none;cursor:pointer;border:none;
+  font-family:var(--font);transition:all 0.2s;
+}
+.pcta-free{background:rgba(255,255,255,0.05);border:1px solid var(--border2);color:var(--text2)}
+.pcta-free:hover{background:rgba(255,255,255,0.08);color:var(--text)}
+.pcta-edge{background:var(--brass);color:#010101;box-shadow:0 4px 24px rgba(191,158,106,0.3)}
+.pcta-edge:hover{background:var(--brass-l);box-shadow:0 8px 32px rgba(191,158,106,0.4);transform:translateY(-1px)}
+.pnote{text-align:center;margin-top:20px;font-size:13px;color:var(--text3)}
+
+/* ── CTA BAND ── */
+.cta-band{padding:130px 0;position:relative;z-index:1}
+.cta-card{
+  text-align:center;padding:80px 48px;border-radius:28px;
+  border:1.5px solid transparent;
+  background-image:
+    linear-gradient(var(--bg2),var(--bg2)),
+    linear-gradient(135deg,rgba(191,158,106,0.5) 0%,rgba(71,184,105,0.3) 50%,rgba(56,116,191,0.5) 100%);
+  background-origin:border-box;background-clip:padding-box,border-box;
+  position:relative;overflow:hidden;
+}
+.cta-card::before{
+  content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:600px;height:200px;
+  background:radial-gradient(ellipse,rgba(191,158,106,0.07) 0%,transparent 70%);
+  pointer-events:none;
+}
+.cta-ey{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--brass);margin-bottom:20px;display:block}
+.cta-h2{font-size:clamp(36px,5vw,64px);font-weight:800;letter-spacing:-0.04em;line-height:1.05;color:var(--text);margin-bottom:16px}
+.cta-h2 em{font-style:normal;color:var(--brass-l)}
+.cta-sub{font-size:17px;font-weight:300;color:var(--text2);max-width:440px;margin:0 auto 40px;line-height:1.6}
+.cta-acts{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+
+/* ── HERO CARDS ── */
+.hero-cards{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.hco{position:absolute;will-change:transform}
+.hco1{left:3%;top:48%}.hco2{right:2%;top:36%}.hco3{left:11%;top:65%}.hco4{right:12%;top:62%}
+.hco5{left:6%;top:28%}.hco6{right:8%;top:54%}.hco7{left:23%;top:50%}.hco8{right:22%;top:46%}
+.hcr1{transform:rotate(-20deg)}.hcr2{transform:rotate(16deg)}.hcr3{transform:rotate(-8deg)}
+.hcr4{transform:rotate(24deg)}.hcr5{transform:rotate(-13deg)}.hcr6{transform:rotate(11deg)}
+.hcr7{transform:rotate(-3deg)}.hcr8{transform:rotate(20deg)}
+.hcard{width:88px;height:124px;background:linear-gradient(150deg,#faf5eb 0%,#f0e9d5 100%);border-radius:10px;border:1px solid rgba(220,200,155,0.35);box-shadow:0 24px 60px rgba(0,0,0,0.6),0 6px 18px rgba(0,0,0,0.38),inset 0 1px 0 rgba(255,255,255,0.75)}
+.hcf1{animation:floatY 7s ease-in-out infinite}.hcf2{animation:floatY 8.5s ease-in-out infinite 1.2s}
+.hcf3{animation:floatY 6.5s ease-in-out infinite 0.7s}.hcf4{animation:floatY 9s ease-in-out infinite 2s}
+.hcf5{animation:floatY 7.5s ease-in-out infinite 0.4s}.hcf6{animation:floatY 8s ease-in-out infinite 1.8s}
+.hcf7{animation:floatY 6s ease-in-out infinite 1s}.hcf8{animation:floatY 9.5s ease-in-out infinite 2.5s}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hc-inner{position:relative;width:100%;height:100%;padding:8px}
+.hc-rank{position:absolute;top:7px;left:8px;font-family:Georgia,serif;font-size:13px;font-weight:700;line-height:1.25;text-align:center}
+.hc-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:42px;opacity:0.1}
+.hc-bot{top:auto !important;left:auto !important;bottom:7px;right:8px;transform:rotate(180deg)}
+.cr{color:#C41E1E}.cb{color:#111}
+
+/* ── DIVIDER ── */
+.div{height:1px;background:linear-gradient(90deg,transparent,var(--border) 20%,var(--border) 80%,transparent);margin:0 24px}
+
+/* ── FOOTER ── */
+footer{border-top:1px solid var(--border);padding:40px 0 32px;position:relative;z-index:1}
+.foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.flogo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.fname{font-size:15px;font-weight:600;color:var(--text2)}
+.flinks{display:flex;gap:24px;list-style:none;flex-wrap:wrap}
+.flinks a{font-size:13px;color:var(--text3);text-decoration:none;transition:color 0.2s}
+.flinks a:hover{color:var(--text2)}
+.fcopy{font-size:12px;color:var(--text3)}
+
+/* ── REVEAL ── */
+.reveal{opacity:1;transform:none;transition:opacity 0.7s ease,transform 0.7s ease}
+.js .reveal{opacity:0;transform:translateY(28px)}
+.js .reveal.in{opacity:1;transform:none}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .feature-grid{grid-template-columns:1fr;gap:48px}
+  .feature-grid.flip .feature-vis,.feature-grid.flip .feature-txt{order:unset}
+  .feature-body{max-width:100%}
+  .modes-grid{grid-template-columns:1fr 1fr}
+  .train-row{grid-template-columns:1fr;gap:48px;padding:48px 0}
+  .train-row.flip .train-vis,.train-row.flip .train-txt{order:unset}
+  .train-desc{max-width:100%}
+  .tfp{width:220px;height:470px}
+  .pgrid{grid-template-columns:1fr;max-width:420px}
+  .hero-phones{height:460px}
+  .phone-c{width:200px;height:428px}
+  .phone-l,.phone-r{width:170px;height:364px}
+  .fp{width:240px;height:514px}
+  .feature-vis .iphone-shell{border-radius:50px}
+}
+@media(max-width:680px){
+  .hero-cards{display:none}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .shell-hero-l,.shell-hero-r{display:none}
+  .hero-phones{height:420px}
+  .phone-c{width:210px;height:450px}
+  .modes-grid{grid-template-columns:1fr}
+  .showcase-box{padding:28px 20px}
+  .cta-card{padding:48px 28px}
+  .foot{flex-direction:column;align-items:flex-start}
+}
+@media(max-width:460px){
+  .hero-actions{flex-direction:column;align-items:center}
+  .cta-acts{flex-direction:column}
+  .tfp{width:200px;height:428px}
+}
+
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════
-     NAV
-═══════════════════════════════════════════ -->
 <nav>
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <div class="nav-logo-mark">21</div>
-      <span class="nav-logo-text">21 Pro</span>
+      <div class="nav-mark">21</div>
+      <span class="nav-name">21 Pro</span>
     </a>
     <ul class="nav-links">
       <li><a href="#features">Features</a></li>
       <li><a href="#modes">Modes</a></li>
+      <li><a href="#training">Training</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="privacy.html">Privacy</a></li>
-      <li><a href="#download" class="nav-cta">Download Free</a></li>
+      <li><a href="#" class="nav-cta">Download Free</a></li>
     </ul>
-    <button class="nav-hamburger" aria-label="Menu" onclick="toggleMenu()">
+    <button class="hamburger" aria-label="Menu" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
-<!-- ═══════════════════════════════════════════
-     HERO
-═══════════════════════════════════════════ -->
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-felt-strip"></div>
-  <div class="container">
-    <div class="hero-content">
-      <div class="hero-eyebrow">
-        <span class="hero-eyebrow-dot"></span>
-        Available on iPhone & iPad
-      </div>
-
-      <h1 class="hero-title">
-        Stop gambling.<br>
-        Start <em>training.</em>
-      </h1>
-
-      <p class="hero-subtitle">
-        21 Pro is the blackjack trainer that teaches you how the game actually works — basic strategy, card counting, and the discipline to play perfectly every hand.
-      </p>
-
-      <div class="hero-actions">
-        <a href="#download" class="btn-primary" id="download">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.42c1.42.07 2.41.8 3.24.77 1.24-.14 2.42-.9 3.77-.76 1.66.18 2.94.99 3.73 2.5-3.44 2.11-2.85 6.77.38 8.03-.7 1.57-1.5 3.1-3.12 4.32zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
-          Download on the App Store
-        </a>
-        <a href="#features" class="btn-secondary">
-          See what's inside
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        </a>
-      </div>
-
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <span class="hero-stat-value">4</span>
-          <span class="hero-stat-label">Game Modes</span>
-        </div>
-        <div class="hero-stat">
-          <span class="hero-stat-value">3+</span>
-          <span class="hero-stat-label">Counting Systems</span>
-        </div>
-        <div class="hero-stat">
-          <span class="hero-stat-value">∞</span>
-          <span class="hero-stat-label">Hands to Practice</span>
-        </div>
-        <div class="hero-stat">
-          <span class="hero-stat-value">Free</span>
-          <span class="hero-stat-label">To Start</span>
-        </div>
-      </div>
+  <div class="hero-text reveal">
+    <div class="pill">
+      <span class="pill-dot"></span>
+      Available on iPhone &amp; iPad
+    </div>
+    <h1 class="hero-h1">Stop gambling.<br>Start <em>training.</em></h1>
+    <p class="hero-sub">The blackjack trainer that teaches you how the game actually works: basic strategy, card counting, and the discipline to play every hand perfectly.</p>
+    <div class="hero-actions">
+      <a href="#" class="btn btn-gold">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.42c1.42.07 2.41.8 3.24.77 1.24-.14 2.42-.9 3.77-.76 1.66.18 2.94.99 3.73 2.5-3.44 2.11-2.85 6.77.38 8.03-.7 1.57-1.5 3.1-3.12 4.32zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+        Download on the App Store
+      </a>
+      <a href="#features" class="btn-ghost">
+        See what's inside
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </div>
 
-  <!-- Floating card art -->
-  <div class="hero-art" aria-hidden="true">
-    <div class="card-stack">
-      <div class="play-card play-card-1">
-        <div class="play-card-inner">
-          <div>
-            <div class="play-card-rank card-black">A</div>
-            <div class="play-card-suit card-black">♠</div>
-          </div>
-          <div class="play-card-center card-black">♠</div>
-          <div class="play-card-bottom">
-            <div class="play-card-rank card-black">A</div>
-            <div class="play-card-suit card-black">♠</div>
-          </div>
-        </div>
-      </div>
-      <div class="play-card play-card-2">
-        <div class="play-card-inner">
-          <div>
-            <div class="play-card-rank card-red">K</div>
-            <div class="play-card-suit card-red">♥</div>
-          </div>
-          <div class="play-card-center card-red">♥</div>
-          <div class="play-card-bottom">
-            <div class="play-card-rank card-red">K</div>
-            <div class="play-card-suit card-red">♥</div>
-          </div>
-        </div>
-      </div>
-      <div class="play-card play-card-3">
-        <div class="play-card-inner">
-          <div>
-            <div class="play-card-rank card-black">7</div>
-            <div class="play-card-suit card-black">♣</div>
-          </div>
-          <div class="play-card-center card-black">♣</div>
-          <div class="play-card-bottom">
-            <div class="play-card-rank card-black">7</div>
-            <div class="play-card-suit card-black">♣</div>
-          </div>
-        </div>
-      </div>
-      <div class="card-glow"></div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     SCREENSHOTS
-═══════════════════════════════════════════ -->
-<section class="screenshots">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="section-eyebrow">The App</span>
-      <h2 class="section-title">Built for the felt.<br><em>Designed for the phone.</em></h2>
-      <p class="section-desc">Every screen is purpose-built. No clutter, no distractions — just the information you need to make the right call.</p>
-    </div>
+  <div class="hero-cards" aria-hidden="true">
+    <div class="hco hco1"><div class="hcr hcr1"><div class="hcard hcf1"><div class="hc-inner"><span class="hc-rank cb">A<br>&#9824;</span><span class="hc-center cb">&#9824;</span><span class="hc-rank hc-bot cb">A<br>&#9824;</span></div></div></div></div>
+    <div class="hco hco2"><div class="hcr hcr2"><div class="hcard hcf2"><div class="hc-inner"><span class="hc-rank cr">K<br>&#9829;</span><span class="hc-center cr">&#9829;</span><span class="hc-rank hc-bot cr">K<br>&#9829;</span></div></div></div></div>
+    <div class="hco hco3"><div class="hcr hcr3"><div class="hcard hcf3"><div class="hc-inner"><span class="hc-rank cr">7<br>&#9830;</span><span class="hc-center cr">&#9830;</span><span class="hc-rank hc-bot cr">7<br>&#9830;</span></div></div></div></div>
+    <div class="hco hco4"><div class="hcr hcr4"><div class="hcard hcf4"><div class="hc-inner"><span class="hc-rank cb">J<br>&#9827;</span><span class="hc-center cb">&#9827;</span><span class="hc-rank hc-bot cb">J<br>&#9827;</span></div></div></div></div>
+    <div class="hco hco5"><div class="hcr hcr5"><div class="hcard hcf5"><div class="hc-inner"><span class="hc-rank cr">Q<br>&#9829;</span><span class="hc-center cr">&#9829;</span><span class="hc-rank hc-bot cr">Q<br>&#9829;</span></div></div></div></div>
+    <div class="hco hco6"><div class="hcr hcr6"><div class="hcard hcf6"><div class="hc-inner"><span class="hc-rank cb">2<br>&#9824;</span><span class="hc-center cb">&#9824;</span><span class="hc-rank hc-bot cb">2<br>&#9824;</span></div></div></div></div>
+    <div class="hco hco7"><div class="hcr hcr7"><div class="hcard hcf7"><div class="hc-inner"><span class="hc-rank cr">10<br>&#9830;</span><span class="hc-center cr">&#9830;</span><span class="hc-rank hc-bot cr">10<br>&#9830;</span></div></div></div></div>
+    <div class="hco hco8"><div class="hcr hcr8"><div class="hcard hcf8"><div class="hc-inner"><span class="hc-rank cb">5<br>&#9827;</span><span class="hc-center cb">&#9827;</span><span class="hc-rank hc-bot cb">5<br>&#9827;</span></div></div></div></div>
   </div>
 
-  <div class="screenshots-scroll-wrapper">
-    <div class="screenshots-track reveal">
-
-      <div class="screenshot-item">
-        <div class="screenshot-frame">
-          <img src="The Hook — Classic game table, mid-hand.PNG" alt="Classic game table mid-hand" loading="lazy">
-        </div>
-        <div class="screenshot-caption">
-          <div class="screenshot-label">Classic Mode</div>
-          <p class="screenshot-desc">Your bankroll, your bet, your call. The table stays out of the way.</p>
-        </div>
+  <div class="hero-phones">
+    <div class="hero-glow"></div>
+    <div class="iphone-shell shell-hero-l">
+      <div class="phone phone-l">
+        <img src="Example screenshots/SS7 - Daily Quest and Streaks.PNG" alt="Daily Quests">
       </div>
-
-      <div class="screenshot-item">
-        <div class="screenshot-frame">
-          <img src="Instant Feedback — Correct decision confirmed.PNG" alt="Correct decision confirmed" loading="lazy">
-        </div>
-        <div class="screenshot-caption">
-          <div class="screenshot-label">Instant Feedback</div>
-          <p class="screenshot-desc">Right or wrong, you find out immediately. No second-guessing after the fact.</p>
-        </div>
-      </div>
-
-      <div class="screenshot-item">
-        <div class="screenshot-frame">
-          <img src="Rapid Fire — Timer mode mid-drill.PNG" alt="Rapid Fire timer mode" loading="lazy">
-        </div>
-        <div class="screenshot-caption">
-          <div class="screenshot-label">Rapid Fire</div>
-          <p class="screenshot-desc">15 seconds on the clock. The timer doesn't care how long you think.</p>
-        </div>
-      </div>
-
-      <div class="screenshot-item">
-        <div class="screenshot-frame">
-          <img src="Strategy Chart — Hard totals chart.PNG" alt="Strategy chart hard totals" loading="lazy">
-        </div>
-        <div class="screenshot-caption">
-          <div class="screenshot-label">Strategy Chart</div>
-          <p class="screenshot-desc">The full basic strategy matrix, always one tap away during play.</p>
-        </div>
-      </div>
-
-      <div class="screenshot-item">
-        <div class="screenshot-frame">
-          <img src="Game Modes — Mini-games menu open.PNG" alt="Games and training menu" loading="lazy">
-        </div>
-        <div class="screenshot-caption">
-          <div class="screenshot-label">Games &amp; Training</div>
-          <p class="screenshot-desc">Three training drills and three game modes, all in one place.</p>
-        </div>
-      </div>
-
-      <div class="screenshot-item">
-        <div class="screenshot-frame">
-          <img src="Daily Quests — Quest progress visible.PNG" alt="Player Hub daily quests" loading="lazy">
-        </div>
-        <div class="screenshot-caption">
-          <div class="screenshot-label">Daily Quests</div>
-          <p class="screenshot-desc">Daily goals and streaks keep you coming back. Completable in one session.</p>
-        </div>
-      </div>
-
-      <div class="screenshot-item">
-        <div class="screenshot-frame">
-          <img src="Progress — Player Hub  stats screen.PNG" alt="Player Hub stats and titles" loading="lazy">
-        </div>
-        <div class="screenshot-caption">
-          <div class="screenshot-label">Player Hub</div>
-          <p class="screenshot-desc">Personal bests, titles earned, win rate — your full history in one view.</p>
-        </div>
-      </div>
-
     </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     FEATURES
-═══════════════════════════════════════════ -->
-<section class="features" id="features">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="section-eyebrow">What's Inside</span>
-      <h2 class="section-title">Everything you need to<br><em>play with an edge.</em></h2>
-      <p class="section-desc">Built on real casino math, not hunches. Every feature is designed to close the gap between how you play now and how you should play.</p>
+    <div class="iphone-shell shell-hero-c">
+      <div class="phone phone-c">
+        <img src="Example screenshots/SS1 - The Hook.PNG" alt="Classic game table">
+      </div>
     </div>
-
-    <div class="features-grid reveal">
-      <div class="feature-card">
-        <div class="feature-icon feature-icon-gold">📊</div>
-        <div class="feature-title">Basic Strategy Engine</div>
-        <p class="feature-desc">Instant, correct feedback on every decision. Learn the mathematically optimal play for any hand against any dealer upcard — and actually internalize it.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon feature-icon-blue">🔢</div>
-        <div class="feature-title">Card Counting Practice</div>
-        <p class="feature-desc">Train Hi-Lo, Omega II, Hi-Opt II and more. The live count overlay shows you exactly where you stand as the shoe runs down.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon feature-icon-win">🎯</div>
-        <div class="feature-title">Accuracy Tracking</div>
-        <p class="feature-desc">Session-by-session accuracy scores, mistake breakdowns, and streak data. You can't improve what you don't measure.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon feature-icon-purple">🃏</div>
-        <div class="feature-title">Realistic Shoe Simulation</div>
-        <p class="feature-desc">Adjustable deck counts, penetration depth, and H17/S17 rules — just like the table you'll actually sit at.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon feature-icon-cyan">⚡</div>
-        <div class="feature-title">Speed Drilling</div>
-        <p class="feature-desc">Rapid Fire mode puts you on a 10-second clock. Real casinos move fast — you need to be faster.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon feature-icon-pink">📈</div>
-        <div class="feature-title">Session Analytics</div>
-        <p class="feature-desc">Full run summaries with bankroll charts, decision accuracy, and EV analysis. Know exactly how you performed and why.</p>
+    <div class="iphone-shell shell-hero-r">
+      <div class="phone phone-r">
+        <img src="Example screenshots/SS5 - Rapid Fire.PNG" alt="Rapid Fire mode">
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     MODES
-═══════════════════════════════════════════ -->
+<!-- SHOWCASE STRIP -->
+<section class="showcase">
+  <div class="container">
+    <div class="showcase-box reveal">
+      <div class="showcase-lbl">Every screen, purpose-built</div>
+      <div class="showcase-row">
+        <div class="sc-item">
+          <div class="sc-phone"><img src="Example screenshots/SS1 - The Hook.PNG" alt="Classic Mode"></div>
+          <span class="sc-name">Classic Mode</span>
+        </div>
+        <div class="sc-item">
+          <div class="sc-phone"><img src="Example screenshots/SS2 - Real-Time Strategy feedback.PNG" alt="Instant Feedback"></div>
+          <span class="sc-name">Strategy Drill</span>
+        </div>
+        <div class="sc-item">
+          <div class="sc-phone"><img src="Example screenshots/SS5 - Rapid Fire.PNG" alt="Rapid Fire"></div>
+          <span class="sc-name">Rapid Fire</span>
+        </div>
+        <div class="sc-item">
+          <div class="sc-phone"><img src="Example screenshots/Strategy View.PNG" alt="Strategy Chart"></div>
+          <span class="sc-name">Strategy Chart</span>
+        </div>
+        <div class="sc-item">
+          <div class="sc-phone"><img src="Example screenshots/Games and Training Menu.PNG" alt="Game Modes"></div>
+          <span class="sc-name">Game Modes</span>
+        </div>
+        <div class="sc-item">
+          <div class="sc-phone"><img src="Example screenshots/SS7 - Daily Quest and Streaks.PNG" alt="Daily Quests"></div>
+          <span class="sc-name">Daily Quests</span>
+        </div>
+        <div class="sc-item">
+          <div class="sc-phone"><img src="Example screenshots/SS6 - Mistake Review.PNG" alt="Session Review"></div>
+          <span class="sc-name">Session Review</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE 1 - Classic Mode -->
+<section class="feature" id="features">
+  <div class="container">
+    <div class="feature-grid">
+      <div class="feature-vis reveal">
+        <div class="glow glow-gold"></div>
+        <div class="iphone-shell">
+          <div class="fp">
+            <img src="Example screenshots/SS1 - The Hook.PNG" alt="Classic Mode">
+          </div>
+        </div>
+      </div>
+      <div class="feature-txt reveal">
+        <span class="eyebrow">Classic Mode</span>
+        <h2 class="feature-h2">Your table.<br><em>Your rules.</em></h2>
+        <p class="feature-body">$500 bankroll, real six-deck shoe, your bet size. Classic is the foundation: open-ended practice where you set the pace, read the count, and build everything else on top of it.</p>
+        <ul class="feature-pts">
+          <li class="feature-pt"><span class="pt-check">&#10003;</span>Six-deck shoe, real casino rules, no time pressure</li>
+          <li class="feature-pt"><span class="pt-check">&#10003;</span>$10, $25, $50, and $100 chip denominations</li>
+          <li class="feature-pt"><span class="pt-check">&#10003;</span>Free forever, no account required</li>
+        </ul>
+        <a href="#" class="btn btn-gold">Download Free</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- FEATURE 2 - Instant Feedback -->
+<section class="feature">
+  <div class="container">
+    <div class="feature-grid flip">
+      <div class="feature-txt reveal">
+        <span class="eyebrow">Instant Feedback</span>
+        <h2 class="feature-h2">Right or wrong.<br><em>Immediately.</em></h2>
+        <p class="feature-body">Every decision is graded against perfect basic strategy in real time. No ambiguity. You find out exactly what you should have played and why, every single hand.</p>
+        <ul class="feature-pts">
+          <li class="feature-pt"><span class="pt-check">&#10003;</span>Mathematically correct feedback on every play</li>
+          <li class="feature-pt"><span class="pt-check">&#10003;</span>Full mistake review after every session</li>
+          <li class="feature-pt"><span class="pt-check">&#10003;</span>Session accuracy tracked over time</li>
+        </ul>
+      </div>
+      <div class="feature-vis reveal">
+        <div class="glow glow-green"></div>
+        <div class="iphone-shell">
+          <div class="fp">
+            <img src="Example screenshots/SS2 - Real-Time Strategy feedback.PNG" alt="Instant Feedback">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- FEATURE 3 - Rapid Fire -->
+<section class="feature">
+  <div class="container">
+    <div class="feature-grid">
+      <div class="feature-vis reveal">
+        <div class="glow glow-red"></div>
+        <div class="iphone-shell">
+          <div class="fp">
+            <img src="Example screenshots/SS5 - Rapid Fire.PNG" alt="Rapid Fire Mode">
+          </div>
+        </div>
+      </div>
+      <div class="feature-txt reveal">
+        <span class="eyebrow">Rapid Fire Mode</span>
+        <h2 class="feature-h2">10 seconds.<br><em>Make the call.</em></h2>
+        <p class="feature-body">A ticking clock separates players who know the chart from players who've internalized it. Real tables don't wait. Rapid Fire makes sure you don't either.</p>
+        <ul class="feature-pts">
+          <li class="feature-pt"><span class="pt-check">&#10003;</span>10-second timer, +3 seconds per correct play</li>
+          <li class="feature-pt"><span class="pt-check">&#10003;</span>$100 bankroll, $50 fixed bets, every chip counts</li>
+          <li class="feature-pt"><span class="pt-check">&#10003;</span>Unlocks after your first Classic session</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- FEATURE 4 - Card Counting -->
+<section class="feature">
+  <div class="container">
+    <div class="feature-grid flip">
+      <div class="feature-txt reveal">
+        <span class="eyebrow">Card Counting</span>
+        <h2 class="feature-h2">The count,<br>always <em>in view.</em></h2>
+        <p class="feature-body">Train Hi-Lo, Omega II, and Hi-Opt II alongside the full strategy chart. The live count overlay tracks the shoe as it runs down, so you're always one step ahead of the house.</p>
+        <ul class="feature-pts">
+          <li class="feature-pt"><span class="pt-check">&#10003;</span>Hi-Lo free forever. Omega II &amp; Hi-Opt II with Edge</li>
+          <li class="feature-pt"><span class="pt-check">&#10003;</span>Live count overlay during every hand</li>
+          <li class="feature-pt"><span class="pt-check">&#10003;</span>Isolated Count Trainer mode for focused drills</li>
+        </ul>
+        <a href="#pricing" class="btn-ghost">Compare plans &#8594;</a>
+      </div>
+      <div class="feature-vis reveal">
+        <div class="glow glow-blue"></div>
+        <div class="iphone-shell">
+          <div class="fp">
+            <img src="Example screenshots/SS4 - Card Counting.PNG" alt="Card Counting">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- FEATURE 5 - Deck Integrity -->
+<section class="feature">
+  <div class="container">
+    <div class="feature-grid">
+      <div class="feature-vis reveal">
+        <div class="glow glow-teal"></div>
+        <div class="iphone-shell">
+          <div class="fp">
+            <img src="Example screenshots/SS3 - Provably Fair.PNG" alt="Deck Integrity">
+          </div>
+        </div>
+      </div>
+      <div class="feature-txt reveal">
+        <span class="eyebrow">Deck Integrity</span>
+        <h2 class="feature-h2">Provably fair.<br><em>Every shuffle.</em></h2>
+        <p class="feature-body">Every deck is SHA-256 hashed before the round begins. Audit every card in the shoe at any point, verify the house edge down to two decimal places, and know the math is on your side.</p>
+        <ul class="feature-pts">
+          <li class="feature-pt"><span class="pt-check">&#10003;</span>SHA-256 deck hash generated before every round</li>
+          <li class="feature-pt"><span class="pt-check">&#10003;</span>Full card audit available at any point mid-shoe</li>
+          <li class="feature-pt"><span class="pt-check">&#10003;</span>Live house edge display (0.48% standard rules)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="div"></div>
+
+<!-- FEATURE 6 - Session Review -->
+<section class="feature">
+  <div class="container">
+    <div class="feature-grid flip">
+      <div class="feature-txt reveal">
+        <span class="eyebrow">Session Review</span>
+        <h2 class="feature-h2">Every mistake.<br><em>No excuses.</em></h2>
+        <p class="feature-body">Every run ends with a full breakdown: which hands tripped you up, what you played versus perfect strategy, and how close you are to your personal record. The data doesn't lie.</p>
+        <ul class="feature-pts">
+          <li class="feature-pt"><span class="pt-check">&#10003;</span>Hand-by-hand mistake list every session</li>
+          <li class="feature-pt"><span class="pt-check">&#10003;</span>Strategy accuracy score and study-up percentage</li>
+          <li class="feature-pt"><span class="pt-check">&#10003;</span>Records, streaks, and "go again" momentum built in</li>
+        </ul>
+      </div>
+      <div class="feature-vis reveal">
+        <div class="glow glow-purple"></div>
+        <div class="iphone-shell">
+          <div class="fp">
+            <img src="Example screenshots/SS6 - Mistake Review.PNG" alt="Session Review">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MODES -->
 <section class="modes" id="modes">
   <div class="container">
-    <div class="section-header reveal">
-      <span class="section-eyebrow">Game Modes</span>
-      <h2 class="section-title">Four ways to <em>sharpen up.</em></h2>
-      <p class="section-desc">Each mode isolates a different skill. Play all four — or hammer the one you need most.</p>
+    <div class="sec-hd reveal">
+      <span class="eyebrow">Game Modes</span>
+      <h2 class="sec-h2">Four ways to<br><em>sharpen up.</em></h2>
+      <p class="sec-desc">Each mode isolates a different skill. Play all four, or hammer the one you need most.</p>
     </div>
-
     <div class="modes-grid reveal">
-      <div class="mode-card" style="--mode-color: rgba(191,158,106,0.06);">
-        <div class="mode-badge free">✦ Always Free</div>
-        <span class="mode-icon">♠</span>
+      <div class="mode-card" style="--mc:rgba(191,158,106,0.08)">
+        <div class="mbadge mb-free">&#10022; Always Free</div>
+        <span class="mode-icon">&#9824;</span>
         <div class="mode-title">Classic</div>
-        <div class="mode-tagline">"Your table. Your bankroll. Always waiting."</div>
-        <p class="mode-desc">Open-ended practice against a live shoe. Build your bankroll, drill your strategy, and play as long as you want. The foundation.</p>
+        <div class="mode-tag">"Your table. Your bankroll."</div>
+        <p class="mode-desc">Open-ended practice against a live shoe. No timer, no forced bets. The foundation of everything.</p>
       </div>
-
-      <div class="mode-card" style="--mode-color: rgba(212,80,128,0.06);">
-        <div class="mode-badge free">✦ Free Once Unlocked</div>
-        <span class="mode-icon">⏱</span>
+      <div class="mode-card" style="--mc:rgba(212,80,128,0.08)">
+        <div class="mbadge mb-free">&#10022; Free Once Unlocked</div>
+        <span class="mode-icon">&#9201;</span>
         <div class="mode-title">Rapid Fire</div>
-        <div class="mode-tagline">"10 seconds on the clock. +3 sec per play. Go."</div>
-        <p class="mode-desc">A ticking clock turns every decision into a pressure test. This is what separates players who know the chart from players who've internalized it.</p>
+        <div class="mode-tag">"10 seconds on the clock. Go."</div>
+        <p class="mode-desc">A ticking clock turns every decision into a pressure test. This is where strategy becomes instinct.</p>
       </div>
-
-      <div class="mode-card" style="--mode-color: rgba(42,175,192,0.06);">
-        <div class="mode-badge edge">◆ Edge</div>
-        <span class="mode-icon">⚡</span>
+      <div class="mode-card" style="--mc:rgba(42,175,192,0.08)">
+        <div class="mbadge mb-edge">&#9670; Edge</div>
+        <span class="mode-icon">&#9889;</span>
         <div class="mode-title">Blitz</div>
-        <div class="mode-tagline">"10 hands. Maximize profit."</div>
-        <p class="mode-desc">Ten hands. One objective: get out as far up as possible. Every bet, every decision — make it count. No room for sloppy play.</p>
+        <div class="mode-tag">"10 hands. Maximize profit."</div>
+        <p class="mode-desc">Ten hands. One objective. Every bet, every decision, make it count. No room for sloppy play.</p>
       </div>
-
-      <div class="mode-card" style="--mode-color: rgba(200,122,42,0.06);">
-        <div class="mode-badge edge">◆ Edge</div>
-        <span class="mode-icon">❤</span>
+      <div class="mode-card" style="--mc:rgba(200,122,42,0.08)">
+        <div class="mbadge mb-edge">&#9670; Edge</div>
+        <span class="mode-icon">&#10084;</span>
         <div class="mode-title">Survival</div>
-        <div class="mode-tagline">"$300. Forced H17. How long can you last?"</div>
-        <p class="mode-desc">Start with $300. The house runs H17. Play until you go broke — or prove you're unbreakable. The ultimate endurance test.</p>
+        <div class="mode-tag">"$300. Forced H17. How long can you last?"</div>
+        <p class="mode-desc">The house runs H17. Play until you're broke, or prove you can't be broken.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     TRAINING
-═══════════════════════════════════════════ -->
-<section class="training">
+<!-- TRAINING MODES -->
+<section class="training" id="training">
   <div class="container">
-    <div class="training-layout">
-      <div class="training-visual reveal">
-        <div class="chart-mock">
-          <div class="chart-header">
-            <div>
-              <div class="chart-title">Strategy Accuracy</div>
-              <div class="chart-value">94.2%</div>
-            </div>
-            <span class="chart-delta">↑ 12% this week</span>
+    <div class="sec-hd reveal">
+      <span class="eyebrow">Training Modes</span>
+      <h2 class="sec-h2">Drill the skills.<br><em>Own the table.</em></h2>
+      <p class="sec-desc">Dedicated practice modes that isolate strategy and counting, away from the pressure of a live bankroll.</p>
+    </div>
+
+    <div class="train-row reveal">
+      <div class="train-vis">
+        <div class="glow glow-green"></div>
+        <div class="iphone-shell">
+          <div class="tfp">
+            <img src="Example screenshots/SS2 - Real-Time Strategy feedback.PNG" alt="Strategy Drill">
           </div>
-          <div class="chart-bars">
-            <div class="chart-bar" style="height:40%"></div>
-            <div class="chart-bar" style="height:55%"></div>
-            <div class="chart-bar" style="height:48%"></div>
-            <div class="chart-bar" style="height:62%"></div>
-            <div class="chart-bar" style="height:71%"></div>
-            <div class="chart-bar" style="height:68%"></div>
-            <div class="chart-bar" style="height:79%"></div>
-            <div class="chart-bar active" style="height:94%"></div>
-          </div>
-        </div>
-        <div class="accuracy-ring">
-          <div class="accuracy-value">21</div>
-          <div class="accuracy-label">sessions</div>
         </div>
       </div>
-
-      <div class="reveal">
-        <span class="section-eyebrow">Training Tools</span>
-        <h2 class="section-title" style="text-align:left; margin-bottom:32px;">
-          Drills that make the strategy <em>instinct.</em>
-        </h2>
-        <ul class="training-points">
-          <li class="training-point">
-            <div class="training-point-icon">🎓</div>
-            <div>
-              <div class="training-point-title">Basic Strategy Drill</div>
-              <p class="training-point-desc">Flashcard-style hand training with instant feedback. No full game pressure — just clean, focused reps until every play is automatic.</p>
-            </div>
-          </li>
-          <li class="training-point">
-            <div class="training-point-icon">🔢</div>
-            <div>
-              <div class="training-point-title">Count Trainer</div>
-              <p class="training-point-desc">Isolated card-counting drills. Run through shoe sequences, test your running count accuracy, and level up your systems one at a time.</p>
-            </div>
-          </li>
-          <li class="training-point">
-            <div class="training-point-icon">📉</div>
-            <div>
-              <div class="training-point-title">Mistake Review</div>
-              <p class="training-point-desc">After every session, see exactly which hands tripped you up — what you played, what you should have played, and why.</p>
-            </div>
-          </li>
+      <div class="train-txt">
+        <div class="mbadge mb-free">&#10022; Always Free</div>
+        <h3 class="train-h3">Strategy<br><em>Drill.</em></h3>
+        <p class="train-desc">Pure strategy repetition with no bankroll at risk. Untimed mode gives you 3 lives to work through every decision. Timed mode puts 60 seconds on the clock and forces instinct over calculation.</p>
+        <ul class="train-pts">
+          <li class="train-pt"><span class="pt-check">&#10003;</span>Untimed: 3 lives, no pressure grinding</li>
+          <li class="train-pt"><span class="pt-check">&#10003;</span>Timed: 60-second speed challenge</li>
+          <li class="train-pt"><span class="pt-check">&#10003;</span>Instant correct/incorrect feedback every hand</li>
         </ul>
+        <a href="#" class="btn btn-gold">Download Free</a>
+      </div>
+    </div>
+
+    <div class="div"></div>
+
+    <div class="train-row flip reveal">
+      <div class="train-txt">
+        <div class="mbadge mb-edge">1 Free / Day &nbsp;&#183;&nbsp; Unlimited with Edge</div>
+        <h3 class="train-h3">Count<br><em>Trainer.</em></h3>
+        <p class="train-desc">Isolated counting practice at three difficulty levels, completely separate from the main game. Free users get one session per day. Edge removes the cap.</p>
+        <ul class="train-pts">
+          <li class="train-pt"><span class="pt-check">&#10003;</span>Easy, Medium, and Hard difficulty settings</li>
+          <li class="train-pt"><span class="pt-check">&#10003;</span>Hi-Lo, Omega II, and Hi-Opt II systems</li>
+          <li class="train-pt"><span class="pt-check">&#10003;</span>Unlimited sessions with Edge</li>
+        </ul>
+        <a href="#pricing" class="btn-ghost">Compare plans &#8594;</a>
+      </div>
+      <div class="train-vis">
+        <div class="glow glow-blue"></div>
+        <div class="iphone-shell">
+          <div class="tfp">
+            <img src="Example screenshots/SS4 - Card Counting.PNG" alt="Count Trainer">
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     SOCIAL PROOF
-═══════════════════════════════════════════ -->
-<section class="trust">
+<!-- SOCIAL PROOF -->
+<section class="proof">
   <div class="container">
-    <div class="section-header reveal">
-      <span class="section-eyebrow">Beta Feedback</span>
-      <h2 class="section-title">What early testers<br><em>had to say.</em></h2>
-    </div>
-
-    <div class="quote-grid">
-      <div class="quote-card reveal">
-        <div class="quote-stars">★★★★★</div>
-        <p class="quote-text">"I've used a few blackjack apps. Most just let you play — they don't actually teach you anything. This one does. The mistake review alone changed how I think at the table."</p>
-        <div class="quote-author">— Beta tester, 3 weeks in</div>
-      </div>
-      <div class="quote-card reveal">
-        <div class="quote-stars">★★★★★</div>
-        <p class="quote-text">"Rapid Fire mode is where it clicked for me. When you have to decide in 10 seconds, you find out fast which plays you actually know versus which ones you've been guessing."</p>
-        <div class="quote-author">— Beta tester, casual player</div>
-      </div>
-      <div class="quote-card reveal">
-        <div class="quote-stars">★★★★★</div>
-        <p class="quote-text">"Survival mode is hard. I went broke four times before I finished a run. That's the point. It's the only mode that made me think about every bet, not just every hand."</p>
-        <div class="quote-author">— Beta tester, card counter</div>
-      </div>
-    </div>
-
-    <div class="trust-badges reveal">
-      <div class="trust-badge">
-        <span class="trust-badge-icon">🔒</span>
-        <span class="trust-badge-label">No data sold.<br>Ever.</span>
-      </div>
-      <div class="trust-badge">
-        <span class="trust-badge-icon">📱</span>
-        <span class="trust-badge-label">iPhone & iPad<br>optimized</span>
-      </div>
-      <div class="trust-badge">
-        <span class="trust-badge-icon">🎰</span>
-        <span class="trust-badge-label">Real casino math.<br>No shortcuts.</span>
-      </div>
-      <div class="trust-badge">
-        <span class="trust-badge-icon">☁️</span>
-        <span class="trust-badge-label">Works fully<br>offline</span>
-      </div>
-      <div class="trust-badge">
-        <span class="trust-badge-icon">✦</span>
-        <span class="trust-badge-label">One-time unlock<br>available</span>
-      </div>
+    <div class="proof-wrap reveal">
+      <div class="proof-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <h2 class="proof-head">Our beta testers<br><em>didn't hold back.</em></h2>
+      <p class="proof-sub">Weeks of real table play. Hundreds of sessions logged. Five stars across the board, from casual players to card counters.</p>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     PRICING
-═══════════════════════════════════════════ -->
+<!-- PRICING -->
 <section class="pricing" id="pricing">
   <div class="container">
-    <div class="section-header reveal">
-      <span class="section-eyebrow">Pricing</span>
-      <h2 class="section-title">Start free. Go <em>Edge</em> when you're ready.</h2>
-      <p class="section-desc">The free tier is genuinely useful. Edge unlocks the full toolkit — $6.99/mo, $49.99/yr, or $150 once.</p>
+    <div class="sec-hd reveal">
+      <span class="eyebrow">Pricing</span>
+      <h2 class="sec-h2">Start free.<br>Go <em>Edge</em> when you're ready.</h2>
+      <p class="sec-desc">The free tier is genuinely useful. Edge unlocks the full toolkit, or go lifetime and never think about it again.</p>
     </div>
-
-    <div class="pricing-grid reveal">
-      <!-- FREE -->
-      <div class="pricing-card">
-        <div class="pricing-tier">Free</div>
-        <div class="pricing-amount">$0</div>
-        <div class="pricing-period">No credit card. No expiry.</div>
-        <ul class="pricing-features">
-          <li class="pricing-feature">
-            <span class="pricing-feature-check check-edge">✓</span>
-            Classic mode — unlimited play
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-check check-edge">✓</span>
-            Basic strategy drill (always free)
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-check check-edge">✓</span>
-            Rapid Fire mode (unlockable)
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-check check-edge">✓</span>
-            Daily rotating mini-game
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-check check-free">–</span>
-            Live count overlay
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-check check-free">–</span>
-            Advanced counting systems
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-check check-free">–</span>
-            All mini-games, always
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-check check-free">–</span>
-            No ads
-          </li>
+    <div class="pgrid reveal">
+      <div class="pcard">
+        <div class="ptier">Free</div>
+        <div class="pamt">$0</div>
+        <div class="pper">No credit card. No expiry.</div>
+        <ul class="pfeats">
+          <li class="pfeat"><span class="ck ck-y">&#10003;</span>Classic mode, unlimited play</li>
+          <li class="pfeat"><span class="ck ck-y">&#10003;</span>Basic strategy drill (always free)</li>
+          <li class="pfeat"><span class="ck ck-y">&#10003;</span>Rapid Fire mode (after first session)</li>
+          <li class="pfeat"><span class="ck ck-y">&#10003;</span>Hi-Lo card counting</li>
+          <li class="pfeat"><span class="ck ck-y">&#10003;</span>Daily rotating mini-game</li>
+          <li class="pfeat"><span class="ck ck-n">&#8211;</span>Live count overlay</li>
+          <li class="pfeat"><span class="ck ck-n">&#8211;</span>Omega II &amp; Hi-Opt II systems</li>
+          <li class="pfeat"><span class="ck ck-n">&#8211;</span>All modes, always</li>
+          <li class="pfeat"><span class="ck ck-n">&#8211;</span>No ads</li>
         </ul>
-        <a href="#download" class="pricing-cta cta-free">Download Free</a>
+        <a href="#" class="pcta pcta-free">Download Free</a>
       </div>
-
-      <!-- EDGE -->
-      <div class="pricing-card featured">
-        <div class="pricing-badge">Most Popular</div>
-        <div class="pricing-tier">Edge</div>
-        <div class="pricing-amount">$6.99<span>/mo</span></div>
-        <div class="pricing-period">$49.99/yr · $150 lifetime — one payment, forever.</div>
-        <ul class="pricing-features">
-          <li class="pricing-feature">
-            <span class="pricing-feature-check check-edge">✓</span>
-            Everything in Free
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-check check-edge">✓</span>
-            Live count overlay (Hi-Lo, Omega II, Hi-Opt II)
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-check check-edge">✓</span>
-            Full shoe info & advanced table setup
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-check check-edge">✓</span>
-            All mini-games, every day
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-check check-edge">✓</span>
-            Unlimited training plays
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-check check-edge">✓</span>
-            Advanced session review & analytics
-          </li>
-          <li class="pricing-feature">
-            <span class="pricing-feature-check check-edge">✓</span>
-            Zero ads
-          </li>
+      <div class="pcard featured">
+        <div class="pbadge">Most Popular</div>
+        <div class="ptier">Edge</div>
+        <div class="pamt">$6.99<span>/mo</span></div>
+        <div class="pper">$49.99/yr or $149.99 lifetime, one payment forever.</div>
+        <ul class="pfeats">
+          <li class="pfeat"><span class="ck ck-y">&#10003;</span>Everything in Free</li>
+          <li class="pfeat"><span class="ck ck-y">&#10003;</span>Live count overlay during play</li>
+          <li class="pfeat"><span class="ck ck-y">&#10003;</span>Omega II + Hi-Opt II counting systems</li>
+          <li class="pfeat"><span class="ck ck-y">&#10003;</span>Full shoe info &amp; advanced table setup</li>
+          <li class="pfeat"><span class="ck ck-y">&#10003;</span>All mini-games, every day</li>
+          <li class="pfeat"><span class="ck ck-y">&#10003;</span>Unlimited training plays</li>
+          <li class="pfeat"><span class="ck ck-y">&#10003;</span>Advanced session analytics</li>
+          <li class="pfeat"><span class="ck ck-y">&#10003;</span>Zero ads, 1 free save per day</li>
         </ul>
-        <a href="#download" class="pricing-cta cta-edge">Get Edge in the App</a>
+        <a href="#" class="pcta pcta-edge">Get Edge in the App</a>
       </div>
     </div>
-    <p class="pricing-note reveal">All pricing handled securely through Apple. Cancel anytime from Settings.</p>
+    <p class="pnote reveal">7-day free trial on yearly &amp; monthly plans. Cancel anytime through Apple Settings.</p>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     INDIE NOTE
-═══════════════════════════════════════════ -->
-<section class="indie-note">
-  <div class="container">
-    <div class="indie-card reveal">
-      <div class="indie-avatar">🂡</div>
-      <div>
-        <div class="indie-label">A note from the developer</div>
-        <p class="indie-text">
-          <strong>21 Pro is built by one person.</strong> No team, no investors, no roadmap driven by someone else's priorities. I built this because I wanted a training app that treated the subject seriously — one that used real casino math and actually showed you where your game breaks down.
-          <br><br>
-          Every feature exists because I needed it myself. If you find a bug or want something added, your message goes straight to me.
-        </p>
-        <div class="indie-sig">— Isaac</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     CTA
-═══════════════════════════════════════════ -->
+<!-- FINAL CTA -->
 <section class="cta-band">
   <div class="container">
     <div class="cta-card reveal">
-      <span class="cta-card-eyebrow">Ready to play with an edge?</span>
-      <h2 class="cta-card-title">Download free.<br><em>Upgrade when you're hooked.</em></h2>
-      <p class="cta-card-sub">No login. No email required. Just download and start playing — Classic mode is free forever.</p>
-      <div class="cta-actions">
-        <a href="#" class="btn-primary">
+      <span class="cta-ey">Ready to play with an edge?</span>
+      <h2 class="cta-h2">Download free.<br><em>Upgrade when you're hooked.</em></h2>
+      <p class="cta-sub">No login. No email required. Classic mode is free forever. No strings attached.</p>
+      <div class="cta-acts">
+        <a href="#" class="btn btn-gold">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.7 9.05 7.42c1.42.07 2.41.8 3.24.77 1.24-.14 2.42-.9 3.77-.76 1.66.18 2.94.99 3.73 2.5-3.44 2.11-2.85 6.77.38 8.03-.7 1.57-1.5 3.1-3.12 4.32zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
           Download on App Store
         </a>
-        <a href="#pricing" class="btn-secondary">See pricing →</a>
+        <a href="#pricing" class="btn-ghost">See pricing &#8594;</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════════ -->
+<!-- FOOTER -->
 <footer>
   <div class="container">
-    <div class="footer-inner">
-      <a href="#" class="footer-logo">
-        <div class="nav-logo-mark">21</div>
-        <span class="footer-logo-text">21 Pro</span>
+    <div class="foot">
+      <a href="#" class="flogo">
+        <div class="nav-mark">21</div>
+        <span class="fname">21 Pro</span>
       </a>
-      <ul class="footer-links">
+      <ul class="flinks">
         <li><a href="privacy.html">Privacy Policy</a></li>
         <li><a href="terms.html">Terms of Service</a></li>
         <li><a href="contact.html">Support</a></li>
       </ul>
-      <span class="footer-copy">© 2025 21 Pro. All rights reserved.</span>
+      <span class="fcopy">&#169; 2025 21 Pro. All rights reserved.</span>
     </div>
   </div>
 </footer>
 
 <script>
-  // Mark JS available — enables animated hide/show via CSS
-  document.documentElement.classList.add('js-loaded');
+  document.documentElement.classList.add('js');
 
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        const kids = e.target.querySelectorAll('.feature-card, .mode-card, .quote-card, .training-point, .pricing-card');
-        kids.forEach((k, i) => {
+        e.target.classList.add('in');
+        e.target.querySelectorAll('.mode-card,.qcard,.pcard,.sc-item,.feature-pt,.train-pt').forEach((k,i) => {
           k.style.transitionDelay = (i * 80) + 'ms';
         });
       }
     });
-  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  }, { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
 
-  reveals.forEach(r => io.observe(r));
+  document.querySelectorAll('.reveal').forEach(r => io.observe(r));
 
-  // Nav background on scroll
   const nav = document.querySelector('nav');
   window.addEventListener('scroll', () => {
-    nav.style.background = window.scrollY > 40
-      ? 'rgba(8,15,10,0.92)'
-      : 'rgba(8,15,10,0.75)';
-  });
+    nav.style.background = window.scrollY > 40 ? 'rgba(1,1,1,0.94)' : 'rgba(1,1,1,0.7)';
+  }, { passive: true });
 
-  // Mobile menu toggle (simple)
+  // Card parallax on scroll
+  const hcos = document.querySelectorAll('.hco');
+  const heroEl = document.querySelector('.hero');
+  const scrollSpeeds = [0.12, 0.08, 0.16, 0.10, 0.14, 0.18, 0.09, 0.13];
+  window.addEventListener('scroll', () => {
+    const s = window.scrollY;
+    if (!heroEl || s > heroEl.offsetHeight) return;
+    hcos.forEach((c, i) => {
+      c.style.transform = 'translateY(' + (-s * (scrollSpeeds[i] || 0.1)) + 'px)';
+    });
+  }, { passive: true });
+
   function toggleMenu() {
     const links = document.querySelector('.nav-links');
-    if (links.style.display === 'flex') {
-      links.style.display = '';
-    } else {
-      links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:60px;left:0;right:0;background:rgba(8,1
+    links.style.cssText = links.style.display === 'flex' ? '' :
+      'display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:rgba(1,1,1,0.97);padding:20px 32px;gap:20px;border-bottom:1px solid rgba(255,255,255,0.07);z-index:100;';
+  }
+</script>
+</body>
+</html>
+
