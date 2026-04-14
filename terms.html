@@ -3,80 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terms of Service — 21 Pro: Blackjack Trainer</title>
+<meta name="description" content="21 Pro Terms of Service — usage terms, subscriptions, and billing.">
+<title>Terms of Service — 21 Pro</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --felt-deep:#080f0a;
-    --surface-card:#1a1a17;
-    --brass:#BF9E6A; --brass-light:#D4B07A; --brass-muted:#997845;
-    --brass-subtle:rgba(191,158,106,0.10); --brass-border:rgba(191,158,106,0.18);
-    --text-primary:#E6DFD1; --text-secondary:#9A9488; --text-tertiary:#61594F;
-    --border-subtle:rgba(255,255,255,0.04); --border-mid:rgba(255,255,255,0.07);
-    --font-display:'Playfair Display',Georgia,serif;
-    --font-body:'DM Sans',system-ui,sans-serif;
-    --max-w:760px;
-  }
-  body { background:var(--felt-deep); color:var(--text-primary); font-family:var(--font-body); font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; }
-  nav { position:sticky; top:0; height:60px; display:flex; align-items:center; padding:0 24px; backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); background:rgba(8,15,10,0.88); border-bottom:1px solid var(--border-subtle); z-index:100; }
-  .nav-inner { max-width:var(--max-w); width:100%; margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
-  .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
-  .nav-logo-mark { width:32px; height:32px; background:linear-gradient(135deg,var(--brass) 0%,var(--brass-muted) 100%); border-radius:8px; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-size:16px; font-weight:700; color:#080f0a; }
-  .nav-logo-text { font-family:var(--font-display); font-size:18px; font-weight:600; color:var(--text-primary); }
-  .nav-back { font-size:14px; color:var(--text-secondary); text-decoration:none; transition:color 0.2s; }
-  .nav-back:hover { color:var(--text-primary); }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#010101;--bg2:#0a0a0a;--bg3:#111;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#ffffff;--text2:#888888;--text3:#444444;
+  --brass:#BF9E6A;--brass-l:#D4B07A;--brass-m:#997845;
+  --font:'Inter',-apple-system,sans-serif;--max-w:1100px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
 
-  .page-hero { padding:72px 24px 44px; max-width:var(--max-w); margin:0 auto; border-bottom:1px solid var(--border-subtle); }
-  .page-eyebrow { font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--brass); margin-bottom:12px; display:block; }
-  .page-title { font-family:var(--font-display); font-size:clamp(30px,5vw,48px); font-weight:700; color:var(--text-primary); letter-spacing:-0.03em; line-height:1.1; margin-bottom:12px; }
-  .page-meta { font-size:13px; color:var(--text-tertiary); }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;display:flex;align-items:center;padding:0 32px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(1,1,1,0.85);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:var(--max-w);width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--brass),var(--brass-m));display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#010101;letter-spacing:-1px}
+.nav-name{font-size:17px;font-weight:700;color:var(--text);letter-spacing:-0.3px}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+.nav-links a{font-size:14px;font-weight:400;color:var(--text2);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--brass);color:#010101 !important;font-weight:600 !important;padding:8px 18px;border-radius:8px;transition:background 0.2s,transform 0.15s !important}
+.nav-cta:hover{background:var(--brass-l) !important;transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--text2);border-radius:2px}
 
-  .toc { max-width:var(--max-w); margin:0 auto; padding:28px 24px; border-bottom:1px solid var(--border-subtle); }
-  .toc-label { font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-tertiary); margin-bottom:10px; }
-  .toc-list { list-style:none; display:flex; flex-wrap:wrap; gap:8px 20px; }
-  .toc-list a { font-size:13px; color:var(--brass-light); text-decoration:none; opacity:0.85; transition:opacity 0.2s; }
-  .toc-list a:hover { opacity:1; }
+/* PAGE */
+.page-wrap{padding-top:64px}
+.page-hero{padding:80px 0 56px;text-align:center;border-bottom:1px solid var(--border)}
+.page-eyebrow{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--brass);display:block;margin-bottom:16px}
+.page-h1{font-size:clamp(40px,6vw,72px);font-weight:800;letter-spacing:-0.04em;color:var(--text);line-height:1.05;margin-bottom:12px}
+.page-meta{font-size:14px;color:var(--text3);font-weight:300}
 
-  .prose { max-width:var(--max-w); margin:0 auto; padding:52px 24px 96px; }
-  .prose h2 { font-family:var(--font-display); font-size:21px; font-weight:600; color:var(--text-primary); letter-spacing:-0.02em; margin:56px 0 14px; padding-top:8px; border-top:1px solid var(--border-subtle); }
-  .prose h2:first-child { margin-top:0; border-top:none; }
-  .prose h3 { font-size:15px; font-weight:500; color:var(--text-primary); letter-spacing:-0.01em; margin:28px 0 8px; }
-  .prose p { font-size:15px; color:var(--text-secondary); font-weight:300; margin-bottom:14px; line-height:1.75; }
-  .prose ul, .prose ol { margin:0 0 16px 20px; }
-  .prose li { font-size:15px; color:var(--text-secondary); font-weight:300; margin-bottom:6px; line-height:1.7; }
-  .prose strong { color:var(--text-primary); font-weight:500; }
-  .prose a { color:var(--brass-light); text-decoration:none; border-bottom:1px solid rgba(212,176,122,0.25); transition:border-color 0.2s; }
-  .prose a:hover { border-color:var(--brass-light); }
+/* TOC */
+.toc-wrap{max-width:720px;margin:0 auto;padding:32px 24px;border-bottom:1px solid var(--border)}
+.toc-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:12px}
+.toc-list{list-style:none;display:flex;flex-wrap:wrap;gap:8px 20px}
+.toc-list a{font-size:13px;color:var(--brass-l);text-decoration:none;opacity:0.85;transition:opacity 0.2s}
+.toc-list a:hover{opacity:1}
 
-  .callout { border-radius:10px; padding:18px 20px; margin:20px 0; }
-  .callout p { margin:0; font-size:14px; }
-  .callout-gold { background:var(--brass-subtle); border:1px solid var(--brass-border); }
-  .callout-neutral { background:rgba(255,255,255,0.03); border:1px solid var(--border-mid); }
-  .callout-warning { background:rgba(192,56,56,0.08); border:1px solid rgba(192,56,56,0.2); }
+/* PROSE */
+.prose{max-width:720px;margin:0 auto;padding:72px 24px 120px}
+.prose h2{font-size:19px;font-weight:700;color:var(--text);letter-spacing:-0.02em;margin:52px 0 14px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.prose h2:first-child{margin-top:0}
+.prose h3{font-size:15px;font-weight:600;color:var(--text);letter-spacing:-0.01em;margin:28px 0 8px}
+.prose p{font-size:15px;font-weight:300;color:var(--text2);line-height:1.8;margin-bottom:16px}
+.prose p:last-child{margin-bottom:0}
+.prose ul,.prose ol{padding-left:20px;margin-bottom:16px}
+.prose li{font-size:15px;font-weight:300;color:var(--text2);line-height:1.75;margin-bottom:8px}
+.prose a{color:var(--brass-l);text-decoration:none}
+.prose a:hover{text-decoration:underline}
+.prose strong{color:var(--text);font-weight:500}
+.notice{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin:32px 0}
+.notice p{font-size:14px;color:var(--text3) !important;margin-bottom:0 !important}
+.callout{border-radius:12px;padding:20px 24px;margin:24px 0}
+.callout p{font-size:14px;margin:0}
+.callout-gold{background:rgba(191,158,106,0.08);border:1px solid rgba(191,158,106,0.18)}
+.callout-warn{background:rgba(192,56,56,0.07);border:1px solid rgba(192,56,56,0.2)}
 
-  /* Subscription box — Apple-required disclosure */
-  .sub-box {
-    background:var(--surface-card);
-    border:1px solid var(--brass-border);
-    border-radius:12px;
-    padding:24px;
-    margin:20px 0 28px;
-  }
-  .sub-box-title { font-size:13px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; color:var(--brass); margin-bottom:16px; }
-  .sub-row { display:flex; justify-content:space-between; align-items:baseline; gap:12px; padding:9px 0; border-bottom:1px solid var(--border-subtle); }
-  .sub-row:last-child { border-bottom:none; padding-bottom:0; }
-  .sub-row-label { font-size:14px; color:var(--text-secondary); font-weight:300; }
-  .sub-row-value { font-size:14px; color:var(--text-primary); font-weight:500; white-space:nowrap; }
+/* SUB BOX */
+.sub-box{background:var(--bg2);border:1px solid rgba(191,158,106,0.2);border-radius:12px;padding:24px;margin:20px 0 28px}
+.sub-box-title{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--brass);margin-bottom:16px}
+.sub-row{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
+.sub-row:last-child{border-bottom:none;padding-bottom:0}
+.sub-row-label{font-size:14px;color:var(--text2);font-weight:300}
+.sub-row-value{font-size:14px;color:var(--text);font-weight:500;white-space:nowrap}
 
-  footer { border-top:1px solid var(--border-subtle); padding:32px 24px; }
-  .footer-inner { max-width:var(--max-w); margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
-  .footer-copy { font-size:12px; color:var(--text-tertiary); }
-  .footer-links { display:flex; gap:20px; list-style:none; }
-  .footer-links a { font-size:13px; color:var(--text-tertiary); text-decoration:none; transition:color 0.2s; }
-  .footer-links a:hover { color:var(--text-secondary); }
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:40px 0 32px}
+.foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.flogo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.fname{font-size:15px;font-weight:600;color:var(--text2)}
+.flinks{display:flex;gap:24px;list-style:none;flex-wrap:wrap}
+.flinks a{font-size:13px;color:var(--text3);text-decoration:none;transition:color 0.2s}
+.flinks a:hover{color:var(--text2)}
+.fcopy{font-size:12px;color:var(--text3)}
+
+@media(max-width:680px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .foot{flex-direction:column;align-items:flex-start}
+}
 </style>
 </head>
 <body>
@@ -84,185 +98,202 @@
 <nav>
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
-      <div class="nav-logo-mark">21</div>
-      <span class="nav-logo-text">21 Pro</span>
+      <div class="nav-mark">21</div>
+      <span class="nav-name">21 Pro</span>
     </a>
-    <a href="index.html" class="nav-back">← Back to Home</a>
+    <ul class="nav-links">
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="index.html#modes">Modes</a></li>
+      <li><a href="index.html#training">Training</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="#" class="nav-cta">Download Free</a></li>
+    </ul>
+    <button class="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
-<div class="page-hero">
-  <span class="page-eyebrow">Legal</span>
-  <h1 class="page-title">Terms of Service</h1>
-  <p class="page-meta">Effective date: January 1, 2025 &nbsp;·&nbsp; Last updated: January 1, 2025</p>
-</div>
+<div class="page-wrap">
+  <section class="page-hero">
+    <div class="container">
+      <span class="page-eyebrow">Legal</span>
+      <h1 class="page-h1">Terms of Service</h1>
+      <p class="page-meta">Effective January 1, 2025 &nbsp;&#183;&nbsp; Last updated April 14, 2026 &nbsp;&#183;&nbsp; Applies to 21 Pro: Blackjack Trainer (com.epochbrand.21pro)</p>
+    </div>
+  </section>
 
-<div class="toc">
-  <div class="toc-label">On this page</div>
-  <ul class="toc-list">
-    <li><a href="#acceptance">Acceptance</a></li>
-    <li><a href="#description">Description</a></li>
-    <li><a href="#disclaimer">Important Disclaimer</a></li>
-    <li><a href="#eligibility">Eligibility</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#subscriptions">Subscriptions &amp; Billing</a></li>
-    <li><a href="#free-tier">Free Tier &amp; Ads</a></li>
-    <li><a href="#third-parties">Third-Party Services</a></li>
-    <li><a href="#prohibited">Prohibited Use</a></li>
-    <li><a href="#ip">Intellectual Property</a></li>
-    <li><a href="#warranties">Disclaimer of Warranties</a></li>
-    <li><a href="#liability">Limitation of Liability</a></li>
-    <li><a href="#gdpr-ccpa">GDPR &amp; CCPA</a></li>
-    <li><a href="#changes">Changes</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</div>
-
-<div class="prose">
-
-  <div class="callout callout-gold">
-    <p><strong>Plain summary:</strong> Use the app as it's intended, don't do anything illegal, and understand it's a training tool — not gambling software, and not financial advice. Full terms below.</p>
+  <div class="toc-wrap">
+    <div class="toc-label">On this page</div>
+    <ul class="toc-list">
+      <li><a href="#acceptance">Acceptance</a></li>
+      <li><a href="#description">Description</a></li>
+      <li><a href="#disclaimer">Disclaimer</a></li>
+      <li><a href="#eligibility">Eligibility</a></li>
+      <li><a href="#license">License</a></li>
+      <li><a href="#subscriptions">Subscriptions &amp; Billing</a></li>
+      <li><a href="#free-tier">Free Tier &amp; Ads</a></li>
+      <li><a href="#third-parties">Third-Party Services</a></li>
+      <li><a href="#prohibited">Prohibited Use</a></li>
+      <li><a href="#ip">Intellectual Property</a></li>
+      <li><a href="#warranties">Disclaimer of Warranties</a></li>
+      <li><a href="#liability">Limitation of Liability</a></li>
+      <li><a href="#gdpr-ccpa">GDPR &amp; CCPA</a></li>
+      <li><a href="#changes">Changes</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
   </div>
 
-  <h2 id="acceptance">1. Acceptance of Terms</h2>
-  <p>By downloading, installing, or using <strong>21 Pro: Blackjack Trainer</strong> ("the App"), you agree to these Terms of Service. If you do not agree, do not use the App.</p>
-  <p>These Terms form a legal agreement between you and the developer. They are separate from and in addition to Apple's standard App Store Terms of Service, which also apply to your use of the App.</p>
+  <div class="prose container">
 
-  <h2 id="description">2. Description of the App</h2>
-  <p>21 Pro is a blackjack strategy and training application for iPhone and iPad. It simulates blackjack gameplay to help users learn and practice basic strategy and card counting. It is designed for educational and entertainment purposes.</p>
-  <p>The App is available in the US App Store and most international regions.</p>
+    <div class="callout callout-gold">
+      <p><strong>Plain summary:</strong> Use the app as intended, don't do anything illegal, and understand it is a training tool — not gambling software, and not financial advice. Full terms below.</p>
+    </div>
 
-  <h2 id="disclaimer">3. Important Disclaimer</h2>
-  <div class="callout callout-warning">
-    <p><strong>21 Pro is a training tool. No real money is wagered within the App.</strong> Performance in the App does not guarantee results at a casino. Card counting is legal in most jurisdictions, but casinos reserve the right to refuse service to any player. Always comply with local laws and casino rules before applying any technique practiced in this App.</p>
+    <h2 id="acceptance">1. Acceptance of Terms</h2>
+    <p>By downloading, installing, or using <strong>21 Pro: Blackjack Trainer</strong> ("the App"), you agree to these Terms of Service. If you do not agree, do not use the App.</p>
+    <p>These Terms form a legal agreement between you and the developer. They are separate from and in addition to Apple's standard App Store Terms of Service, which also apply to your use of the App.</p>
+
+    <h2 id="description">2. Description of the App</h2>
+    <p>21 Pro is a blackjack strategy and training application for iPhone and iPad. It simulates blackjack gameplay to help users learn and practice basic strategy and card counting. It is designed for educational and entertainment purposes.</p>
+    <p>The App is available in the US App Store and most international regions.</p>
+
+    <h2 id="disclaimer">3. Important Disclaimer</h2>
+    <div class="callout callout-warn">
+      <p><strong>21 Pro is a training tool. No real money is wagered within the App.</strong> Performance in the App does not guarantee results at a casino. Card counting is legal in most jurisdictions, but casinos reserve the right to refuse service to any player. Always comply with local laws and casino rules before applying any technique practiced in this App.</p>
+    </div>
+    <p>Nothing in the App constitutes gambling advice, financial advice, or a guarantee of any outcome.</p>
+
+    <h2 id="eligibility">4. Eligibility</h2>
+    <p>You must be at least <strong>17 years old</strong> to use 21 Pro, consistent with its App Store rating. By using the App, you represent that you meet this requirement.</p>
+    <p>If you use the App on behalf of an organization, you represent that you are authorized to bind that organization to these Terms.</p>
+
+    <h2 id="license">5. License</h2>
+    <p>We grant you a limited, non-exclusive, non-transferable, revocable license to use 21 Pro for personal, non-commercial purposes on Apple devices you own or control, subject to these Terms and Apple's App Store Terms of Service.</p>
+    <p>This license does not include the right to sublicense, sell, resell, transfer, distribute, or otherwise exploit the App or its content.</p>
+
+    <h2 id="subscriptions">6. Subscriptions &amp; Billing</h2>
+    <p>21 Pro offers an optional paid upgrade called <strong>Edge</strong>, which unlocks the full feature set. Edge is available in three tiers:</p>
+
+    <div class="sub-box">
+      <div class="sub-box-title">Edge Subscription Options</div>
+      <div class="sub-row">
+        <span class="sub-row-label">Monthly</span>
+        <span class="sub-row-value">$6.99 / month</span>
+      </div>
+      <div class="sub-row">
+        <span class="sub-row-label">Annual</span>
+        <span class="sub-row-value">$49.99 / year</span>
+      </div>
+      <div class="sub-row">
+        <span class="sub-row-label">Lifetime (one-time purchase)</span>
+        <span class="sub-row-value">$149.99</span>
+      </div>
+    </div>
+
+    <h3>Auto-renewal</h3>
+    <p>Monthly and annual Edge subscriptions <strong>automatically renew</strong> at the end of each billing period unless cancelled. Payment is charged to your Apple ID account at confirmation of purchase and at the start of each renewal period. Prices are in USD and may vary by region as displayed in the App Store.</p>
+
+    <h3>Cancellation</h3>
+    <p>To cancel a subscription and stop future charges, cancel at least <strong>24 hours before the end of the current billing period</strong>:</p>
+    <ol>
+      <li>Open <strong>Settings</strong> on your iPhone or iPad</li>
+      <li>Tap your name &rsaquo; <strong>Subscriptions</strong></li>
+      <li>Select <strong>21 Pro</strong> and tap <strong>Cancel Subscription</strong></li>
+    </ol>
+    <p>Cancelling stops future charges. You retain Edge access until the end of the paid period. Deleting the App does not cancel a subscription.</p>
+
+    <h3>Free trial</h3>
+    <p>If a free trial is offered, it will be displayed in the App at the time of subscription. Unused trial time is forfeited when a purchase is made. The subscription begins at the end of the trial period unless cancelled before it ends.</p>
+
+    <h3>Refunds</h3>
+    <p>All purchases are final and processed by Apple. Refunds are subject to Apple's refund policy. To request a refund, visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener noreferrer">reportaproblem.apple.com</a>. We do not process refunds directly.</p>
+
+    <h3>Subscription management</h3>
+    <p>We use RevenueCat to manage subscription entitlements. RevenueCat receives anonymous purchase confirmation data from Apple to verify your access. No payment details are shared with RevenueCat.</p>
+
+    <h3>Restoring purchases</h3>
+    <p>If you reinstall the App or switch devices, use the "Restore Purchases" option in the App to recover your Edge entitlement. Lifetime purchases restore without a subscription requirement.</p>
+
+    <h2 id="free-tier">7. Free Tier &amp; Advertising</h2>
+    <p>The free tier of 21 Pro is fully playable. It includes Classic mode, the Basic Strategy Drill, and Rapid Fire mode (after completing onboarding). A rotating mini-game is available daily at no cost.</p>
+    <p>Free-tier users see <strong>rewarded video ads</strong> served by Google AdMob. These appear at natural break points — between runs or as optional run saves — and are never shown mid-hand. Watching a rewarded ad is always optional.</p>
+    <p>We request App Tracking Transparency (ATT) permission before any advertising tracking occurs. You can decline tracking and still use all free features. Upgrading to Edge removes all ads.</p>
+
+    <h2 id="third-parties">8. Third-Party Services</h2>
+    <p>The App integrates the following third-party services. By using the App, you acknowledge that these services operate under their own terms and privacy policies.</p>
+    <ul>
+      <li><strong>RevenueCat</strong> &mdash; subscription management</li>
+      <li><strong>PostHog</strong> &mdash; product analytics and session replay</li>
+      <li><strong>Google AdMob</strong> &mdash; advertising (free tier only)</li>
+      <li><strong>Firebase Crashlytics (Google)</strong> &mdash; crash reporting</li>
+      <li><strong>Apple StoreKit</strong> &mdash; in-app purchase processing</li>
+    </ul>
+    <p>We are not responsible for the availability, accuracy, or practices of third-party services.</p>
+
+    <h2 id="prohibited">9. Prohibited Use</h2>
+    <p>You agree not to:</p>
+    <ul>
+      <li>Reverse engineer, decompile, disassemble, or attempt to extract source code from the App</li>
+      <li>Use the App for any commercial purpose without prior written consent</li>
+      <li>Attempt to exploit, hack, or interfere with the App's functionality</li>
+      <li>Bypass or circumvent in-app purchase verification or entitlement checks</li>
+      <li>Use the App in violation of any applicable law or regulation</li>
+      <li>Resell, sublicense, or distribute any portion of the App or its content</li>
+    </ul>
+
+    <h2 id="ip">10. Intellectual Property</h2>
+    <p>All content, design, code, trademarks, and assets within 21 Pro are the exclusive property of the developer and are protected by applicable intellectual property laws. Nothing in these Terms transfers ownership of any intellectual property to you.</p>
+    <p>The blackjack strategy tables and mathematical models used in the App are derived from established, publicly documented basic strategy research.</p>
+
+    <h2 id="warranties">11. Disclaimer of Warranties</h2>
+    <p>The App is provided <strong>"as is"</strong> and <strong>"as available"</strong> without warranties of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
+    <p>We do not warrant that the App will be error-free, uninterrupted, secure, or free of bugs, or that it will be compatible with all devices or operating system versions.</p>
+
+    <h2 id="liability">12. Limitation of Liability</h2>
+    <p>To the fullest extent permitted by applicable law, we shall not be liable for any indirect, incidental, special, punitive, or consequential damages arising from or related to your use of the App. This includes, without limitation:</p>
+    <ul>
+      <li>Financial losses at casinos or other gambling venues resulting from techniques practiced in the App</li>
+      <li>Loss of data, progress, or game content</li>
+      <li>Interruption of service or App unavailability</li>
+      <li>Actions taken by third-party services integrated into the App</li>
+    </ul>
+    <p>Our total liability to you for any claim arising from use of the App shall not exceed the amount you paid us in the 12 months preceding the claim. Some jurisdictions do not allow limitation of liability for certain types of damages — in such cases, our liability is limited to the maximum extent permitted by law.</p>
+
+    <h2 id="gdpr-ccpa">13. GDPR &amp; CCPA</h2>
+    <p>Our data practices comply with the General Data Protection Regulation (GDPR) for users in the EEA, United Kingdom, and Switzerland, and with the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA) for California residents.</p>
+    <p>Full details of your rights and our data practices are in our <a href="privacy.html">Privacy Policy</a>.</p>
+
+    <h2 id="changes">14. Changes to These Terms</h2>
+    <p>We may update these Terms to reflect changes to the App, third-party services, or legal requirements. The updated date at the top will reflect any revision. Material changes will be noted in the App where possible.</p>
+    <p>Continued use of the App after updated Terms are posted constitutes acceptance. If you do not agree to updated Terms, stop using the App.</p>
+
+    <h2 id="contact">15. Governing Law &amp; Contact</h2>
+    <p>These Terms are governed by the laws of the United States. Any disputes arising from use of the App shall be resolved in the appropriate courts of the applicable jurisdiction. Nothing in these Terms limits your rights under mandatory local consumer protection law.</p>
+    <p>Questions about these Terms:</p>
+    <p><a href="mailto:Support@epochbrand.net">Support@epochbrand.net</a> &mdash; subject line "Terms Question"</p>
+
   </div>
-  <p>Nothing in the App constitutes gambling advice, financial advice, or a guarantee of any outcome.</p>
-
-  <h2 id="eligibility">4. Eligibility</h2>
-  <p>You must be at least <strong>17 years old</strong> to use 21 Pro, consistent with its App Store rating. By using the App, you represent that you meet this requirement.</p>
-  <p>If you use the App on behalf of an organization, you represent that you are authorized to bind that organization to these Terms.</p>
-
-  <h2 id="license">5. License</h2>
-  <p>We grant you a limited, non-exclusive, non-transferable, revocable license to use 21 Pro for personal, non-commercial purposes on Apple devices you own or control, subject to these Terms and Apple's App Store Terms of Service.</p>
-  <p>This license does not include the right to sublicense, sell, resell, transfer, distribute, or otherwise exploit the App or its content.</p>
-
-  <h2 id="subscriptions">6. Subscriptions &amp; Billing</h2>
-  <p>21 Pro offers an optional paid upgrade called <strong>Edge</strong>, which unlocks the full feature set. Edge is available in three tiers:</p>
-
-  <div class="sub-box">
-    <div class="sub-box-title">Edge Subscription Options</div>
-    <div class="sub-row">
-      <span class="sub-row-label">Monthly</span>
-      <span class="sub-row-value">$6.99 / month</span>
-    </div>
-    <div class="sub-row">
-      <span class="sub-row-label">Annual</span>
-      <span class="sub-row-value">$49.99 / year</span>
-    </div>
-    <div class="sub-row">
-      <span class="sub-row-label">Lifetime (one-time)</span>
-      <span class="sub-row-value">$149.99</span>
-    </div>
-  </div>
-
-  <h3>Auto-renewal (Apple requirement)</h3>
-  <p>Monthly and annual Edge subscriptions <strong>automatically renew</strong> at the end of each billing period unless cancelled. Payment is charged to your Apple ID account at confirmation of purchase and at the start of each renewal period.</p>
-  <p>Prices are in USD and may vary by region as displayed in the App Store at the time of purchase.</p>
-
-  <h3>Cancellation</h3>
-  <p>To cancel a subscription and stop future charges, cancel at least <strong>24 hours before the end of the current billing period</strong>. To cancel:</p>
-  <ol>
-    <li>Open <strong>Settings</strong> on your iPhone or iPad</li>
-    <li>Tap your name → <strong>Subscriptions</strong></li>
-    <li>Select <strong>21 Pro</strong> and tap <strong>Cancel Subscription</strong></li>
-  </ol>
-  <p>Cancelling stops future charges. You retain Edge access until the end of the paid period. Deleting the App does not cancel a subscription.</p>
-
-  <h3>Free trial</h3>
-  <p>If a free trial is offered, it will be displayed in the App at the time of subscription. Unused trial time is forfeited when a purchase is made. The subscription begins at the end of the trial period unless cancelled before it ends.</p>
-
-  <h3>Refunds</h3>
-  <p>All purchases are final and processed by Apple. Refunds are subject to Apple's refund policy. To request a refund, visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener noreferrer">reportaproblem.apple.com</a>. We do not process refunds directly.</p>
-
-  <h3>Subscription management via RevenueCat</h3>
-  <p>We use RevenueCat to manage subscription entitlements. RevenueCat receives anonymous purchase confirmation data from Apple to verify your access. No payment details are shared with RevenueCat.</p>
-
-  <h3>Restoring purchases</h3>
-  <p>If you reinstall the App or switch devices, use the "Restore Purchases" option in the App to recover your Edge entitlement. Lifetime purchases restore without a subscription requirement.</p>
-
-  <h2 id="free-tier">7. Free Tier &amp; Advertising</h2>
-  <p>The free tier of 21 Pro is fully playable. It includes Classic mode, the Basic Strategy Drill, and Rapid Fire mode (after completing onboarding). A rotating mini-game is available daily at no cost.</p>
-  <p>Free-tier users see <strong>rewarded video ads</strong> served by Google AdMob. These appear at natural break points — between runs or as optional run saves — and are never shown mid-hand. Watching a rewarded ad is always optional.</p>
-  <p>We request App Tracking Transparency (ATT) permission before any advertising tracking occurs. You can decline tracking and still use all free features. Upgrading to Edge removes all ads.</p>
-
-  <h2 id="third-parties">8. Third-Party Services</h2>
-  <p>The App integrates the following third-party services. By using the App, you acknowledge that these services operate under their own terms and privacy policies.</p>
-  <ul>
-    <li><strong>RevenueCat</strong> — subscription management. <a href="https://www.revenuecat.com/terms" target="_blank" rel="noopener noreferrer">Terms ↗</a></li>
-    <li><strong>PostHog</strong> — product analytics and session replay. <a href="https://posthog.com/terms" target="_blank" rel="noopener noreferrer">Terms ↗</a></li>
-    <li><strong>Google AdMob</strong> — advertising. <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">Terms ↗</a></li>
-    <li><strong>Firebase Crashlytics (Google)</strong> — crash reporting. <a href="https://firebase.google.com/terms" target="_blank" rel="noopener noreferrer">Terms ↗</a></li>
-    <li><strong>Apple StoreKit</strong> — in-app purchase processing. <a href="https://www.apple.com/legal/internet-services/itunes/us/terms.html" target="_blank" rel="noopener noreferrer">App Store Terms ↗</a></li>
-  </ul>
-  <p>We are not responsible for the availability, accuracy, or practices of third-party services.</p>
-
-  <h2 id="prohibited">9. Prohibited Use</h2>
-  <p>You agree not to:</p>
-  <ul>
-    <li>Reverse engineer, decompile, disassemble, or attempt to extract source code from the App</li>
-    <li>Use the App for any commercial purpose without prior written consent</li>
-    <li>Attempt to exploit, hack, or interfere with the App's functionality or servers</li>
-    <li>Bypass or circumvent in-app purchase verification or entitlement checks</li>
-    <li>Use the App in violation of any applicable law or regulation</li>
-    <li>Resell, sublicense, or distribute any portion of the App or its content</li>
-  </ul>
-
-  <h2 id="ip">10. Intellectual Property</h2>
-  <p>All content, design, code, trademarks, and assets within 21 Pro are the exclusive property of the developer and are protected by applicable intellectual property laws. Nothing in these Terms transfers ownership of any intellectual property to you.</p>
-  <p>The blackjack strategy tables and mathematical models used in the App are derived from established, publicly documented basic strategy research.</p>
-
-  <h2 id="warranties">11. Disclaimer of Warranties</h2>
-  <p>The App is provided <strong>"as is"</strong> and <strong>"as available"</strong> without warranties of any kind, express or implied, including but not limited to warranties of merchantability, fitness for a particular purpose, or non-infringement.</p>
-  <p>We do not warrant that the App will be error-free, uninterrupted, secure, or free of bugs. We do not warrant that the App will be compatible with all devices or operating system versions.</p>
-
-  <h2 id="liability">12. Limitation of Liability</h2>
-  <p>To the fullest extent permitted by applicable law, we shall not be liable for any indirect, incidental, special, punitive, or consequential damages arising from or related to your use of the App. This includes, without limitation:</p>
-  <ul>
-    <li>Financial losses at casinos or other gambling venues resulting from techniques practiced in the App</li>
-    <li>Loss of data, progress, or game content</li>
-    <li>Interruption of service or App unavailability</li>
-    <li>Actions taken by third-party services integrated into the App</li>
-  </ul>
-  <p>Our total liability to you for any claim arising from use of the App shall not exceed the amount you paid us in the 12 months preceding the claim.</p>
-  <p>Some jurisdictions do not allow limitation of liability for certain types of damages. In such cases, our liability is limited to the maximum extent permitted by law.</p>
-
-  <h2 id="gdpr-ccpa">13. GDPR &amp; CCPA</h2>
-  <p>Our data practices comply with the General Data Protection Regulation (GDPR) for users in the EEA, United Kingdom, and Switzerland, and with the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA) for California residents.</p>
-  <p>Full details of your rights and our data practices are in our <a href="privacy.html">Privacy Policy</a>.</p>
-
-  <h2 id="changes">14. Changes to These Terms</h2>
-  <p>We may update these Terms to reflect changes to the App, third-party services, or legal requirements. The "Last updated" date at the top will reflect any revision. Material changes will be noted in the App where possible.</p>
-  <p>Continued use of the App after updated Terms are posted constitutes acceptance of the new Terms. If you do not agree to updated Terms, stop using the App.</p>
-
-  <h2 id="contact">15. Governing Law &amp; Contact</h2>
-  <p>These Terms are governed by the laws of the United States. Any disputes arising from use of the App shall be resolved in the appropriate courts of the applicable jurisdiction. Nothing in these Terms limits your rights under mandatory local consumer protection law.</p>
-  <p>For questions about these Terms:</p>
-  <ul>
-    <li>Email: <a href="mailto:support@21proapp.com">support@21proapp.com</a></li>
-    <li>Subject line: "Terms Question"</li>
-  </ul>
-
 </div>
 
 <footer>
-  <div class="footer-inner">
-    <span class="footer-copy">© 2025 21 Pro. All rights reserved.</span>
-    <ul class="footer-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="privacy.html">Privacy Policy</a></li>
-    </ul>
+  <div class="container">
+    <div class="foot">
+      <a href="index.html" class="flogo">
+        <div class="nav-mark">21</div>
+        <span class="fname">21 Pro</span>
+      </a>
+      <ul class="flinks">
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="contact.html">Support</a></li>
+      </ul>
+      <span class="fcopy">&#169; 2025 21 Pro. All rights reserved.</span>
+    </div>
   </div>
 </footer>
 
 </body>
 </html>
+
