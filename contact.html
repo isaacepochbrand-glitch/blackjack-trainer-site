@@ -1,192 +1,122 @@
-<!DOCTYPE html>
+
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact &amp; Support — 21 Pro: Blackjack Trainer</title>
+<meta name="description" content="Contact 21 Pro support — bug reports, billing, feature requests, and privacy inquiries.">
+<title>Support — 21 Pro</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --felt-deep:#080f0a;
-    --felt-dark:#0d1a10;
-    --surface-dark:#0c0c0b;
-    --surface-card:#1a1a17;
-    --surface-hover:#202020;
-    --brass:#BF9E6A; --brass-light:#D4B07A; --brass-muted:#997845;
-    --brass-subtle:rgba(191,158,106,0.10); --brass-border:rgba(191,158,106,0.18);
-    --text-primary:#E6DFD1; --text-secondary:#9A9488; --text-tertiary:#61594F;
-    --border-subtle:rgba(255,255,255,0.04); --border-mid:rgba(255,255,255,0.07);
-    --win:#47B869;
-    --font-display:'Playfair Display',Georgia,serif;
-    --font-body:'DM Sans',system-ui,sans-serif;
-    --max-w:760px;
-  }
-  body { background:var(--felt-deep); color:var(--text-primary); font-family:var(--font-body); font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#010101;--bg2:#0a0a0a;--bg3:#111;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --text:#ffffff;--text2:#888888;--text3:#444444;
+  --brass:#BF9E6A;--brass-l:#D4B07A;--brass-m:#997845;
+  --font:'Inter',-apple-system,sans-serif;--max-w:1100px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
 
-  /* ─── NAV ─── */
-  nav { position:sticky; top:0; height:60px; display:flex; align-items:center; padding:0 24px; backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px); background:rgba(8,15,10,0.88); border-bottom:1px solid var(--border-subtle); z-index:100; }
-  .nav-inner { max-width:var(--max-w); width:100%; margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
-  .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
-  .nav-logo-mark { width:32px; height:32px; background:linear-gradient(135deg,var(--brass) 0%,var(--brass-muted) 100%); border-radius:8px; display:flex; align-items:center; justify-content:center; font-family:var(--font-display); font-size:16px; font-weight:700; color:#080f0a; }
-  .nav-logo-text { font-family:var(--font-display); font-size:18px; font-weight:600; color:var(--text-primary); }
-  .nav-back { font-size:14px; color:var(--text-secondary); text-decoration:none; transition:color 0.2s; }
-  .nav-back:hover { color:var(--text-primary); }
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;display:flex;align-items:center;padding:0 32px;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(1,1,1,0.85);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:var(--max-w);width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--brass),var(--brass-m));display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:#010101;letter-spacing:-1px}
+.nav-name{font-size:17px;font-weight:700;color:var(--text);letter-spacing:-0.3px}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+.nav-links a{font-size:14px;font-weight:400;color:var(--text2);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{background:var(--brass);color:#010101 !important;font-weight:600 !important;padding:8px 18px;border-radius:8px;transition:background 0.2s,transform 0.15s !important}
+.nav-cta:hover{background:var(--brass-l) !important;transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--text2);border-radius:2px}
 
-  /* ─── PAGE HERO ─── */
-  .page-hero { padding:72px 24px 44px; max-width:var(--max-w); margin:0 auto; border-bottom:1px solid var(--border-subtle); }
-  .page-eyebrow { font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--brass); margin-bottom:12px; display:block; }
-  .page-title { font-family:var(--font-display); font-size:clamp(30px,5vw,48px); font-weight:700; color:var(--text-primary); letter-spacing:-0.03em; line-height:1.1; margin-bottom:12px; }
-  .page-subtitle { font-size:15px; color:var(--text-secondary); font-weight:300; max-width:480px; line-height:1.7; }
+/* PAGE */
+.page-wrap{padding-top:64px}
+.page-hero{padding:80px 0 56px;text-align:center;border-bottom:1px solid var(--border)}
+.page-eyebrow{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--brass);display:block;margin-bottom:16px}
+.page-h1{font-size:clamp(40px,6vw,72px);font-weight:800;letter-spacing:-0.04em;color:var(--text);line-height:1.05;margin-bottom:16px}
+.page-sub{font-size:17px;font-weight:300;color:var(--text2);max-width:480px;margin:0 auto;line-height:1.65}
 
-  /* ─── MAIN CONTENT ─── */
-  .content { max-width:var(--max-w); margin:0 auto; padding:52px 24px 96px; }
+/* CONTENT */
+.content{max-width:720px;margin:0 auto;padding:72px 24px 120px}
 
-  /* ─── CONTACT CARD ─── */
-  .contact-primary {
-    background:var(--surface-card);
-    border:1px solid var(--brass-border);
-    border-radius:16px;
-    padding:36px;
-    display:flex;
-    align-items:flex-start;
-    gap:24px;
-    margin-bottom:48px;
-    transition:border-color 0.25s;
-  }
-  .contact-primary:hover { border-color:var(--brass); }
+/* PRIMARY CONTACT CARD */
+.contact-card{background:var(--bg2);border:1px solid rgba(191,158,106,0.2);border-radius:16px;padding:40px;display:flex;align-items:flex-start;gap:28px;margin-bottom:56px;transition:border-color 0.25s}
+.contact-card:hover{border-color:rgba(191,158,106,0.4)}
+.contact-icon{width:52px;height:52px;flex-shrink:0;background:rgba(191,158,106,0.08);border:1px solid rgba(191,158,106,0.18);border-radius:12px;display:flex;align-items:center;justify-content:center}
+.contact-icon svg{width:22px;height:22px;stroke:var(--brass-l);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.contact-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:6px}
+.contact-title{font-size:22px;font-weight:700;color:var(--text);letter-spacing:-0.03em;margin-bottom:10px}
+.contact-desc{font-size:15px;font-weight:300;color:var(--text2);line-height:1.7;margin-bottom:24px}
+.contact-btn{display:inline-flex;align-items:center;gap:8px;background:var(--brass);color:#010101;font-family:var(--font);font-size:15px;font-weight:600;padding:12px 24px;border-radius:9px;text-decoration:none;transition:background 0.2s,transform 0.15s,box-shadow 0.2s;box-shadow:0 4px 20px rgba(191,158,106,0.2)}
+.contact-btn:hover{background:var(--brass-l);transform:translateY(-2px);box-shadow:0 8px 28px rgba(191,158,106,0.3)}
+.contact-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.contact-note{margin-top:14px;font-size:13px;color:var(--text3)}
 
-  .contact-icon-wrap {
-    width:52px; height:52px; flex-shrink:0;
-    background:var(--brass-subtle);
-    border:1px solid var(--brass-border);
-    border-radius:12px;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .contact-icon-wrap svg { width:22px; height:22px; stroke:var(--brass-light); fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
+/* SECTION LABEL */
+.sec-label{font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text3);margin-bottom:16px;display:block}
 
-  .contact-primary-label { font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-tertiary); margin-bottom:6px; }
-  .contact-primary-title { font-family:var(--font-display); font-size:22px; font-weight:600; color:var(--text-primary); letter-spacing:-0.02em; margin-bottom:8px; }
-  .contact-primary-desc { font-size:15px; color:var(--text-secondary); font-weight:300; line-height:1.65; margin-bottom:20px; }
+/* TOPIC GRID */
+.topic-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:56px}
+.topic-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:24px 20px;text-decoration:none;display:flex;flex-direction:column;gap:8px;transition:background 0.2s,border-color 0.2s}
+.topic-card:hover{background:var(--bg3);border-color:var(--border2)}
+.topic-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:4px;flex-shrink:0}
+.topic-icon svg{width:17px;height:17px;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.icon-gold{background:rgba(191,158,106,0.1)}
+.icon-gold svg{stroke:var(--brass-l)}
+.icon-blue{background:rgba(56,116,191,0.1)}
+.icon-blue svg{stroke:#6fa3e0}
+.icon-green{background:rgba(71,184,105,0.1)}
+.icon-green svg{stroke:#47B869}
+.icon-purple{background:rgba(122,82,166,0.1)}
+.icon-purple svg{stroke:#a07ad4}
+.topic-title{font-size:14px;font-weight:600;color:var(--text);letter-spacing:-0.01em}
+.topic-desc{font-size:13px;font-weight:300;color:var(--text2);line-height:1.55}
 
-  .contact-email-link {
-    display:inline-flex; align-items:center; gap:8px;
-    background:var(--brass);
-    color:#080f0a;
-    font-family:var(--font-body);
-    font-size:15px; font-weight:500;
-    padding:11px 22px;
-    border-radius:9px;
-    text-decoration:none;
-    transition:background 0.2s, transform 0.15s, box-shadow 0.2s;
-    box-shadow:0 4px 16px rgba(191,158,106,0.2);
-  }
-  .contact-email-link:hover { background:var(--brass-light); transform:translateY(-2px); box-shadow:0 8px 24px rgba(191,158,106,0.3); }
-  .contact-email-link svg { width:15px; height:15px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round; }
+/* RESPONSE TIMES */
+.resp-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:56px}
+.resp-card{background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:22px}
+.resp-card-label{font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);margin-bottom:8px}
+.resp-card-value{font-size:28px;font-weight:700;color:var(--brass-l);letter-spacing:-0.04em;line-height:1;margin-bottom:6px}
+.resp-card-desc{font-size:13px;font-weight:300;color:var(--text2);line-height:1.5}
 
-  .contact-note { margin-top:14px; font-size:13px; color:var(--text-tertiary); }
+/* FAQ */
+.faq{margin-bottom:56px}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-item:first-child{border-top:1px solid var(--border)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;cursor:pointer;font-size:15px;font-weight:500;color:var(--text);letter-spacing:-0.01em;list-style:none;user-select:none}
+.faq-q::-webkit-details-marker{display:none}
+.faq-q svg{width:16px;height:16px;flex-shrink:0;stroke:var(--text3);fill:none;stroke-width:2;stroke-linecap:round;transition:transform 0.25s}
+details[open] .faq-q svg{transform:rotate(45deg)}
+.faq-a{padding:0 0 18px;font-size:14px;font-weight:300;color:var(--text2);line-height:1.75}
+.faq-a a{color:var(--brass-l);text-decoration:none}
+.faq-a a:hover{text-decoration:underline}
+.faq-a strong{color:var(--text);font-weight:500}
 
-  /* ─── SECTION DIVIDER ─── */
-  .section-label {
-    font-size:11px; font-weight:500; letter-spacing:0.1em; text-transform:uppercase;
-    color:var(--text-tertiary); margin-bottom:16px; display:block;
-  }
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:40px 0 32px}
+.foot{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+.flogo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.fname{font-size:15px;font-weight:600;color:var(--text2)}
+.flinks{display:flex;gap:24px;list-style:none;flex-wrap:wrap}
+.flinks a{font-size:13px;color:var(--text3);text-decoration:none;transition:color 0.2s}
+.flinks a:hover{color:var(--text2)}
+.fcopy{font-size:12px;color:var(--text3)}
 
-  /* ─── TOPIC GRID ─── */
-  .topic-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:48px; }
-
-  .topic-card {
-    background:var(--surface-dark);
-    border:1px solid var(--border-subtle);
-    border-radius:12px;
-    padding:22px 20px;
-    text-decoration:none;
-    display:flex; flex-direction:column; gap:8px;
-    transition:background 0.2s, border-color 0.2s;
-  }
-  .topic-card:hover { background:var(--surface-card); border-color:var(--border-mid); }
-
-  .topic-card-icon {
-    width:36px; height:36px;
-    border-radius:8px;
-    display:flex; align-items:center; justify-content:center;
-    margin-bottom:4px;
-    flex-shrink:0;
-  }
-  .topic-card-icon svg { width:17px; height:17px; fill:none; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
-
-  .icon-gold   { background:rgba(191,158,106,0.12); }
-  .icon-gold svg   { stroke:var(--brass-light); }
-  .icon-blue   { background:rgba(56,116,191,0.12); }
-  .icon-blue svg   { stroke:#6fa3e0; }
-  .icon-win    { background:rgba(71,184,105,0.12); }
-  .icon-win svg    { stroke:#47B869; }
-  .icon-purple { background:rgba(122,82,166,0.12); }
-  .icon-purple svg { stroke:#a07ad4; }
-
-  .topic-card-title { font-size:14px; font-weight:500; color:var(--text-primary); letter-spacing:-0.01em; }
-  .topic-card-desc  { font-size:13px; color:var(--text-secondary); font-weight:300; line-height:1.55; }
-
-  /* ─── FAQ ─── */
-  .faq { margin-bottom:48px; }
-
-  .faq-item {
-    border-bottom:1px solid var(--border-subtle);
-    padding:0;
-  }
-  .faq-item:first-child { border-top:1px solid var(--border-subtle); }
-
-  .faq-q {
-    display:flex; align-items:center; justify-content:space-between; gap:16px;
-    padding:18px 0;
-    cursor:pointer;
-    font-size:15px; font-weight:500; color:var(--text-primary);
-    letter-spacing:-0.01em;
-    list-style:none;
-    user-select:none;
-  }
-  .faq-q::-webkit-details-marker { display:none; }
-  .faq-q svg { width:16px; height:16px; flex-shrink:0; stroke:var(--text-tertiary); fill:none; stroke-width:2; stroke-linecap:round; transition:transform 0.25s; }
-  details[open] .faq-q svg { transform:rotate(45deg); }
-
-  .faq-a {
-    padding:0 0 18px;
-    font-size:14px; color:var(--text-secondary); font-weight:300; line-height:1.7;
-  }
-  .faq-a a { color:var(--brass-light); text-decoration:none; border-bottom:1px solid rgba(212,176,122,0.25); }
-  .faq-a a:hover { border-color:var(--brass-light); }
-  .faq-a strong { color:var(--text-primary); font-weight:500; }
-
-  /* ─── RESPONSE INFO ─── */
-  .response-row {
-    display:grid; grid-template-columns:1fr 1fr; gap:12px;
-    margin-bottom:48px;
-  }
-  .response-card {
-    background:var(--surface-dark);
-    border:1px solid var(--border-subtle);
-    border-radius:12px;
-    padding:20px;
-  }
-  .response-card-label { font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--text-tertiary); margin-bottom:6px; }
-  .response-card-value { font-family:var(--font-display); font-size:26px; font-weight:600; color:var(--brass-light); letter-spacing:-0.02em; line-height:1; margin-bottom:4px; }
-  .response-card-desc { font-size:13px; color:var(--text-secondary); font-weight:300; line-height:1.5; }
-
-  /* ─── FOOTER ─── */
-  footer { border-top:1px solid var(--border-subtle); padding:32px 24px; }
-  .footer-inner { max-width:var(--max-w); margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
-  .footer-copy { font-size:12px; color:var(--text-tertiary); }
-  .footer-links { display:flex; gap:20px; list-style:none; }
-  .footer-links a { font-size:13px; color:var(--text-tertiary); text-decoration:none; transition:color 0.2s; }
-  .footer-links a:hover { color:var(--text-secondary); }
-
-  @media (max-width:600px) {
-    .topic-grid { grid-template-columns:1fr; }
-    .response-row { grid-template-columns:1fr; }
-    .contact-primary { flex-direction:column; gap:20px; padding:28px 24px; }
-  }
+@media(max-width:680px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .topic-grid{grid-template-columns:1fr}
+  .resp-row{grid-template-columns:1fr}
+  .contact-card{flex-direction:column;gap:20px;padding:28px 24px}
+  .foot{flex-direction:column;align-items:flex-start}
+}
 </style>
 </head>
 <body>
@@ -194,163 +124,179 @@
 <nav>
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
-      <div class="nav-logo-mark">21</div>
-      <span class="nav-logo-text">21 Pro</span>
+      <div class="nav-mark">21</div>
+      <span class="nav-name">21 Pro</span>
     </a>
-    <a href="index.html" class="nav-back">← Back to Home</a>
+    <ul class="nav-links">
+      <li><a href="index.html#features">Features</a></li>
+      <li><a href="index.html#modes">Modes</a></li>
+      <li><a href="index.html#training">Training</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
+      <li><a href="privacy.html">Privacy</a></li>
+      <li><a href="#" class="nav-cta">Download Free</a></li>
+    </ul>
+    <button class="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
-<div class="page-hero">
-  <span class="page-eyebrow">Support</span>
-  <h1 class="page-title">Contact &amp; Support</h1>
-  <p class="page-subtitle">One developer, one inbox. If something's broken or missing, send a message and it will reach a person who can fix it.</p>
-</div>
-
-<div class="content">
-
-  <!-- ─── PRIMARY CONTACT ─── -->
-  <div class="contact-primary">
-    <div class="contact-icon-wrap">
-      <!-- Mail icon -->
-      <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+<div class="page-wrap">
+  <section class="page-hero">
+    <div class="container">
+      <span class="page-eyebrow">Support</span>
+      <h1 class="page-h1">Contact &amp; Support</h1>
+      <p class="page-sub">One developer, one inbox. If something is broken or missing, send a message and it will reach a person who can fix it.</p>
     </div>
-    <div>
-      <div class="contact-primary-label">Direct Email</div>
-      <div class="contact-primary-title">Get in touch</div>
-      <p class="contact-primary-desc">For bug reports, subscription issues, feature ideas, privacy requests, or anything else — email is the fastest way to get a response. There's no ticket system or support queue, just a direct reply.</p>
-      <a href="mailto:EpochBrandFeedback@gmail.com" class="contact-email-link">
-        <!-- Send icon -->
-        <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
-        EpochBrandFeedback@gmail.com
+  </section>
+
+  <div class="content">
+
+    <!-- PRIMARY CONTACT -->
+    <div class="contact-card">
+      <div class="contact-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+      </div>
+      <div>
+        <div class="contact-label">Direct Email</div>
+        <div class="contact-title">Get in touch</div>
+        <p class="contact-desc">For bug reports, subscription issues, feature ideas, privacy requests, or anything else — email is the fastest way to get a response. No ticket queue, just a direct reply.</p>
+        <a href="mailto:Support@epochbrand.net" class="contact-btn">
+          <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Support@epochbrand.net
+        </a>
+        <p class="contact-note">We aim to respond within 1&ndash;2 business days.</p>
+      </div>
+    </div>
+
+    <!-- TOPIC CARDS -->
+    <span class="sec-label">What can we help with?</span>
+    <div class="topic-grid">
+
+      <a href="mailto:Support@epochbrand.net?subject=Bug Report — 21 Pro" class="topic-card">
+        <div class="topic-icon icon-blue">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div class="topic-title">Bug Report</div>
+        <p class="topic-desc">Something not working right? Let us know what happened, what you expected, and your iOS version.</p>
       </a>
-      <p class="contact-note">We aim to respond within 1–2 business days.</p>
+
+      <a href="mailto:Support@epochbrand.net?subject=Subscription Issue — 21 Pro" class="topic-card">
+        <div class="topic-icon icon-gold">
+          <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <div class="topic-title">Subscription &amp; Billing</div>
+        <p class="topic-desc">Edge not activating after purchase, restore not working, or a billing question — include your Apple ID region if possible.</p>
+      </a>
+
+      <a href="mailto:Support@epochbrand.net?subject=Feature Request — 21 Pro" class="topic-card">
+        <div class="topic-icon icon-green">
+          <svg viewBox="0 0 24 24"><path d="M9 21h6"/><path d="M12 3a6 6 0 0 1 6 6c0 2.5-1.5 4.5-3 6H9c-1.5-1.5-3-3.5-3-6a6 6 0 0 1 6-6z"/></svg>
+        </div>
+        <div class="topic-title">Feature Request</div>
+        <p class="topic-desc">Want a new counting system, game mode, or training drill? Requests from real users drive the roadmap.</p>
+      </a>
+
+      <a href="mailto:Support@epochbrand.net?subject=Privacy Request — 21 Pro" class="topic-card">
+        <div class="topic-icon icon-purple">
+          <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="topic-title">Privacy &amp; Data Request</div>
+        <p class="topic-desc">GDPR or CCPA request, data deletion, or a question about how your data is handled. We respond within 30 days.</p>
+      </a>
+
     </div>
-  </div>
 
-  <!-- ─── TOPIC CARDS ─── -->
-  <span class="section-label">What can we help with?</span>
-  <div class="topic-grid">
-
-    <a href="mailto:EpochBrandFeedback@gmail.com?subject=Bug Report — 21 Pro" class="topic-card">
-      <div class="topic-card-icon icon-blue">
-        <!-- Bug / alert icon -->
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <!-- RESPONSE TIMES -->
+    <span class="sec-label">Response times</span>
+    <div class="resp-row">
+      <div class="resp-card">
+        <div class="resp-card-label">General support</div>
+        <div class="resp-card-value">1&ndash;2 days</div>
+        <div class="resp-card-desc">Bug reports, subscription issues, and general questions.</div>
       </div>
-      <div class="topic-card-title">Bug Report</div>
-      <p class="topic-card-desc">Something not working right? Let us know what happened, what you expected, and your iOS version.</p>
-    </a>
-
-    <a href="mailto:EpochBrandFeedback@gmail.com?subject=Subscription Issue — 21 Pro" class="topic-card">
-      <div class="topic-card-icon icon-gold">
-        <!-- Credit card icon -->
-        <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      <div class="resp-card">
+        <div class="resp-card-label">Privacy requests (GDPR / CCPA)</div>
+        <div class="resp-card-value">30 days</div>
+        <div class="resp-card-desc">As required by law. Most requests are resolved much faster.</div>
       </div>
-      <div class="topic-card-title">Subscription &amp; Billing</div>
-      <p class="topic-card-desc">Edge not activating after purchase, restore not working, or a billing question — include your Apple ID region if possible.</p>
-    </a>
-
-    <a href="mailto:EpochBrandFeedback@gmail.com?subject=Feature Request — 21 Pro" class="topic-card">
-      <div class="topic-card-icon icon-win">
-        <!-- Lightbulb / idea icon -->
-        <svg viewBox="0 0 24 24"><path d="M9 21h6"/><path d="M12 3a6 6 0 0 1 6 6c0 2.5-1.5 4.5-3 6H9c-1.5-1.5-3-3.5-3-6a6 6 0 0 1 6-6z"/></svg>
-      </div>
-      <div class="topic-card-title">Feature Request</div>
-      <p class="topic-card-desc">Want a new counting system, game mode, or training drill? Requests from real users drive the roadmap.</p>
-    </a>
-
-    <a href="mailto:EpochBrandFeedback@gmail.com?subject=Privacy Request — 21 Pro" class="topic-card">
-      <div class="topic-card-icon icon-purple">
-        <!-- Shield icon -->
-        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <div class="topic-card-title">Privacy &amp; Data Request</div>
-      <p class="topic-card-desc">GDPR or CCPA request, data deletion, or a question about how your data is handled. We respond within 30 days.</p>
-    </a>
-
-  </div>
-
-  <!-- ─── RESPONSE TIMES ─── -->
-  <span class="section-label">Response times</span>
-  <div class="response-row">
-    <div class="response-card">
-      <div class="response-card-label">General support</div>
-      <div class="response-card-value">1–2 days</div>
-      <div class="response-card-desc">Bug reports, subscription issues, and general questions.</div>
     </div>
-    <div class="response-card">
-      <div class="response-card-label">Privacy requests (GDPR / CCPA)</div>
-      <div class="response-card-value">30 days</div>
-      <div class="response-card-desc">As required by law. Most requests are resolved much faster.</div>
+
+    <!-- FAQ -->
+    <span class="sec-label">Common questions</span>
+    <div class="faq">
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          My Edge subscription is not activating after purchase.
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </summary>
+        <p class="faq-a">First, try the <strong>Restore Purchases</strong> option inside the App (Settings &rsaquo; Restore). If that doesn't work, force-quit and reopen the App. If Edge still isn't active, email us with your Apple ID region (not your address) and the date of purchase.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          How do I cancel my subscription?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </summary>
+        <p class="faq-a">Go to <strong>Settings &rsaquo; [Your Name] &rsaquo; Subscriptions &rsaquo; 21 Pro &rsaquo; Cancel Subscription</strong>. Cancel at least 24 hours before your next billing date to avoid being charged. Deleting the App does not cancel the subscription.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          I bought Lifetime &mdash; why is Edge not showing as active?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </summary>
+        <p class="faq-a">Use <strong>Restore Purchases</strong> in the App. Lifetime purchases restore just like subscriptions. If it still doesn't activate, email us and include your country and approximate purchase date.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          Can I get a refund?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </summary>
+        <p class="faq-a">Refunds are handled by Apple. Visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener noreferrer">reportaproblem.apple.com</a> and select the 21 Pro purchase. Apple typically processes refund requests within a few days.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          I found a bug in the strategy chart or card counting logic.
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </summary>
+        <p class="faq-a">Email us with the specific hand: your cards, dealer upcard, and what the App suggested vs. what you expected. Include the rule variant (H17/S17) and deck count if you changed them. These reports are taken seriously.</p>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-q">
+          How do I request deletion of my data?
+          <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </summary>
+        <p class="faq-a">Most data in 21 Pro is stored locally on your device &mdash; deleting the App removes it. For data held by third-party services (PostHog, RevenueCat, Crashlytics), email us with the subject "Privacy Request &mdash; Data Deletion." See our <a href="privacy.html">Privacy Policy</a> for full details.</p>
+      </details>
+
     </div>
-  </div>
-
-  <!-- ─── FAQ ─── -->
-  <span class="section-label">Common questions</span>
-  <div class="faq">
-
-    <details class="faq-item">
-      <summary class="faq-q">
-        My Edge subscription isn't activating after purchase.
-        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </summary>
-      <p class="faq-a">First, try the <strong>Restore Purchases</strong> option inside the App (Settings → Restore). If that doesn't work, force-quit and reopen the App. If Edge still isn't active, email us with your Apple ID region (not your email address) and the date of purchase.</p>
-    </details>
-
-    <details class="faq-item">
-      <summary class="faq-q">
-        How do I cancel my subscription?
-        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </summary>
-      <p class="faq-a">Go to <strong>Settings → [Your Name] → Subscriptions → 21 Pro → Cancel Subscription</strong>. Cancel at least 24 hours before your next billing date to avoid being charged. Deleting the App does not cancel the subscription.</p>
-    </details>
-
-    <details class="faq-item">
-      <summary class="faq-q">
-        I bought Lifetime — why is Edge not showing as active?
-        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </summary>
-      <p class="faq-a">Use <strong>Restore Purchases</strong> in the App. Lifetime purchases restore just like subscriptions. If it still doesn't activate after restoring, email us and include your country and approximate purchase date so we can check our records.</p>
-    </details>
-
-    <details class="faq-item">
-      <summary class="faq-q">
-        Can I get a refund?
-        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </summary>
-      <p class="faq-a">Refunds are handled by Apple, not by us. Visit <a href="https://reportaproblem.apple.com" target="_blank" rel="noopener noreferrer">reportaproblem.apple.com</a> and select the 21 Pro purchase. Apple typically processes refund requests within a few days.</p>
-    </details>
-
-    <details class="faq-item">
-      <summary class="faq-q">
-        I found a bug in the strategy chart / card counting logic.
-        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </summary>
-      <p class="faq-a">Please email us with the specific hand — your cards, dealer upcard, and what the App suggested vs. what you expected. Include the rule variant (H17/S17) and deck count if you changed them. These reports are taken seriously and checked against the reference charts.</p>
-    </details>
-
-    <details class="faq-item">
-      <summary class="faq-q">
-        How do I request deletion of my data?
-        <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      </summary>
-      <p class="faq-a">Most data in 21 Pro is stored locally on your device. Deleting the App removes it. For data held by third-party services (PostHog, RevenueCat, Crashlytics), email us with subject line "Privacy Request — Data Deletion." See our <a href="privacy.html">Privacy Policy</a> for full details.</p>
-    </details>
 
   </div>
-
 </div>
 
 <footer>
-  <div class="footer-inner">
-    <span class="footer-copy">&copy; 2025 21 Pro. All rights reserved.</span>
-    <ul class="footer-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="privacy.html">Privacy Policy</a></li>
-      <li><a href="terms.html">Terms of Service</a></li>
-    </ul>
+  <div class="container">
+    <div class="foot">
+      <a href="index.html" class="flogo">
+        <div class="nav-mark">21</div>
+        <span class="fname">21 Pro</span>
+      </a>
+      <ul class="flinks">
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
+        <li><a href="contact.html">Support</a></li>
+      </ul>
+      <span class="fcopy">&#169; 2025 21 Pro. All rights reserved.</span>
+    </div>
   </div>
 </footer>
 
 </body>
+</html>
+
 </html>
